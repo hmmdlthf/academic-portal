@@ -5,18 +5,22 @@ require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . "/app/file/File.php";
 require_once $ROOT . "/app/file/ImageDirectory.php";
+require_once $ROOT . "/app/file/FileDirectory.php";
+require_once $ROOT . '/app/answer_sheet/AnswerSheet.php';
 require_once $ROOT . '/app/answer_sheet/AnswerSheetRepository.php';
 
 class AnswerSheetService
 {
     private AnswerSheetRepository $answerSheetRepository;
     private ImageDirectory $imageDirectory;
+    private FileDirectory $fileDirectory;
     private File $answerSheetFile;
 
     public function __construct()
     {
         $this->answerSheetRepository = new AnswerSheetRepository();
-        $this->imageDirectory = new ImageDirectory();
+        $this->fileDirectory = new FileDirectory();
+        $this->fileDirectory->setAllowedExtensions(['pdf', 'doc', 'docx']);
     }
 
     public function setFile($file)
@@ -32,13 +36,15 @@ class AnswerSheetService
 
     public function upload()
     {
-        $this->imageDirectory->uploadFile($this->answerSheetFile);
+        $this->fileDirectory->uploadFile($this->answerSheetFile);
         echo $this->answerSheetFile->getDownloadFile() . "<br>";
     }
 
-    public function save(File $file, $assignmentId, $studentId)
+    public function save($file, $assignmentId, $studentId)
     {
         $answerSheet = new AnswerSheet();
-        $answerSheet->setFile($file->getTargetFile());
+        $answerSheet->setFile($this->answerSheetFile->getTargetFile());
+        // $answerSheet->setAssignment();
+        // $answerSheet->setStudent();
     }
 }

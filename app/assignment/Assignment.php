@@ -8,6 +8,8 @@ class Assignment extends Db
 {
     private $id;
     private $name;
+    private File $file;
+    private Lesson $lesson;
 
     public function getId()
     {

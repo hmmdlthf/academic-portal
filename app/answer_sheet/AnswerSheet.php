@@ -48,4 +48,14 @@ class AnswerSheet extends Db
         $this->file = $file;
     }
 
+    public function setAssignment(Assignment $assignment)
+    {
+        $this->assignment = $assignment;
+    }
+
+    public function setStudent(Student $student)
+    {
+        $this->student = $student;
+    }
+
 }

@@ -8,11 +8,13 @@ require_once $ROOT . '/app/file/File.php';
 class FileDirectory
 {
     private $uploadStatus;
+    private $allowedSize;
     private Array $allowedExtensions;
 
     public function __construct()
     {
         $this->uploadStatus = false;
+        $this->allowedSize = 500000;
         $this->allowedExtensions = ['jpg', 'jpeg', 'png', 'gif'];
     }
 
@@ -41,7 +43,7 @@ class FileDirectory
 
     public function checkFileSize(File $file)
     {
-        if ($file->getSize() > 500000) {
+        if ($file->getSize() > $this->allowedSize) {
             echo "Sorry, your file is too large. <br>";
             return false;
         }
