@@ -15,8 +15,6 @@ class File
     private $extension;
     private $targetDir;
     private $targetFile;
-    private $uploadPath;
-    private $downloadPath;
 
     public function __construct($name, $type, $fullPath, $tmpName, $error, $size, $targetDir)
     {
@@ -66,28 +64,18 @@ class File
         return $this->extension;
     }
 
+    public function getTargetDir()
+    {
+        return $this->targetDir;
+    }
+
     public function getTargetFile(): string
     {
-        return $this->targetFile;
+        return $_SERVER['DOCUMENT_ROOT'] . $this->targetFile;
     }
 
-    public function getUploaPath()
+    public function getDownloadFile()
     {
-        return $this->uploadPath;
-    }
-
-    public function getDownloadPath()
-    {
-        return $this->downloadPath;
-    }
-
-    public function setUploadPath(string $uploadPath)
-    {
-        $this->uploadPath = $uploadPath;
-    }
-
-    public function setDownloadPath(string $downloadPath)
-    {
-        $this->downloadPath = $downloadPath;
+        return 'http://' . $_SERVER['HTTP_HOST'] . $this->targetFile;
     }
 }
