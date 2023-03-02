@@ -6,6 +6,7 @@ require_once $ROOT . "/app/database/Db.php";
 
 class Teacher extends Db
 {
+    private $id;
     private $fname;
     private $lname;
     private $email;
@@ -25,5 +26,10 @@ class Teacher extends Db
     private $gender;
     private $marital_status;
     private City $city;
+
+    public function getId()
+    {
+        return $this->id;
+    }
     
 }

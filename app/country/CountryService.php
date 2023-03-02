@@ -3,6 +3,7 @@
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
+require_once $ROOT . '/app/country/Country.php';
 require_once $ROOT . '/app/country/CountryRepository.php';
 
 class CountryService

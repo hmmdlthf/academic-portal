@@ -3,6 +3,7 @@
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
+require_once $ROOT . "/app/note/Note.php";
 
 class NoteRepository extends Db
 {
@@ -42,7 +43,13 @@ class NoteRepository extends Db
         } else {
             return false;
         }
-        
+    }
 
+    public function save(Note $note)
+    {
+        $query = "INSERT INTO `note` (`name` `file`, `lesson_id`) VALUES ( ?, ?, ?)";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$note->getName(), $note->getFile()->getTargetFile(), $note->getLesson()->getId()]);
+        return true;
     }
 }

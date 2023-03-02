@@ -9,13 +9,19 @@ class LessonService
 {
     private LessonRepository $lessonRepository;
 
-    public function __construct(LessonRepository $lessonRepository)
+    public function __construct()
     {
-        $this->lessonRepository = $lessonRepository;
+        $this->lessonRepository = new LessonRepository();
     }
 
     public function getLessonById(int $lessonId)
     {
-        $this->lessonRepository->findLessonById($lessonId);
+        $lessonArray = $this->lessonRepository->findLessonById($lessonId);
+        $lesson = new Lesson();
+        $lesson->setId($lessonArray['id']);
+        $lesson->setName($lessonArray['name']);
+        $subject = new SubjectService();
+        $lesson->setSubject($subject->getSubjectById($lessonArray['subject_id']));
+        return $lesson;
     }
 }

@@ -3,6 +3,7 @@
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
+require_once $ROOT . "/app/grade/Grade.php";
 
 class GradeRepository extends Db
 {
@@ -14,7 +15,10 @@ class GradeRepository extends Db
         $resultSet = $statement->fetch();
 
         if ($resultSet > 0) {
-            return $resultSet;
+            $grade = new Grade();
+            $grade->setId($id);
+            $grade->setName($resultSet['name']);
+            return $grade;
         } else {
             return false;
         }
@@ -26,6 +30,27 @@ class GradeRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([]);
         $resultSet = $statement->fetchAll();
+        $grades = [];
+
+        if ($resultSet > 0) {
+            foreach($resultSet as $gradeArray) {
+                $grade = new Grade();
+                $grade->setId($gradeArray['id']);
+                $grade->setName($gradeArray['name']);
+                $grades[] = $grade;
+            }
+            return $grades;
+        } else {
+            false;
+        }
         return $resultSet;
+    }
+
+    public function save(Grade $grade)
+    {
+        $query = "INSERT INTO `grade` (`name`) VALUES (?)";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$grade->getName()]);
+        return true;
     }
 }

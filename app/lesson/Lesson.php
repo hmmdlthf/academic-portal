@@ -20,13 +20,23 @@ class Lesson extends Db
         return  $this->name;
     }
 
-    public function getSubjec()
+    public function getSubject()
     {
         return $this->subject;
+    }
+
+    public function setId(int $id)
+    {
+        $this->id = $id;
     }
 
     public function setName(string $name)
     {
         $this->name = $name;
+    }
+
+    public function setSubject(Subject $subject)
+    {
+        $this->subject = $subject;
     }
 }

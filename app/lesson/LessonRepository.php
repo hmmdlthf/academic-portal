@@ -16,6 +16,7 @@ class LessonRepository extends Db
         if ($resultSet > 0) {
             return $resultSet;
         } else {
+            echo ("no lesson found");
             return false;
         }
     }
@@ -42,7 +43,13 @@ class LessonRepository extends Db
         } else {
             return false;
         }
-        
+    }
 
+    public function save(Lesson $lesson)
+    {
+        $query = "INSERT INTO `note` (`name`, `subject_id`) VALUES ( ?, ?, ?)";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$lesson->getName(), $lesson->getSubject()->getId()]);
+        return true;
     }
 }

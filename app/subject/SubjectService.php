@@ -9,13 +9,17 @@ class SubjectService
 {
     private SubjectRepository $subjectRepository;
 
-    public function __construct(SubjectRepository $subjectRepository)
+    public function __construct()
     {
-        $this->subjectRepository = $subjectRepository;
+        $this->subjectRepository = new SubjectRepository();
     }
 
     public function getSubjectById(int $subjectId)
     {
-        return $this->subjectRepository->findSubjectById($subjectId);
+        $subjectArray = $this->subjectRepository->findSubjectById($subjectId);
+        $subject = new Subject();
+        $subject->setId($subjectArray['id']);
+        $subject->setName($subjectArray['name']);
+        return $subject;
     }
 }

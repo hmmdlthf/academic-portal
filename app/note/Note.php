@@ -20,14 +20,29 @@ class Note extends Db
     {
         return  $this->name;
     }
+    
+    public function getFile()
+    {
+        return $this->file;
+    }
 
     public function getLesson()
     {
         return $this->lesson;
-    }
+    } 
 
     public function setName(string $name)
     {
         $this->name = $name;
+    }
+
+    public function setFile(string $file)
+    {
+        $this->file = $file;
+    }
+
+    public function setLesson(Lesson $lesson)
+    {
+        $this->lesson = $lesson;
     }
 }

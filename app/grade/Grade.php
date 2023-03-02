@@ -19,6 +19,11 @@ class Grade extends Db
         return  $this->name;
     }
 
+    public function setId(int $id)
+    {
+        $this->$id = $id;
+    }
+
     public function setName(string $name)
     {
         $this->name = $name;

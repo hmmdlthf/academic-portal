@@ -33,6 +33,11 @@ class Subject
         return $this->teacher;
     }
 
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
+
     public function setName(string $name)
     {
         $this->name = $name;

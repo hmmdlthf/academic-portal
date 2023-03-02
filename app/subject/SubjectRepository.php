@@ -42,7 +42,13 @@ class SubjectRepository extends Db
         } else {
             return false;
         }
-        
+    }
 
+    public function save(Subject $subject)
+    {
+        $query = "INSERT INTO `subject` (`name` `grade_id`, `teacher_id`) VALUES ( ?, ?, ?)";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$subject->getName(), $subject->getGrade()->getId(), $subject->getTeacher()->getId()]);
+        return true;
     }
 }
