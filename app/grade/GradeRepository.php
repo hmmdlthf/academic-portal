@@ -24,6 +24,23 @@ class GradeRepository extends Db
         }
     }
 
+    public function findGradeByName(string $name)
+    {
+        $query = "SELECT * FROM `grade` WHERE `name`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$name]);
+        $resultSet = $statement->fetch();
+
+        if ($resultSet > 0) {
+            $grade = new Grade();
+            $grade->setId($resultSet['id']);
+            $grade->setName($resultSet['name']);
+            return $grade;
+        } else {
+            return false;
+        }
+    }
+
     public function findGrades()
     {
         $query = "SELECT * FROM `grade`";
