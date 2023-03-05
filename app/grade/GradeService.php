@@ -20,7 +20,7 @@ class GradeService
         return $this->gradeRepository->findGradeById($gradeId);
     }
 
-    public function getGradeByName(int $name)
+    public function getGradeByName(string $name)
     {
         return $this->gradeRepository->findGradeByName($name);
     }
@@ -32,12 +32,33 @@ class GradeService
 
     public function save($name)
     {
-        if ($this->getGradeByName($name) == false) {
+        if ($this->getGradeByName($name) !== false) {
             echo ("grade already exists");
             return false;
         }   
         $grade = new Grade();
         $grade->setName($name);
         $this->gradeRepository->save($grade);
+    }
+
+    public function update($id, $name)
+    {
+        $grade = $this->getGradeById($id);
+        if ($grade == false) {
+            echo ("grade not found");
+            return false;
+        }
+        $grade->setName($name);
+        $this->gradeRepository->update($grade);
+    }
+
+    public function delete($id)
+    {
+        $grade = $this->getGradeById($id);
+        if ($grade == false) {
+            echo ("grade not found");
+            return false;
+        }
+        $this->gradeRepository->delete($grade);
     }
 }

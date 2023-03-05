@@ -29,7 +29,12 @@ class Note extends Db
     public function getLesson()
     {
         return $this->lesson;
-    } 
+    }
+
+    public function setId(int $id)
+    {
+        $this->id = $id;
+    }
 
     public function setName(string $name)
     {

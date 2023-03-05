@@ -12,3 +12,4 @@ if (empty($gradeName)) {
 
 $gradeService = new GradeService();
 $gradeService->save($gradeName);
+echo ("successfull added");

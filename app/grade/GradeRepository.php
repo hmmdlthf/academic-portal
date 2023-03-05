@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+use function PHPSTORM_META\type;
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
@@ -49,6 +51,14 @@ class GradeRepository extends Db
         $resultSet = $statement->fetchAll();
         $grades = [];
 
+        // echo "<br><br>";
+        // foreach($resultSet as $item) {
+        //     echo $item['id'];
+        //     echo type($item['id']);
+        //     echo "<br>";
+        // }
+        // echo "<br><br>";
+
         if ($resultSet > 0) {
             foreach($resultSet as $gradeArray) {
                 $grade = new Grade();
@@ -69,5 +79,20 @@ class GradeRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$grade->getName()]);
         return true;
+    }
+
+    public function update(Grade $grade)
+    {
+        $query = "UPDATE `grade` SET `name`=? WHERE `id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$grade->getName(), $grade->getId()]);
+        return true;
+    }
+
+    public function delete(Grade $grade)
+    {
+        $query = "DELETE FROM `grade` WHERE `id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$grade->getId()]);
     }
 }

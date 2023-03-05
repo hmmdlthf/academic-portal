@@ -6,16 +6,23 @@ require_once $ROOT . "/app/database/Db.php";
 
 class User extends Db
 {
-    private $id;
-    private $fname;
-    private $lname;
-    private $email;
-    private $username;
-    private $password;
-    private $unique_id;
-    private $no_attempts;
-    private $created_date;
-    private $last_login;
+    protected $id;
+    protected $fname;
+    protected $lname;
+    protected $email;
+    protected $username;
+    protected $password;
+    protected $token;
+    protected $uniqueId;
+    protected $noAttempts;
+    protected $createdDate;
+    protected $lastLogin;
+    protected $isVerified;
+
+    public function __construct()
+    {
+        $this->noAttempts = 0;
+    }
 
     public function getId(): int
     {
@@ -47,24 +54,39 @@ class User extends Db
         return $this->password;
     }
 
+    public function getToken()
+    {
+        return $this->token;
+    }
+
     public function getUniqueId(): int
     {
-        return $this->unique_id;
+        return $this->uniqueId;
     }
 
     public function getNoAttempts(): int
     {
-        return $this->no_attempts;
+        return $this->noAttempts;
     }
 
     public function getCreatedDate(): string
     {
-        return $this->created_date;
+        return $this->createdDate;
     }
 
     public function getLastLogin(): string
     {
-        return $this->last_login;
+        return $this->lastLogin;
+    }
+
+    public function getIsVerified()
+    {
+        return $this->isVerified;
+    }
+
+    public function setId(int $id)
+    {
+        $this->id = $id;
     }
 
     public function setFname(string $fname)
@@ -92,8 +114,38 @@ class User extends Db
         $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
 
-    public function setNoAttempts(int $no_attempts)
+    public function setToken(string $token)
     {
-        $this->no_attempts = $no_attempts;
+        $this->token = $token;
+    }
+
+    public function setUniqueId(string $uniqueId)
+    {
+        $this->uniqueId = $uniqueId;
+    }
+
+    public function setNoAttempts(int $noAttempts)
+    {
+        $this->noAttempts = $noAttempts;
+    }
+
+    public function setCreatedDate(string $createdDate)
+    {
+        $this->createdDate = $createdDate;
+    }
+
+    public function setLastLogin(string $lastLogin)
+    {
+        $this->lastLogin = $lastLogin;
+    }
+
+    public function setIsVerified(bool $isVerified)
+    {
+        $this->isVerified = $isVerified;
+    }
+
+    public function incrementNoAttempts()
+    {
+        $this->noAttempts += 1;
     }
 }

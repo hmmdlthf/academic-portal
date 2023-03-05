@@ -16,12 +16,50 @@ class LessonService
 
     public function getLessonById(int $lessonId)
     {
-        $lessonArray = $this->lessonRepository->findLessonById($lessonId);
+        return $this->lessonRepository->findLessonById($lessonId);
+    }
+
+    public function getLessonByName(string $name)
+    {
+        return $this->lessonRepository->findLessonByName($name);
+    }
+
+    public function getLessons()
+    {
+        return $this->lessonRepository->findLessons();
+    }
+
+    public function save($name, $subjectId)
+    {
+        if ($this->getLessonByName($name) !== false) {
+            echo ("lesson already exists");
+            return false;
+        }   
         $lesson = new Lesson();
-        $lesson->setId($lessonArray['id']);
-        $lesson->setName($lessonArray['name']);
+        $lesson->setName($name);
         $subject = new SubjectService();
-        $lesson->setSubject($subject->getSubjectById($lessonArray['subject_id']));
-        return $lesson;
+        $lesson->setSubject($subject->getSubjectById($subjectId));
+        $this->lessonRepository->save($lesson);
+    }
+
+    public function update($id, $name)
+    {
+        $lesson = $this->getLessonById($id);
+        if ($lesson == false) {
+            echo ("lesson not found");
+            return false;
+        }
+        $lesson->setName($name);
+        $this->lessonRepository->update($lesson);
+    }
+
+    public function delete($id)
+    {
+        $lesson = $this->getLessonById($id);
+        if ($lesson == false) {
+            echo ("lesson not found");
+            return false;
+        }
+        $this->lessonRepository->delete($lesson);
     }
 }

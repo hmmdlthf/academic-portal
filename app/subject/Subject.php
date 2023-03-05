@@ -42,4 +42,14 @@ class Subject
     {
         $this->name = $name;
     }
+
+    public function setGrade(Grade $grade)
+    {
+        $this->grade = $grade;
+    }
+
+    public function setTeacher(Teacher $teacher)
+    {
+        $this->teacher = $teacher;
+    }
 }

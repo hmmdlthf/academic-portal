@@ -20,11 +20,29 @@ class CountryRepository extends Db
             $country->setName($resultSet['name']);
             return $country;
         } else {
+            die("no country with id ". $id . "<br>");
             return false;
         }
     }
 
-    public function findCountrys()
+    public function findCountryByName(string $name)
+    {
+        $query = "SELECT * FROM `country` WHERE `name`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$name]);
+        $resultSet = $statement->fetch();
+
+        if ($resultSet > 0) {
+            $country = new Country();
+            $country->setId($resultSet['id']);
+            $country->setName($resultSet['name']);
+            return $country;
+        } else {
+            return false;
+        }
+    }
+
+    public function findCountries()
     {
         $query = "SELECT * FROM `country`";
         $statement = $this->connect()->prepare($query);
@@ -51,5 +69,20 @@ class CountryRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$country->getName()]);
         return true;
+    }
+
+    public function update(Country $country)
+    {
+        $query = "UPDATE `country` SET `name`=? WHERE `id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$country->getName(), $country->getId()]);
+        return true;
+    }
+
+    public function delete(Country $country)
+    {
+        $query = "DELETE FROM `country` WHERE `id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$country->getId()]);
     }
 }

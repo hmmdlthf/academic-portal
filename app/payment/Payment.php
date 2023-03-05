@@ -12,6 +12,16 @@ class Payment extends Db
     private $isVerified;
     private Student $student;
 
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getCreatedDate()
+    {
+        return $this->createdDate;
+    }
+
     public function getPaymentFee()
     {
         return $this->paymentFee;
@@ -26,10 +36,15 @@ class Payment extends Db
     {
         return $this->student;
     }
-
-    public function getCreatedDate()
+    
+    public function setId(int $id)
     {
-        return $this->createdDate;
+        $this->id = $id;
+    }
+
+    public function setCreatedDate(string $createdDate)
+    {
+        $this->createdDate = $createdDate;
     }
 
     public function setPaymentFee(float $paymentFee)
@@ -37,37 +52,19 @@ class Payment extends Db
         $this->paymentFee = $paymentFee;
     }
 
+    public function setIsVerified(bool $isVerified)
+    {
+        $this->isVerified = $isVerified;
+    }
+
+    public function setStudent(Student $student)
+    {
+        $this->student = $student;
+    }
+
     public function makeVerified()
     {
         $this->isVerified = true;
-    }
-
-    public function getPaymentById(int $paymentId)
-    {
-        $query = "SELECT * FROM `payment` WHERE `id`=?";
-        $statement = $this->connect()->prepare($query);
-        $statement->execute([$paymentId]);
-        $resultSet = $statement->fetch();
-
-        if ($resultSet > 0) {
-            return $resultSet;
-        } else {
-            return false;
-        }
-    }
-
-    public function getPaymentsByStudent(int $studentId)
-    {
-        $query = "SELECT * FROM `payment` WHERE `id`=?";
-        $statement = $this->connect()->prepare($query);
-        $statement->execute([$studentId]);
-        $resultSet = $statement->fetch();
-
-        if ($resultSet > 0) {
-            return $resultSet;
-        } else {
-            return false;
-        }
     }
     
 }

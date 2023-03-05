@@ -2,20 +2,9 @@
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
-require_once $ROOT . "/app/database/Db.php";
-require_once $ROOT . '/app/officer/OfficerRepository.php';
+require_once $ROOT . "/app/appUser/AppUserService.php";
 
-class OfficerService
+class OfficerService extends AppUserService
 {
-    private OfficerRepository $officerRepository;
 
-    public function __construct(OfficerRepository $officerRepository)
-    {
-        $this->officerRepository = $officerRepository;
-    }
-
-    public function getOfficerById(int $officerId)
-    {
-        $this->officerRepository->findOfficerById($officerId);
-    }
 }

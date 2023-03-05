@@ -7,7 +7,7 @@
     <title>Add Grade</title>
 </head>
 <body>
-    <form action="addGradeProcess.php">
+    <form action="addGradeProcess.php" method="post">
         <input type="text" name="name" placeholder="Grade Name" id="name">
         <button type="submit">Add Grade</button>
     </form>

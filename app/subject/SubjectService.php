@@ -16,12 +16,52 @@ class SubjectService
 
     public function getSubjectById(int $subjectId)
     {
-        $subjectArray = $this->subjectRepository->findSubjectById($subjectId);
-        $subject = new Subject();
-        $subject->setId($subjectArray['id']);
-        $subject->setName($subjectArray['name']);
-        return $subject;
+        return $this->subjectRepository->findSubjectById($subjectId);
     }
 
-    
+    public function getSubjectByName(string $name)
+    {
+        return $this->subjectRepository->findSubjectByName($name);
+    }
+
+    public function getSubjects()
+    {
+        return $this->subjectRepository->findSubjects();
+    }
+
+    public function save($name, $gradeId, $teacherId)
+    {
+        if ($this->getSubjectByName($name) !== false) {
+            echo ("subject already exists");
+            return false;
+        }   
+        $subject = new Subject();
+        $subject->setName($name);
+        $grade = new GradeService();
+        $subject->setGrade($grade->getGradeById($gradeId));
+        $teacher = new TeacherService();
+        $subject->setTeacher($teacher->getUserById($teacherId));
+        $this->subjectRepository->save($subject);
+    }
+
+    public function update($id, $name)
+    {
+        $subject = $this->getSubjectById($id);
+        if ($subject == false) {
+            echo ("subject not found");
+            return false;
+        }
+        $subject->setName($name);
+        $this->subjectRepository->update($subject);
+    }
+
+    public function delete($id)
+    {
+        $subject = $this->getSubjectById($id);
+        if ($subject == false) {
+            echo ("subject not found");
+            return false;
+        }
+        $this->subjectRepository->delete($subject);
+    }
 }

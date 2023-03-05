@@ -10,13 +10,55 @@ class CountryService
 {
     private CountryRepository $countryRepository;
 
-    public function __construct(CountryRepository $countryRepository)
+    public function __construct()
     {
-        $this->countryRepository = $countryRepository;
+        $this->countryRepository = new CountryRepository();
     }
 
     public function getCountryById(int $countryId)
     {
-        $this->countryRepository->findCountryById($countryId);
+        return $this->countryRepository->findCountryById($countryId);
+    }
+
+    public function getCountryByName(string $name)
+    {
+        return $this->countryRepository->findCountryByName($name);
+    }
+
+    public function getCountries()
+    {
+        return $this->countryRepository->findCountries();
+    }
+
+    public function save($name)
+    {
+        if ($this->getCountryByName($name) !== false) {
+            echo ("country already exists");
+            return false;
+        }   
+        $country = new Country();
+        $country->setName($name);
+        $this->countryRepository->save($country);
+    }
+
+    public function update($id, $name)
+    {
+        $country = $this->getCountryById($id);
+        if ($country == false) {
+            echo ("country not found");
+            return false;
+        }
+        $country->setName($name);
+        $this->countryRepository->update($country);
+    }
+
+    public function delete($id)
+    {
+        $country = $this->getCountryById($id);
+        if ($country == false) {
+            echo ("country not found");
+            return false;
+        }
+        $this->countryRepository->delete($country);
     }
 }

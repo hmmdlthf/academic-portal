@@ -21,7 +21,7 @@ class Grade extends Db
 
     public function setId(int $id)
     {
-        $this->$id = $id;
+        $this->id = $id;
     }
 
     public function setName(string $name)

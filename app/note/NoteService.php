@@ -36,6 +36,11 @@ class NoteService
         echo $this->noteFile->getDownloadFile() . "<br>";
     }
 
+    public function getNotes()
+    {
+        return $this->noteRepository->findNotes();
+    }
+
     public function save($name, $lessonId)
     {
         $note = new Note();
@@ -45,4 +50,28 @@ class NoteService
         $note->setLesson($lesson->getLessonById($lessonId));
         $this->noteRepository->save($note);
     }
+
+    public function update($id, $name, $file)
+    {
+        $note = $this->getNoteById($id);
+        if ($note == false) {
+            echo ("note not found");
+            return false;
+        }
+        $note->setName($name);
+        $note->setFile($file);
+        $this->noteRepository->update($note);
+    }
+
+    public function delete($id)
+    {
+        $note = $this->getNoteById($id);
+        if ($note == false) {
+            echo ("note not found");
+            return false;
+        }
+        $this->noteRepository->delete($note);
+    }
+
+    
 }

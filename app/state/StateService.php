@@ -9,13 +9,57 @@ class StateService
 {
     private StateRepository $stateRepository;
 
-    public function __construct(StateRepository $stateRepository)
+    public function __construct()
     {
-        $this->stateRepository = $stateRepository;
+        $this->stateRepository = new StateRepository();
     }
 
     public function getStateById(int $stateId)
     {
-        $this->stateRepository->findStateById($stateId);
+        return $this->stateRepository->findStateById($stateId);
+    }
+
+    public function getStateByName(string $name)
+    {
+        return $this->stateRepository->findStateByName($name);
+    }
+
+    public function getStates()
+    {
+        return $this->stateRepository->findStates();
+    }
+
+    public function save($name, $countryId)
+    {
+        if ($this->getStateByName($name) !== false) {
+            echo ("state already exists");
+            return false;
+        }   
+        $state = new State();
+        $state->setName($name);
+        $country = new CountryService();
+        $state->setCountry($country->getCountryById($countryId));
+        $this->stateRepository->save($state);
+    }
+
+    public function update($id, $name)
+    {
+        $state = $this->getStateById($id);
+        if ($state == false) {
+            echo ("state not found");
+            return false;
+        }
+        $state->setName($name);
+        $this->stateRepository->update($state);
+    }
+
+    public function delete($id)
+    {
+        $state = $this->getStateById($id);
+        if ($state == false) {
+            echo ("state not found");
+            return false;
+        }
+        $this->stateRepository->delete($state);
     }
 }
