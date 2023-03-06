@@ -21,7 +21,7 @@ DROP TABLE IF EXISTS `student_management_database2`.`admin` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`admin` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `fname` VARCHAR(80) NOT NULL,
+  `fname` VARCHAR(80) NULL,
   `lname` VARCHAR(80) NULL,
   `email` VARCHAR(255) NULL,
   `username` VARCHAR(45) NOT NULL,
