@@ -15,9 +15,9 @@ if (!$jwt) {
 }
 
 $jwtService = new JwtService();
-$jwtService->encodeArrayToJwt($jwt);
+$jwtService->decodeJwtToArray($jwt);
 
-if ($jwtService->verifyJwt()) // check if the 'exp'(expire) is < than current time - opposite true
+if (!$jwtService->verifyJwt()) // check if the 'exp'(expire) is < than current time - opposite true
 {
     header('HTTP/1.1 401 Unauthorized');
     exit;

@@ -27,7 +27,15 @@ class JwtToken
         $this->tokenId = base64_decode(random_bytes(16));
         $currentTime = new DateTimeImmutable();
         $this->issuedAt = $currentTime->getTimestamp();
-        $this->expire = $currentTime->modify("+$this->expireLength minutes")->getTimestamp();
+        $this->setExpireLength(6);
+        $expireLength = $this->getExpireLength();
+        $this->expire = $currentTime->modify('+6 minutes')->getTimestamp();
+        // try {
+        //     $this->expire = $currentTime->modify('+6 minutes')->getTimestamp();
+        // } catch(Exception $e) {
+        //     die("error: $e");
+        // }
+        
         $this->serverName = $_SERVER['HTTP_HOST'];
     }
 

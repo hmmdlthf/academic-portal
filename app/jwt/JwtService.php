@@ -22,7 +22,7 @@ class JwtService
         $currentTime = new DateTimeImmutable();
         $this->jwt->setIssuedAt($currentTime->getTimestamp());
         $expireLength = $this->jwt->getExpireLength();
-        $this->jwt->setExpire($currentTime->modify("+$expireLength minutes")->getTimestamp());
+        $this->jwt->setExpire($currentTime->modify("+6 minutes")->getTimestamp());
         $this->jwt->setServerName($_SERVER['HTTP_HOST']);
         $this->jwt->setUsername($username);
     }
