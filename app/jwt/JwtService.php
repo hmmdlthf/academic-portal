@@ -92,4 +92,9 @@ class JwtService
         }
 
     }
+
+    public function getUsername()
+    {
+        return $this->jwt->getArray()['data']->userName;
+    }
 }

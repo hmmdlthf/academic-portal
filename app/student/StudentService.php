@@ -64,7 +64,7 @@ class StudentService
         
     }
 
-    public function save($email, $officer_id)
+    public function save($email, $officer_username)
     {
         if ($this->getStudentByEmail($email) !== false) {
             echo ("student already exists");
@@ -82,7 +82,7 @@ class StudentService
         $student->setLastLogin(date("Y-m-d H:i:s"));
         $student->setIsVerified(false);
         $officerService = new OfficerService();
-        $student->setOfficer($officerService->getOfficerById($officer_id));
+        $student->setOfficer($officerService->getOfficerByUsername($officer_username));
         $this->studentRepository->save($student);
         $this->sendCreationEmail($student, $password);
     }

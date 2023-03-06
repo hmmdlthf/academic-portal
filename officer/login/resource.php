@@ -1,8 +1,5 @@
 <?php
 
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
-
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . '/app/jwt/JwtService.php';
