@@ -11,9 +11,9 @@ class JwtService
 {
     private $jwt;
 
-    public function __construct()
+    public function __construct(array $array)
     {
-        $this->jwt = new JwtToken();
+        $this->jwt = new JwtToken($array);
     }
 
     public function config($expireLength, $username)
@@ -35,6 +35,7 @@ class JwtService
                 'exp'  => $this->jwt->getExpire(),      // Expire
                 'data' => [                             // Data related to the signer user
                     'userName' => $this->jwt->getUsername(),            // User names
+                    'roles' => $this->jwt->getRoles(),
                 ]
             ]);
     }
@@ -81,7 +82,9 @@ class JwtService
         $now = new DateTimeImmutable();
         if ($this->jwt->getArray()['iss'] !== $this->jwt->getServerName() || // check if the server name is the sever name we gave when created the jwt - opposite true
             $this->jwt->getArray()['nbf'] > $now->getTimestamp() || // check if the 'nbf'(nob before) is > than the current time - opposite true
-            $this->jwt->getArray()['exp'] < $now->getTimestamp()) // check if the 'exp'(expire) is < than current time - opposite true
+            $this->jwt->getArray()['exp'] < $now->getTimestamp() || // check if the 'exp'(expire) is < than current time - opposite true
+            $this->jwt->getArray()['data']->roles !== $this->jwt->getRoles()
+            ) 
         {
             return false;
         } else {

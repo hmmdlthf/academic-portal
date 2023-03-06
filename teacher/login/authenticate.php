@@ -31,7 +31,7 @@ function test_input($data) {
 }
 
 if ($hasValidCredentials) {
-    $jwtSevice = new JwtService();
+    $jwtSevice = new JwtService(['teacher_role']);
     if (isset($_POST['remember_me']) & $_POST['remember_me'] == 'on') {
         $jwtSevice->config('10080', $username);
     } else {

@@ -16,19 +16,21 @@ class JwtToken
     private string $expireLength; // length in minutes
     private $serverName;
     private $username;
+    private $roles;
     private $jwt;
     private $array;
 
-    public function __construct()
+    public function __construct(array $roles)
     {
         $this->hasValidCredentials = false;
-        $this->secretKey = 'be22b52b-95a6-4d29-81ed-8ab54ba1f9db';
         $this->algo = 'HS512';
+        $this->secretKey = 'be22b52b-95a6-4d29-81ed-8ab54ba1f9db';
         $this->tokenId = base64_encode(random_bytes(16));
         $currentTime = new DateTimeImmutable();
         $this->issuedAt = $currentTime->getTimestamp();
         $this->expire = $currentTime->modify('+6 minutes')->getTimestamp();
         $this->serverName = $_SERVER['HTTP_HOST'];
+        $this->roles = $roles;
     }
 
     public function getHasValidCredentials()
@@ -74,6 +76,11 @@ class JwtToken
     public function getUsername()
     {
         return $this->username;
+    }
+
+    public function getRoles()
+    {
+        return $this->roles;
     }
 
     public function getJwt()
@@ -124,6 +131,11 @@ class JwtToken
     public function setUsername(string $username)
     {
         $this->username = $username;
+    }
+
+    public function setRoles(array $roles)
+    {
+        $this->roles = $roles;
     }
 
     public function setJwt(string $jwt)

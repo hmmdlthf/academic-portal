@@ -14,7 +14,7 @@ if (!$jwt) {
     exit;
 }
 
-$jwtService = new JwtService();
+$jwtService = new JwtService(['officer_role']);
 $jwtService->decodeJwtToArray($jwt);
 
 if (!$jwtService->verifyJwt()) // check if the 'exp'(expire) is < than current time - opposite true
