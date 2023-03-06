@@ -16,13 +16,11 @@ class JwtService
         $this->jwt = new JwtToken();
     }
 
-    public function config($username)
+    public function config($expireLength, $username)
     {
-        $this->jwt->setTokenId(base64_decode(random_bytes(16)));
         $currentTime = new DateTimeImmutable();
         $this->jwt->setIssuedAt($currentTime->getTimestamp());
-        $expireLength = $this->jwt->getExpireLength();
-        $this->jwt->setExpire($currentTime->modify("+6 minutes")->getTimestamp());
+        $this->jwt->setExpire($currentTime->modify("+". $expireLength ." minutes")->getTimestamp());
         $this->jwt->setServerName($_SERVER['HTTP_HOST']);
         $this->jwt->setUsername($username);
     }
@@ -31,12 +29,12 @@ class JwtService
     {
         $this->jwt->setArray([
                 'iat'  => $this->jwt->getIssuedAt(),    // Issued at: time when the token was generated
-                'jti'  => $this->jwt->getTokenId(),                     // Json Token Id: an unique identifier for the token
-                'iss'  => $this->jwt->getServerName(),                  // Issuer
+                'jti'  => $this->jwt->getTokenId(),     // Json Token Id: an unique identifier for the token
+                'iss'  => $this->jwt->getServerName(),  // Issuer
                 'nbf'  => $this->jwt->getIssuedAt(),    // Not before
-                'exp'  => $this->jwt->getExpire(),                      // Expire
+                'exp'  => $this->jwt->getExpire(),      // Expire
                 'data' => [                             // Data related to the signer user
-                    'userName' => $this->jwt->getUsername(),            // User name
+                    'userName' => $this->jwt->getUsername(),            // User names
                 ]
             ]);
     }

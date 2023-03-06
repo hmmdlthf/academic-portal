@@ -38,7 +38,7 @@ function test_input($data) {
     <title>Document</title>
 </head>
 <body>
-    <form action="<?php echo htmlspecialchars('authenticate.php');?>" method="post">
+    <form action="<?php echo htmlspecialchars('authenticate2.php');?>" method="post">
         <input type="text" name="username" placeholder="username" id="">
         <input type="password" name="password" placeholder="password" id="">
         <label for="remember_me">Remember Me</label>

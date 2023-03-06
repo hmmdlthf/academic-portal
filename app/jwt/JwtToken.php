@@ -13,7 +13,7 @@ class JwtToken
     private $tokenId;
     private $issuedAt;
     private $expire;
-    private $expireLength; // length in minutes
+    private string $expireLength; // length in minutes
     private $serverName;
     private $username;
     private $jwt;
@@ -24,18 +24,10 @@ class JwtToken
         $this->hasValidCredentials = false;
         $this->secretKey = 'be22b52b-95a6-4d29-81ed-8ab54ba1f9db';
         $this->algo = 'HS512';
-        $this->tokenId = base64_decode(random_bytes(16));
+        $this->tokenId = base64_encode(random_bytes(16));
         $currentTime = new DateTimeImmutable();
         $this->issuedAt = $currentTime->getTimestamp();
-        $this->setExpireLength(6);
-        $expireLength = $this->getExpireLength();
         $this->expire = $currentTime->modify('+6 minutes')->getTimestamp();
-        // try {
-        //     $this->expire = $currentTime->modify('+6 minutes')->getTimestamp();
-        // } catch(Exception $e) {
-        //     die("error: $e");
-        // }
-        
         $this->serverName = $_SERVER['HTTP_HOST'];
     }
 
@@ -69,7 +61,7 @@ class JwtToken
         return $this->expire;
     }
 
-    public function getExpireLength()
+    public function getExpireLength(): string
     {
         return $this->expireLength;
     }
@@ -119,7 +111,7 @@ class JwtToken
         $this->expire = $expire;
     }
 
-    public function setExpireLength(int $expireLength)
+    public function setExpireLength(string $expireLength)
     {
         $this->expire = $expireLength;
     }
