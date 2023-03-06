@@ -30,7 +30,9 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`admin` (
   `unique_id` VARCHAR(255) NOT NULL,
   `no_attempts` INT NULL DEFAULT 0,
   `last_login` DATETIME NULL,
-  PRIMARY KEY (`id`, `unique_id`),
+  `is_verified` TINYINT NULL,
+  `created_date` DATETIME NULL,
+  PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
   UNIQUE INDEX `unique_id_UNIQUE` (`unique_id` ASC) VISIBLE)
 ENGINE = InnoDB;
