@@ -9,12 +9,6 @@ session_start();
 
 $officerService = new OfficerService();
 $officers = $officerService->getOfficers();
-// $city = $officer->getCity();
-// if (gettype($city) == City::class) {
-//     $cityName = $city->getName();
-// } else {
-//     $cityName = null;
-// }
 
 ?>
 
