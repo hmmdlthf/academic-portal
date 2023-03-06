@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
@@ -15,7 +15,7 @@ class AppUser extends User
     protected $dob;
     protected $gender;
     protected $maritalStatus;
-    protected City $city;
+    protected City|null $city;
 
     public function getAddress()
     {
@@ -54,45 +54,48 @@ class AppUser extends User
 
     public function getCity()
     {
-        return $this->city;
+        if ($this->city != null) {
+            return $this->city;
+        }
+        return 'no city';
     }
 
-    public function setAddress(string $address)
+    public function setAddress(string|null $address)
     {
         $this->address = $address;
     }
 
-    public function setPhone(int $phone)
+    public function setPhone(int|null $phone)
     {
         $this->phone = $phone;
     }
 
-    public function setNic(string $nic)
+    public function setNic(string|null $nic)
     {
         $this->nic = $nic;
     }
 
-    public function setTitle(string $title)
+    public function setTitle(string|null $title)
     {
         $this->title = $title;
     }
 
-    public function setDob(string $dob)
+    public function setDob(string|null $dob)
     {
         $this->dob = $dob;
     }
 
-    public function setGender(Gender $gender)
+    public function setGender(Gender|null $gender)
     {
         $this->gender = $gender;
     }
 
-    public function setMaritalStatus(bool $maritalStatus)
+    public function setMaritalStatus(bool|null $maritalStatus)
     {
         $this->maritalStatus = $maritalStatus;
     }
 
-    public function setCity(City $city)
+    public function setCity(City|null $city)
     {
         $this->city = $city;
     }

@@ -6,5 +6,4 @@ require_once $ROOT . "/app/user/UserService.php";
 
 class AppUserService extends UserService
 {
-    
 }

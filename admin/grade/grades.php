@@ -22,6 +22,7 @@ $grades = $gradeService->getGrades();
 </head>
 
 <body>
+    <button onclick="document.location = '/admin/grade/addGrade.php'">Add Grade</button>
     <div class="grades">
 
         <?php foreach ($grades as $grade) { ?>

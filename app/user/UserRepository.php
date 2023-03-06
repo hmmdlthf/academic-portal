@@ -7,6 +7,23 @@ require_once $ROOT . "/app/user/User.php";
 
 class UserRepository extends Db
 {
+    protected string $table;
+
+    public function __construct()
+    {
+        $this->setTable('user');
+    }
+
+    public function getTable()
+    {
+        return $this->table;
+    }
+
+    public function setTable(string $table)
+    {
+        $this->table = $table;
+    }
+
     public function addDetailsToModel(array $array)
     {
         $user = new User();
@@ -27,7 +44,8 @@ class UserRepository extends Db
 
     public function findUserById(int $id)
     {
-        $query = "SELECT * FROM `user` WHERE `id`=?";
+        
+        $query = "SELECT * FROM ".  $this->getTable() ."WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$id]);
         $resultSet = $statement->fetch();
@@ -41,7 +59,7 @@ class UserRepository extends Db
 
     public function findUserByEmail(string $email)
     {
-        $query = "SELECT * FROM `user` WHERE `email`=?";
+        $query = "SELECT * FROM " . $this->getTable() ." WHERE `email`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$email]);
         $resultSet = $statement->fetch();
@@ -55,7 +73,7 @@ class UserRepository extends Db
 
     public function findUsers()
     {
-        $query = "SELECT * FROM `user`";
+        $query = "SELECT * FROM ". $this->getTable() . " ";
         $statement = $this->connect()->prepare($query);
         $statement->execute([]);
         $resultSet = $statement->fetchAll();
@@ -64,7 +82,7 @@ class UserRepository extends Db
 
     public function save(User $user)
     {
-        $query = "INSERT INTO `user` (`fname`, `lname`, `email`, `username`, `password`, `token`, `unique_id`, `no_attempts`, `created_date`, `last_login`, `is_verified`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO " .  $this->getTable() . " (`fname`, `lname`, `email`, `username`, `password`, `token`, `unique_id`, `no_attempts`, `created_date`, `last_login`, `is_verified`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$user->getFname(), $user->getLname(), $user->getEmail(), $user->getUsername(), $user->getPassword(), $user->getToken(), $user->getNoAttempts(), $user->getCreatedDate(), $user->getLastLogin(), $user->getIsVerified()]);
         return true;
@@ -72,7 +90,7 @@ class UserRepository extends Db
 
     public function update(User $user)
     {
-        $query = "UPDATE `user` SET `fname`=?, `lname`=?, `email`=? `username`=?, `password`=?, `token`=?, `unique_id`=?, `no_attempts`=?, `created_date`=?, `last_login`=?, `is_verified`=? WHERE `id`=?";
+        $query = "UPDATE ". $this->getTable() ." SET `fname`=?, `lname`=?, `email`=? `username`=?, `password`=?, `token`=?, `unique_id`=?, `no_attempts`=?, `created_date`=?, `last_login`=?, `is_verified`=? WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$user->getFname(), $user->getLname(), $user->getEmail(), $user->getPassword(), $user->getToken(), $user->getUniqueId(), $user->getNoAttempts(), $user->getLastLogin(), $user->getIsVerified(), $user->getId()]);
         return true;
@@ -80,7 +98,7 @@ class UserRepository extends Db
 
     public function delete(User $user)
     {
-        $query = "DELETE FROM `user` WHERE `id`=?";
+        $query = "DELETE FROM ". $this->getTable() ." WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$user->getId()]);
     }

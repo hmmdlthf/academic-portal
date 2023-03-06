@@ -1,10 +1,12 @@
 <?php 
 
+use Ramsey\Uuid\Uuid;
+
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
 
-class User extends Db
+class User
 {
     protected $id;
     protected $fname;
@@ -29,12 +31,12 @@ class User extends Db
         return $this->id;
     }
 
-    public function getFname(): string
+    public function getFname(): string|null
     {
         return $this->fname;
     }
 
-    public function getLname(): string
+    public function getLname(): string|null
     {
         return $this->lname;
     }
@@ -59,7 +61,7 @@ class User extends Db
         return $this->token;
     }
 
-    public function getUniqueId(): int
+    public function getUniqueId()
     {
         return $this->uniqueId;
     }
@@ -89,12 +91,12 @@ class User extends Db
         $this->id = $id;
     }
 
-    public function setFname(string $fname)
+    public function setFname(string|null $fname)
     {
         $this->fname = $fname;
     }
 
-    public function setLname(string $lname)
+    public function setLname(string|null $lname)
     {
         $this->lname = $lname;
     }
@@ -111,7 +113,7 @@ class User extends Db
 
     public function setPassword(string $password)
     {
-        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->password = $password;
     }
 
     public function setToken(string $token)
@@ -148,4 +150,80 @@ class User extends Db
     {
         $this->noAttempts += 1;
     }
+
+    public function generateToken()
+    {
+        
+        $uuid = Uuid::uuid4();
+        echo("Your UUID is: " . $uuid->toString() . "<br>");
+        return $uuid;
+    }
+
+    public function generateUsername(string $email)
+    {
+        // split the email with character "@"
+        // the out put for test@expample.com will be ['test', 'example.com']
+        // we can use the first part to design a username
+        $emailArray = explode("@", $email);
+
+        $data = random_bytes(16);
+        assert(strlen($data) == 16);
+    
+        // Set version to 0100
+        $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+        // Set bits 6-7 to 10
+        $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+    
+        // Output the 36 character UUID.
+        $uuid = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+
+        // split the string with character "-"
+        // the out put for 4b8aad66-9928-4b8c-bc25-a5389c1cac7c will be ['4b8aad66', '9928', '4b8c', 'bc25', 'a5389c1cac7c']
+        // we can use the first part design the username
+        $uuidPart = explode("-", $uuid);
+
+        $username = $emailArray[0] . $uuidPart[0];
+        echo ("uuid: $uuid <br>");
+        echo ("username: $username <br>");
+        return $username;
+    }
+
+    public function generateUniqueId()
+    {
+        $data = random_bytes(16);
+        assert(strlen($data) == 16);
+    
+        // Set version to 0100
+        $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+        // Set bits 6-7 to 10
+        $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+    
+        // Output the 36 character UUID.
+        $uuid = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+        echo ("uuid: $uuid <br>");
+        return $uuid;
+    }
+
+    public function generatePassword()
+    {
+        $data = random_bytes(16);
+        assert(strlen($data) == 16);
+    
+        // Set version to 0100
+        $data[6] = chr(ord($data[6]) & 0x0f | 0x40);
+        // Set bits 6-7 to 10
+        $data[8] = chr(ord($data[8]) & 0x3f | 0x80);
+    
+        // Output the 12 character UUID.
+        // $password = vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
+        $password = vsprintf('%s%s%s%s', str_split(bin2hex($data), 4));
+        echo ("password: $password <br>");
+        return $password;
+    }
+
+    public function generateHash($password)
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
 }

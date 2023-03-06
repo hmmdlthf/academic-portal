@@ -26,11 +26,11 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`admin` (
   `email` VARCHAR(255) NULL,
   `username` VARCHAR(45) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `token` INT NULL,
-  `unique_id` INT NOT NULL,
+  `token` VARCHAR(255) NULL,
+  `unique_id` VARCHAR(255) NOT NULL,
   `no_attempts` INT NULL DEFAULT 0,
   `last_login` DATETIME NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`id`, `unique_id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
   UNIQUE INDEX `unique_id_UNIQUE` (`unique_id` ASC) VISIBLE)
 ENGINE = InnoDB;
@@ -42,7 +42,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`country` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`country` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
@@ -55,7 +55,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`state` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`state` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `country_id` INT NOT NULL,
   PRIMARY KEY (`id`, `country_id`),
@@ -75,7 +75,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`city` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`city` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `state_id` INT NOT NULL,
   `state_country_id` INT NOT NULL,
@@ -96,16 +96,16 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`officer` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`officer` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `fname` VARCHAR(80) NULL,
   `lname` VARCHAR(80) NULL,
   `email` VARCHAR(80) NOT NULL,
   `username` VARCHAR(80) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `token` INT NULL,
-  `unique_id` INT NOT NULL,
-  `is_verified` TINYINT NOT NULL,
-  `no_attempts` INT NULL,
+  `token` VARCHAR(255) NULL,
+  `unique_id` VARCHAR(255) NOT NULL,
+  `is_verified` TINYINT NOT NULL DEFAULT 0,
+  `no_attempts` INT NULL DEFAULT 0,
   `last_login` DATETIME NULL,
   `created_date` DATETIME NOT NULL,
   `address` TEXT NULL,
@@ -115,8 +115,8 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`officer` (
   `dob` DATE NULL,
   `gender` ENUM('m', 'f') NULL,
   `marital_status` TINYINT NULL,
-  `city_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `city_id`),
+  `city_id` INT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC) VISIBLE,
   UNIQUE INDEX `unique_id_UNIQUE` (`unique_id` ASC) VISIBLE,
   UNIQUE INDEX `nic_UNIQUE` (`nic` ASC) VISIBLE,
@@ -135,7 +135,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`grade` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`grade` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(80) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE)
@@ -148,7 +148,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`student` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`student` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `fname` VARCHAR(80) NULL,
   `lname` VARCHAR(80) NULL,
   `email` VARCHAR(80) NOT NULL,
@@ -156,8 +156,8 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`student` (
   `password` VARCHAR(255) NOT NULL,
   `nic` VARCHAR(45) NULL,
   `address` VARCHAR(45) NULL,
-  `token` INT NULL,
-  `unique_id` INT NOT NULL,
+  `token` VARCHAR(255) NULL,
+  `unique_id` VARCHAR(255) NOT NULL,
   `no_attemps` INT NULL DEFAULT 0,
   `last_login` DATETIME NULL,
   `is_verified` TINYINT NOT NULL DEFAULT 0,
@@ -169,8 +169,8 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`student` (
   `marital_status` TINYINT NULL,
   `officer_id` INT NOT NULL,
   `grade_id` INT NOT NULL,
-  `city_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `officer_id`, `grade_id`, `city_id`),
+  `city_id` INT NULL,
+  PRIMARY KEY (`id`, `officer_id`, `grade_id`),
   INDEX `fk_student_officer_idx` (`officer_id` ASC) VISIBLE,
   INDEX `fk_student_grade1_idx` (`grade_id` ASC) VISIBLE,
   INDEX `fk_student_city1_idx` (`city_id` ASC) VISIBLE,
@@ -199,16 +199,16 @@ COMMENT = '			';
 DROP TABLE IF EXISTS `student_management_database2`.`teacher` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`teacher` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `fname` VARCHAR(80) NULL,
   `lname` VARCHAR(80) NULL,
   `email` VARCHAR(80) NOT NULL,
   `username` VARCHAR(80) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `token` INT NULL,
-  `unique_id` INT NOT NULL,
-  `is_verified` TINYINT NOT NULL,
-  `no_attempts` INT NULL,
+  `token` VARCHAR(255) NULL,
+  `unique_id` VARCHAR(255) NOT NULL,
+  `is_verified` TINYINT NOT NULL DEFAULT 0,
+  `no_attempts` INT NULL DEFAULT 0,
   `last_login` DATETIME NULL,
   `created_date` DATETIME NOT NULL,
   `address` TEXT NULL,
@@ -218,8 +218,8 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`teacher` (
   `dob` DATE NULL,
   `gender` ENUM('m', 'f') NULL,
   `marital_status` TINYINT NULL,
-  `city_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `city_id`),
+  `city_id` INT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE INDEX `nic_UNIQUE` (`nic` ASC) VISIBLE,
   UNIQUE INDEX `unique_id_UNIQUE` (`unique_id` ASC) VISIBLE,
   INDEX `fk_teacher_city1_idx` (`city_id` ASC) VISIBLE,
@@ -237,7 +237,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`subject` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`subject` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `grade_id` INT NOT NULL,
   `teacher_id` INT NOT NULL,
@@ -264,7 +264,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`lesson` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`lesson` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(80) NULL,
   `subject_id` INT NOT NULL,
   `subject_grade_id` INT NOT NULL,
@@ -285,7 +285,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`note` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`note` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `file` VARCHAR(1000) NULL,
   `lesson_id` INT NOT NULL,
@@ -309,7 +309,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`assignment` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`assignment` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `file` VARCHAR(1000) NOT NULL,
   `lesson_id` INT NOT NULL,
   `lesson_subject_id` INT NOT NULL,
@@ -331,7 +331,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`answer_sheet` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`answer_sheet` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `file` VARCHAR(1000) NOT NULL,
   `marks` INT NULL,
   `is_released` TINYINT NOT NULL,
@@ -365,7 +365,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `student_management_database2`.`payment` ;
 
 CREATE TABLE IF NOT EXISTS `student_management_database2`.`payment` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `created_date` DATETIME NULL,
   `payment_fee` REAL NULL,
   `is_verified` TINYINT NULL,
@@ -379,6 +379,22 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`payment` (
     REFERENCES `student_management_database2`.`student` (`id` , `officer_id` , `grade_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `student_management_database2`.`emails`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `student_management_database2`.`emails` ;
+
+CREATE TABLE IF NOT EXISTS `student_management_database2`.`emails` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `date` DATETIME NOT NULL,
+  `from` VARCHAR(80) NOT NULL,
+  `to` VARCHAR(80) NOT NULL,
+  `subject` MEDIUMTEXT NULL,
+  `body` LONGTEXT NULL,
+  PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
 

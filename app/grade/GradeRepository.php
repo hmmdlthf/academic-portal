@@ -9,6 +9,14 @@ require_once $ROOT . "/app/grade/Grade.php";
 
 class GradeRepository extends Db
 {
+    public function addDetailsToModel(array $array)
+    {
+        $grade = new Grade();
+        $grade->setId($array['id']);
+        $grade->setName($array['name']);
+        return $grade;
+    }
+
     public function findGradeById(int $id)
     {
         $query = "SELECT * FROM `grade` WHERE `id`=?";
@@ -17,10 +25,7 @@ class GradeRepository extends Db
         $resultSet = $statement->fetch();
 
         if ($resultSet > 0) {
-            $grade = new Grade();
-            $grade->setId($id);
-            $grade->setName($resultSet['name']);
-            return $grade;
+            return $this->addDetailsToModel($resultSet);
         } else {
             return false;
         }
@@ -34,10 +39,7 @@ class GradeRepository extends Db
         $resultSet = $statement->fetch();
 
         if ($resultSet > 0) {
-            $grade = new Grade();
-            $grade->setId($resultSet['id']);
-            $grade->setName($resultSet['name']);
-            return $grade;
+            return $this->addDetailsToModel($resultSet);
         } else {
             return false;
         }
@@ -51,19 +53,9 @@ class GradeRepository extends Db
         $resultSet = $statement->fetchAll();
         $grades = [];
 
-        // echo "<br><br>";
-        // foreach($resultSet as $item) {
-        //     echo $item['id'];
-        //     echo type($item['id']);
-        //     echo "<br>";
-        // }
-        // echo "<br><br>";
-
         if ($resultSet > 0) {
             foreach($resultSet as $gradeArray) {
-                $grade = new Grade();
-                $grade->setId($gradeArray['id']);
-                $grade->setName($gradeArray['name']);
+                $grade = $this->addDetailsToModel($gradeArray);
                 $grades[] = $grade;
             }
             return $grades;
