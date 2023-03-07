@@ -37,6 +37,6 @@ if ($hasValidCredentials) {
     } else {
         $jwtSevice->config('1440', $username);
     }
-    $jwtSevice->createJwt();
+    $jwtSevice->createJwt('/student');
     echo ("jwt created successfully");
 }

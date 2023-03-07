@@ -22,6 +22,7 @@ $countries = $countryService->getCountries();
 </head>
 
 <body>
+<button onclick="document.location = '/admin/country/addCountry.php'">Add Country</button>
     <div class="countrys">
 
         <?php foreach ($countries as $country) { ?>

@@ -12,7 +12,7 @@ class LessonRepository extends Db
         $lesson->setId($array['id']);
         $lesson->setName($array['name']);
         $subject = new SubjectService();
-        $lesson->setSubject($subject->getSubjectById($array['state_id']));
+        $lesson->setSubject($subject->getSubjectById($array['subject_id']));
         return $lesson;
     }
     
@@ -26,7 +26,6 @@ class LessonRepository extends Db
         if ($resultSet > 0) {
             return $this->addDetailsToModel($resultSet);
         } else {
-            echo ("no lesson found");
             return false;
         }
     }
@@ -41,7 +40,6 @@ class LessonRepository extends Db
         if ($resultSet > 0) {
             return $this->addDetailsToModel($resultSet);
         } else {
-            echo ("no lesson found");
             return false;
         }
     }
@@ -86,7 +84,7 @@ class LessonRepository extends Db
 
     public function save(Lesson $lesson)
     {
-        $query = "INSERT INTO `note` (`name`, `subject_id`) VALUES ( ?, ?, ?)";
+        $query = "INSERT INTO `lesson` (`name`, `subject_id`) VALUES ( ?, ?)";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$lesson->getName(), $lesson->getSubject()->getId()]);
         return true;

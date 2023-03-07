@@ -50,16 +50,16 @@ class JwtService
         $this->jwt->setJwt($jwt);
     }
 
-    public function createCookie()
+    public function createCookie(string $path)
     {
-        setcookie('jwt', $this->jwt->getJwt());
+        setcookie('jwt', $this->jwt->getJwt(), path:$path);
     }
 
-    public function createJwt()
+    public function createJwt(string $path)
     {
         $this->createTokenArray();
         $this->encodeArrayToJwt();
-        $this->createCookie();
+        $this->createCookie($path);
     }
 
     public function decodeJwtToArray($jwt)

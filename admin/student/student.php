@@ -25,6 +25,7 @@ $students = $studentService->getStudents();
 </head>
 
 <body>
+<button onclick="document.location = '/admin/student/addStudent.php'">Add Student</button>
     <div class="students">
 
         <?php foreach ($students as $student) { ?>

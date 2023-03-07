@@ -57,6 +57,16 @@ trait SendMail
         //    $this->sendersEmail = 'contact@me.aftersite.lk';
         //    $this->sendersName = 'Althaf';
         //    $this->isHTML = false;
+
+        
+        // $this->hostname = 'sandbox.smtp.mailtrap.io';
+        // $this->port = 2525;
+        // $this->SMTPDebug = 0;
+        // $this->username = '81f05584ea4958';
+        // $this->password = 'e6d30e06ff8e7c';
+        // $this->sendersEmail = 'aftersite.emp@gmail.com';
+        // $this->sendersName = 'Althaf';
+        // $this->isHTML = false;
     }
 
     public function getSendersEmail(): string

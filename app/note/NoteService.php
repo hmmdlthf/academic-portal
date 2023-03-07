@@ -4,7 +4,8 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . '/app/note/NoteRepository.php';
-require_once $ROOT . '/app/file/FileRepository.php';
+require_once $ROOT . '/app/file/File.php';
+require_once $ROOT . '/app/file/FileDirectory.php';
 
 class NoteService
 {

@@ -23,6 +23,7 @@ $payments = $paymentService->getPayments();
 </head>
 
 <body>
+<button onclick="document.location = '/admin/payment/addPayment.php'">Add Payment</button>
     <div class="payments">
 
         <?php foreach ($payments as $payment) { ?>

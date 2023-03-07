@@ -16,7 +16,7 @@ class SubjectRepository extends Db
         $grade = new GradeService();
         $subject->setGrade($grade->getGradeById($array['grade_id']));
         $teacher = new TeacherService();
-        $subject->setTeacher($teacher->getUserById($array['teacher_id']));
+        $subject->setTeacher($teacher->getTeacherById($array['teacher_id']));
         return $subject;
     }
     
@@ -30,7 +30,6 @@ class SubjectRepository extends Db
         if ($resultSet > 0) {
             return $this->addDetailsToModel($resultSet);
         } else {
-            echo ("no subject found");
             return false;
         }
     }
@@ -45,7 +44,6 @@ class SubjectRepository extends Db
         if ($resultSet > 0) {
             return $this->addDetailsToModel($resultSet);
         } else {
-            echo ("no subject found");
             return false;
         }
     }
@@ -90,7 +88,7 @@ class SubjectRepository extends Db
 
     public function save(Subject $subject)
     {
-        $query = "INSERT INTO `note` (`name`, `grade_id`, `teacher_id`) VALUES ( ?, ?, ?)";
+        $query = "INSERT INTO `subject` (`name`, `grade_id`, `teacher_id`) VALUES ( ?, ?, ?)";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$subject->getName(), $subject->getGrade()->getId(), $subject->getTeacher()->getId()]);
         return true;

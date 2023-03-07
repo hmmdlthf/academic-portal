@@ -23,6 +23,7 @@ $states = $stateService->getStates();
 </head>
 
 <body>
+<button onclick="document.location = '/admin/state/addState.php'">Add State</button>
     <div class="states">
 
         <?php foreach ($states as $state) { ?>

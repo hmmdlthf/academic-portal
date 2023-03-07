@@ -4,6 +4,7 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/app/subject/Subject.php';
 require_once $ROOT . '/app/subject/SubjectService.php';
 require_once $ROOT . '/app/grade/Grade.php';
+require_once $ROOT . '/app/teacher/Teacher.php';
 
 session_start();
 
@@ -23,6 +24,7 @@ $subjects = $subjectService->getSubjects();
 </head>
 
 <body>
+<button onclick="document.location = '/admin/subject/addSubject.php'">Add Subject</button>
     <div class="subjects">
 
         <?php foreach ($subjects as $subject) { ?>

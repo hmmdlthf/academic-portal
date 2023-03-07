@@ -23,6 +23,7 @@ $cities = $cityService->getCities();
 </head>
 
 <body>
+<button onclick="document.location = '/admin/city/addCity.php'">Add City</button>
     <div class="cities">
 
         <?php foreach ($cities as $city) { ?>

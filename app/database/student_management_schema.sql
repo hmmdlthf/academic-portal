@@ -160,7 +160,7 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`student` (
   `address` VARCHAR(45) NULL,
   `token` VARCHAR(255) NULL,
   `unique_id` VARCHAR(255) NOT NULL,
-  `no_attemps` INT NULL DEFAULT 0,
+  `no_attempts` INT NULL DEFAULT 0,
   `last_login` DATETIME NULL,
   `is_verified` TINYINT NOT NULL DEFAULT 0,
   `created_date` DATETIME NOT NULL,

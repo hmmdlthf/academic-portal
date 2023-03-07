@@ -3,7 +3,9 @@
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
+require_once $ROOT . '/app/lesson/Lesson.php';
 require_once $ROOT . '/app/lesson/LessonRepository.php';
+require_once $ROOT . '/app/subject/SubjectService.php';
 
 class LessonService
 {

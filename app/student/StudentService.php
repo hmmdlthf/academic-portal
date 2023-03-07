@@ -4,6 +4,7 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . '/app/student/StudentRepository.php';
 require_once $ROOT . '/app/city/CityService.php';
+require_once $ROOT . '/app/grade/GradeService.php';
 require_once $ROOT . '/app/officer/OfficerService.php';
 require_once $ROOT . '/app/email/Email.php';
 

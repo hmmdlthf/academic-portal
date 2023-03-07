@@ -29,6 +29,7 @@ $teachers = $teacherService->getTeachers();
 </head>
 
 <body>
+<button onclick="document.location = '/admin/teacher/addTeacher.php'">Add Teacher</button>
     <div class="teachers">
 
         <?php foreach ($teachers as $teacher) { ?>

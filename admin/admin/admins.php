@@ -23,6 +23,7 @@ $admins = $adminService->getAdmins();
 </head>
 
 <body>
+<button onclick="document.location = '/admin/admin/addAdmin.php'">Add Admin</button>
     <div class="admins">
 
         <?php foreach ($admins as $admin) { ?>

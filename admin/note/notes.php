@@ -4,6 +4,8 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/app/note/Note.php';
 require_once $ROOT . '/app/note/NoteService.php';
 require_once $ROOT . '/app/lesson/Lesson.php';
+require_once $ROOT . '/app/file/FileDirectory.php';
+require_once $ROOT . '/app/file/File.php';
 
 session_start();
 
@@ -23,6 +25,7 @@ $notes = $noteService->getNotes();
 </head>
 
 <body>
+<button onclick="document.location = '/admin/note/addNote.php'">Add Note</button>
     <div class="notes">
 
         <?php foreach ($notes as $note) { ?>

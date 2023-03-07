@@ -23,6 +23,7 @@ $lessons = $lessonService->getLessons();
 </head>
 
 <body>
+<button onclick="document.location = '/admin/lesson/addLesson.php'">Add Lesson</button>
     <div class="lessons">
 
         <?php foreach ($lessons as $lesson) { ?>

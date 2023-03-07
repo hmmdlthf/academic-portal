@@ -3,8 +3,8 @@
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
-require_once $ROOT . "/grade/Grade.php";
-require_once $ROOT . "/teacher/Teacher.php";
+require_once $ROOT . "/app/grade/Grade.php";
+require_once $ROOT . "/app/teacher/Teacher.php";
 
 class Subject 
 {

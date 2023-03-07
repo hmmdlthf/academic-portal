@@ -12,7 +12,7 @@ $gradeService = new GradeService();
 $grades = $gradeService->getGrades();
 
 $teacherService = new TeacherService();
-$teachers = $teacherService->getUsers();
+$teachers = $teacherService->getTeachers();
 
 ?>
 
@@ -29,6 +29,11 @@ $teachers = $teacherService->getUsers();
         <select name="gradeId" id="" placeholder="Select Grade">
             <?php foreach($grades as $grade) { ?>
                 <option value="<?php echo $grade->getId(); ?>"><?php echo $grade->getName(); ?></option>
+            <?php } ?>
+        </select>
+        <select name="teacherId" id="" placeholder="Select Teacher">
+            <?php foreach($teachers as $teacher) { ?>
+                <option value="<?php echo $teacher->getId(); ?>"><?php echo $teacher->getEmail(); ?></option>
             <?php } ?>
         </select>
         <input type="text" name="name" placeholder="Subject Name" id="name">

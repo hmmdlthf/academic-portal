@@ -4,6 +4,7 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . '/app/subject/SubjectRepository.php';
+require_once $ROOT . '/app/teacher/TeacherService.php';
 
 class SubjectService
 {
@@ -40,7 +41,7 @@ class SubjectService
         $grade = new GradeService();
         $subject->setGrade($grade->getGradeById($gradeId));
         $teacher = new TeacherService();
-        $subject->setTeacher($teacher->getUserById($teacherId));
+        $subject->setTeacher($teacher->getTeacherById($teacherId));
         $this->subjectRepository->save($subject);
     }
 
