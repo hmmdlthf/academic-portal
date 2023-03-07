@@ -12,6 +12,7 @@ class NoteRepository extends Db
         $note = new Note();
         $note->setId($array['id']);
         $note->setName($array['name']);
+        $note->setFile($array['file']);
         $lesson = new LessonService();
         $note->setLesson($lesson->getLessonById($array['lesson_id']));
         return $note;
@@ -71,9 +72,9 @@ class NoteRepository extends Db
 
     public function save(Note $note)
     {
-        $query = "INSERT INTO `note` (`name` `file`, `lesson_id`) VALUES ( ?, ?, ?)";
+        $query = "INSERT INTO `note` (`name`, `file`, `lesson_id`) VALUES ( ?, ?, ?)";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$note->getName(), $note->getFile()->getTargetFile(), $note->getLesson()->getId()]);
+        $statement->execute([$note->getName(), $note->getFile() , $note->getLesson()->getId()]);
         return true;
     }
 

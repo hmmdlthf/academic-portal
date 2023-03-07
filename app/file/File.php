@@ -74,6 +74,11 @@ class File
         return $_SERVER['DOCUMENT_ROOT'] . $this->targetFile;
     }
 
+    public function getShortFile(): string
+    {
+        return $this->targetFile;
+    }
+
     public function getDownloadFile()
     {
         return 'http://' . $_SERVER['HTTP_HOST'] . $this->targetFile;

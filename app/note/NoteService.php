@@ -4,6 +4,8 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . '/app/note/NoteRepository.php';
+require_once $ROOT . '/app/note/Note.php';
+require_once $ROOT . '/app/lesson/LessonService.php';
 require_once $ROOT . '/app/file/File.php';
 require_once $ROOT . '/app/file/FileDirectory.php';
 
@@ -17,7 +19,7 @@ class NoteService
     {
         $this->noteRepository = new NoteRepository();
         $this->fileDirectory = new FileDirectory();
-        $this->fileDirectory->setAllowedExtensions(['pdf', 'doc', 'docx']);
+        $this->fileDirectory->setAllowedExtensions(['pdf', 'doc', 'docx', 'txt', 'png']);
     }
 
     public function getNoteById(int $noteId)
@@ -28,7 +30,7 @@ class NoteService
     public function setFile($file)
     {
         $targetDir = '/uploads/notes/';
-        $this->fileDirectory = new File($file['name'], $file['type'], $file['full_path'], $file['tmp_name'], $file['error'], $file['size'], $targetDir);
+        $this->noteFile = new File($file['name'], $file['type'], $file['full_path'], $file['tmp_name'], $file['error'], $file['size'], $targetDir);
     }
 
     public function upload()
@@ -46,7 +48,7 @@ class NoteService
     {
         $note = new Note();
         $note->setName($name);
-        $note->setFile($this->noteFile->getTargetFile());
+        $note->setFile($this->noteFile->getShortFile());
         $lesson = new LessonService();
         $note->setLesson($lesson->getLessonById($lessonId));
         $this->noteRepository->save($note);
