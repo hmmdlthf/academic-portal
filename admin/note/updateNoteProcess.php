@@ -11,6 +11,8 @@ $noteName = $_POST['name'];
 $noteFile = $_FILES['file'];
 
 $noteService = new NoteService();
+$noteService->setFile($noteFile);
+$noteService->upload();
 $noteService->update($noteId, $noteName, $noteFile);
 echo ("update Successfull");
 

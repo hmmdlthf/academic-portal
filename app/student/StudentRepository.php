@@ -133,7 +133,7 @@ class StudentRepository extends Db
 
     public function save(Student $student)
     {
-        $query = "INSERT INTO `student` (`email`, `token`, `username`, `password`, `unique_id`, `no_attempts`, `created_date`, `last_login`, `is_verified`, `officer_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO `student` (`email`, `token`, `username`, `password`, `unique_id`, `no_attempts`, `created_date`, `last_login`, `is_verified`, `officer_id`, `grade_id`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$student->getEmail(), 
                             $student->getToken(), 
@@ -144,7 +144,8 @@ class StudentRepository extends Db
                             $student->getCreatedDate(), 
                             $student->getLastLogin(), 
                             getTinyInt($student->getIsVerified()), 
-                            $student->getOfficer()->getId()]);
+                            $student->getOfficer()->getId(),
+                            $student->getGrade()->getId()]);
         return true;
     }
 

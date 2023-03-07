@@ -1,12 +1,12 @@
 <?php
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
-require_once $ROOT . '/app/officer/Officer.php';
-require_once $ROOT . '/app/officer/OfficerService.php';
+require_once $ROOT . '/app/student/Student.php';
+require_once $ROOT . '/app/student/StudentService.php';
 
 session_start();
-$officerService = new OfficerService();
-$officer = $officerService->getOfficerById($_GET['id']);
+$studentService = new StudentService();
+$student = $studentService->getStudentById($_GET['id']);
 
 ?>
 
@@ -16,10 +16,10 @@ $officer = $officerService->getOfficerById($_GET['id']);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Update Officer</title>
+    <title>Update Student</title>
 </head>
 <body>
-    <form action="updateOfficerProcess.php?id=<?php echo $officer->getId() ?>" method="post">
+    <form action="updateStudentProcess.php?id=<?php echo $student->getId() ?>" method="post">
         <select name="cityId" id="" placeholder="Select City">
         <?php foreach($cities as $city) { ?>
                 <option value="<?php echo $city->getId(); ?>"><?php echo $city->getName(); ?></option>
@@ -38,7 +38,7 @@ $officer = $officerService->getOfficerById($_GET['id']);
         </select>
         <label for="marital_status"></label>
         <input type="checkbox" name="marital_status" id="marital_status">
-        <button type="submit">update Officer</button>
+        <button type="submit">update Student</button>
     </form>
 </body>
 </html>

@@ -22,5 +22,7 @@ if (empty($noteFile)) {
 
 
 $noteService = new NoteService();
+$noteService->setFile($noteFile);
+$noteService->upload();
 $noteService->save($noteName, $lessonId);
 echo ("successfull added");

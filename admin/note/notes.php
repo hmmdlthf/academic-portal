@@ -29,6 +29,7 @@ $notes = $noteService->getNotes();
             <div class="note">
                 <div class="id"><?php echo $note->getId(); ?></div>
                 <div class="name"><?php echo $note->getName(); ?></div>
+                <div class="file"><?php echo $note->getFile(); ?></div>
                 <div class="lesson"><?php echo $note->getLesson()->getName(); ?></div>
                 <button onclick="document.location = '/admin/note/deleteNote.php?id=<?php echo $note->getId(); ?>'">Delete</button>
                 <button onclick="document.location = '/admin/note/updateNote.php?id=<?php echo $note->getId(); ?>'">update</button>

@@ -83,6 +83,8 @@ class StudentService
         $student->setIsVerified(false);
         $officerService = new OfficerService();
         $student->setOfficer($officerService->getOfficerByUsername($officer_username));
+        $gradeService = new GradeService();
+        $student->setGrade($gradeService->getGradeByName('gradeA'));
         $this->studentRepository->save($student);
         $this->sendCreationEmail($student, $password);
     }
