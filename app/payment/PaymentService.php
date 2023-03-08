@@ -21,6 +21,11 @@ class PaymentService
         return $this->paymentRepository->findPaymentById($paymentId);
     }
 
+    public function getPaymentByOrderId(string $orderId)
+    {
+        return $this->paymentRepository->findPaymentByOrderId($orderId);
+    }
+
     public function getPayments()
     {
         return $this->paymentRepository->findPayments();
@@ -31,20 +36,36 @@ class PaymentService
         $payment = new Payment();
         $payment->setCreatedDate(date("Y-m-d H:i:s"));
         $payment->setPaymentFee($paymentFee);
-        $payment->setIsVerified(false);
+        $payment->setStatusCode(0);
+        $orderId = $payment->generateOrderId();
+        $payment->setOrderId($orderId);
         $student = new StudentService();
         $payment->setStudent($student->getStudentById($studentId));
         $this->paymentRepository->save($payment);
+        return $orderId;
     }
 
-    public function update($id, $isVerified)
+    public function update($id, $statusCode, $paymentId)
     {
         $payment = $this->getPaymentById($id);
         if ($payment == false) {
             echo ("payment not found");
             return false;
         }
-        $payment->setIsVerified($isVerified);
+        $payment->setStatusCode($statusCode);
+        $payment->setPaymentId($paymentId);
+        $this->paymentRepository->update($payment);
+    }
+
+    public function updateByOrderId($orderId, $statusCode, $paymentId)
+    {
+        $payment = $this->getPaymentByOrderId($orderId);
+        if ($payment == false) {
+            echo ("payment not found");
+            return false;
+        }
+        $payment->setStatusCode($statusCode);
+        $payment->setPaymentId($paymentId);
         $this->paymentRepository->update($payment);
     }
 
@@ -57,4 +78,6 @@ class PaymentService
         }
         $this->paymentRepository->delete($payment);
     }
+
+    
 }

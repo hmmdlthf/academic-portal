@@ -15,7 +15,11 @@ class PaymentRepository extends Db
         $payment->setId($array['id']);
         $payment->setCreatedDate($array['created_date']);
         $payment->setPaymentFee($array['payment_fee']);
-        $payment->setIsVerified($array['is_verified']);
+        $payment->setStatusCode($array['status_code']);
+        $payment->setOrderId($array['order_id']);
+        if (!is_null($array['payment_id'])) {
+            $payment->setPaymentId($array['payment_id']);
+        }
         $student = new StudentService();
         $payment->setStudent($student->getStudentById($array['student_id']));
         return $payment;
@@ -26,6 +30,20 @@ class PaymentRepository extends Db
         $query = "SELECT * FROM `payment` WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$id]);
+        $resultSet = $statement->fetch();
+
+        if ($resultSet > 0) {
+            return $this->addDetailsToModel($resultSet);
+        } else {
+            return false;
+        }
+    }
+
+    public function findPaymentByOrderId(string $orderId)
+    {
+        $query = "SELECT * FROM `payment` WHERE `order_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$orderId]);
         $resultSet = $statement->fetch();
 
         if ($resultSet > 0) {
@@ -56,17 +74,17 @@ class PaymentRepository extends Db
 
     public function save(Payment $payment)
     {
-        $query = "INSERT INTO `payment` (`created_date`, `payment_fee`, `is_verified`, `student_id`) VALUES (?, ?, ?, ?)";
+        $query = "INSERT INTO `payment` (`created_date`, `payment_fee`, `status_code`, `order_id`, `student_id`) VALUES (?, ?, ?, ?, ?)";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$payment->getCreatedDate(), $payment->getPaymentFee(), getTinyInt($payment->getIsVerified()), $payment->getStudent()->getId()]);
+        $statement->execute([$payment->getCreatedDate(), $payment->getPaymentFee(), $payment->getStatusCode(), $payment->getOrderId(), $payment->getStudent()->getId()]);
         return true;
     }
 
     public function update(Payment $payment)
     {
-        $query = "UPDATE `payment` SET `is_verified`=? WHERE `id`=?";
+        $query = "UPDATE `payment` SET `status_code`=?, `payment_id` WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$payment->getIsVerified(), $payment->getId()]);
+        $statement->execute([$payment->getStatusCode(), $payment->getPaymentId(), $payment->getId()]);
         return true;
     }
 
