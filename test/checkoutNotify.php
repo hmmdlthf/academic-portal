@@ -64,7 +64,7 @@ if (($local_md5sig === $md5sig) AND ($status_code == 2) ){
     $email = new Email();
     $body = "Payment $order_id update <br>".
             "Amount: " . number_format((float)$payhere_amount, 2, '.', ',')  . "<br>".
-            "Status: " . getStatus($status_code) . "<br>" .
+            "Status: " . getStatus($status_code) . "Rs <br>" .
             "Method: $method <br>";
 
     try {
