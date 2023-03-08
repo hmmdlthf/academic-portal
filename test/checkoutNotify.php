@@ -22,7 +22,8 @@ function getStatus(int $statusCode)
     }
 }
 
-$merchant_secret = 'MzA4NTY0Mzg5NjEwOTA4NTg0OTkyMjQ1NDg2MzU0MzEyOTE1ODAzMA==';
+// $merchant_secret = 'MzA4NTY0Mzg5NjEwOTA4NTg0OTkyMjQ1NDg2MzU0MzEyOTE1ODAzMA=='; // secret for localhost
+$merchant_secret = 'Njc4ODA0NDMzNjI1NjUwNDIyNTc1Njg2NDMzNDIzMTg1MzMy'; // scret for aftersite
 
 $merchant_id = $_POST['merchant_id'];
 $order_id = $_POST['order_id'];
