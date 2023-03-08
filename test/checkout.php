@@ -30,6 +30,8 @@ $hash = strtoupper(
     )
 );
 
+echo $hash;
+
 ?>
 
 <!DOCTYPE html>

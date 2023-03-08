@@ -5,21 +5,21 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema student_management_database2
+-- Schema u793985497_onlineAcademy
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema student_management_database2
+-- Schema u793985497_onlineAcademy
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `student_management_database2` DEFAULT CHARACTER SET utf8 ;
-USE `student_management_database2` ;
+CREATE SCHEMA IF NOT EXISTS `u793985497_onlineAcademy` DEFAULT CHARACTER SET utf8 ;
+USE `u793985497_onlineAcademy` ;
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`admin`
+-- Table `u793985497_onlineAcademy`.`admin`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`admin` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`admin` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`admin` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`admin` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `fname` VARCHAR(80) NULL,
   `lname` VARCHAR(80) NULL,
@@ -39,11 +39,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`country`
+-- Table `u793985497_onlineAcademy`.`country`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`country` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`country` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`country` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`country` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`),
@@ -52,11 +52,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`state`
+-- Table `u793985497_onlineAcademy`.`state`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`state` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`state` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`state` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`state` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `country_id` INT NOT NULL,
@@ -65,39 +65,38 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`state` (
   INDEX `fk_state_country1_idx` (`country_id` ASC) VISIBLE,
   CONSTRAINT `fk_state_country1`
     FOREIGN KEY (`country_id`)
-    REFERENCES `student_management_database2`.`country` (`id`)
+    REFERENCES `u793985497_onlineAcademy`.`country` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`city`
+-- Table `u793985497_onlineAcademy`.`city`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`city` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`city` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`city` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`city` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `state_id` INT NOT NULL,
-  `state_country_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `state_id`, `state_country_id`),
+  PRIMARY KEY (`id`, `state_id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-  INDEX `fk_city_state1_idx` (`state_id` ASC, `state_country_id` ASC) VISIBLE,
+  INDEX `fk_city_state1_idx` (`state_id` ASC) VISIBLE,
   CONSTRAINT `fk_city_state1`
-    FOREIGN KEY (`state_id` , `state_country_id`)
-    REFERENCES `student_management_database2`.`state` (`id` , `country_id`)
+    FOREIGN KEY (`state_id`)
+    REFERENCES `u793985497_onlineAcademy`.`state` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`officer`
+-- Table `u793985497_onlineAcademy`.`officer`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`officer` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`officer` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`officer` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`officer` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `fname` VARCHAR(80) NULL,
   `lname` VARCHAR(80) NULL,
@@ -125,18 +124,18 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`officer` (
   INDEX `fk_officer_city1_idx` (`city_id` ASC) VISIBLE,
   CONSTRAINT `fk_officer_city1`
     FOREIGN KEY (`city_id`)
-    REFERENCES `student_management_database2`.`city` (`id`)
+    REFERENCES `u793985497_onlineAcademy`.`city` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`grade`
+-- Table `u793985497_onlineAcademy`.`grade`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`grade` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`grade` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`grade` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`grade` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(80) NOT NULL,
   PRIMARY KEY (`id`),
@@ -145,11 +144,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`student`
+-- Table `u793985497_onlineAcademy`.`student`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`student` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`student` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`student` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`student` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `fname` VARCHAR(80) NULL,
   `lname` VARCHAR(80) NULL,
@@ -178,17 +177,17 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`student` (
   INDEX `fk_student_city1_idx` (`city_id` ASC) VISIBLE,
   CONSTRAINT `fk_student_officer`
     FOREIGN KEY (`officer_id`)
-    REFERENCES `student_management_database2`.`officer` (`id`)
+    REFERENCES `u793985497_onlineAcademy`.`officer` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_student_grade1`
     FOREIGN KEY (`grade_id`)
-    REFERENCES `student_management_database2`.`grade` (`id`)
+    REFERENCES `u793985497_onlineAcademy`.`grade` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_student_city1`
     FOREIGN KEY (`city_id`)
-    REFERENCES `student_management_database2`.`city` (`id`)
+    REFERENCES `u793985497_onlineAcademy`.`city` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -196,11 +195,11 @@ COMMENT = '			';
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`teacher`
+-- Table `u793985497_onlineAcademy`.`teacher`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`teacher` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`teacher` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`teacher` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`teacher` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `fname` VARCHAR(80) NULL,
   `lname` VARCHAR(80) NULL,
@@ -227,18 +226,18 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`teacher` (
   INDEX `fk_teacher_city1_idx` (`city_id` ASC) VISIBLE,
   CONSTRAINT `fk_teacher_city1`
     FOREIGN KEY (`city_id`)
-    REFERENCES `student_management_database2`.`city` (`id`)
+    REFERENCES `u793985497_onlineAcademy`.`city` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`subject`
+-- Table `u793985497_onlineAcademy`.`subject`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`subject` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`subject` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`subject` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`subject` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `grade_id` INT NOT NULL,
@@ -249,147 +248,134 @@ CREATE TABLE IF NOT EXISTS `student_management_database2`.`subject` (
   INDEX `fk_subject_teacher1_idx` (`teacher_id` ASC) VISIBLE,
   CONSTRAINT `fk_subject_grade1`
     FOREIGN KEY (`grade_id`)
-    REFERENCES `student_management_database2`.`grade` (`id`)
+    REFERENCES `u793985497_onlineAcademy`.`grade` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_subject_teacher1`
     FOREIGN KEY (`teacher_id`)
-    REFERENCES `student_management_database2`.`teacher` (`id`)
+    REFERENCES `u793985497_onlineAcademy`.`teacher` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`lesson`
+-- Table `u793985497_onlineAcademy`.`lesson`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`lesson` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`lesson` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`lesson` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`lesson` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(80) NULL,
   `subject_id` INT NOT NULL,
-  `subject_grade_id` INT NOT NULL,
-  `subject_teacher_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `subject_id`, `subject_grade_id`, `subject_teacher_id`),
-  INDEX `fk_lesson_subject1_idx` (`subject_id` ASC, `subject_grade_id` ASC, `subject_teacher_id` ASC) VISIBLE,
+  PRIMARY KEY (`id`, `subject_id`),
+  INDEX `fk_lesson_subject1_idx` (`subject_id` ASC) VISIBLE,
   CONSTRAINT `fk_lesson_subject1`
-    FOREIGN KEY (`subject_id` , `subject_grade_id` , `subject_teacher_id`)
-    REFERENCES `student_management_database2`.`subject` (`id` , `grade_id` , `teacher_id`)
+    FOREIGN KEY (`subject_id`)
+    REFERENCES `u793985497_onlineAcademy`.`subject` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`note`
+-- Table `u793985497_onlineAcademy`.`note`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`note` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`note` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`note` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`note` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL,
   `file` VARCHAR(1000) NULL,
   `lesson_id` INT NOT NULL,
-  `lesson_subject_id` INT NOT NULL,
-  `lesson_subject_grade_id` INT NOT NULL,
-  `lesson_subject_teacher_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `lesson_id`, `lesson_subject_id`, `lesson_subject_grade_id`, `lesson_subject_teacher_id`),
+  PRIMARY KEY (`id`, `lesson_id`),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
-  INDEX `fk_note_lesson1_idx` (`lesson_id` ASC, `lesson_subject_id` ASC, `lesson_subject_grade_id` ASC, `lesson_subject_teacher_id` ASC) VISIBLE,
+  INDEX `fk_note_lesson1_idx` (`lesson_id` ASC) VISIBLE,
   CONSTRAINT `fk_note_lesson1`
-    FOREIGN KEY (`lesson_id` , `lesson_subject_id` , `lesson_subject_grade_id` , `lesson_subject_teacher_id`)
-    REFERENCES `student_management_database2`.`lesson` (`id` , `subject_id` , `subject_grade_id` , `subject_teacher_id`)
+    FOREIGN KEY (`lesson_id`)
+    REFERENCES `u793985497_onlineAcademy`.`lesson` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`assignment`
+-- Table `u793985497_onlineAcademy`.`assignment`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`assignment` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`assignment` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`assignment` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`assignment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `file` VARCHAR(1000) NOT NULL,
   `lesson_id` INT NOT NULL,
-  `lesson_subject_id` INT NOT NULL,
-  `lesson_subject_grade_id` INT NOT NULL,
-  `lesson_subject_teacher_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `lesson_id`, `lesson_subject_id`, `lesson_subject_grade_id`, `lesson_subject_teacher_id`),
-  INDEX `fk_assignment_lesson1_idx` (`lesson_id` ASC, `lesson_subject_id` ASC, `lesson_subject_grade_id` ASC, `lesson_subject_teacher_id` ASC) VISIBLE,
+  PRIMARY KEY (`id`, `lesson_id`),
+  INDEX `fk_assignment_lesson1_idx` (`lesson_id` ASC) VISIBLE,
   CONSTRAINT `fk_assignment_lesson1`
-    FOREIGN KEY (`lesson_id` , `lesson_subject_id` , `lesson_subject_grade_id` , `lesson_subject_teacher_id`)
-    REFERENCES `student_management_database2`.`lesson` (`id` , `subject_id` , `subject_grade_id` , `subject_teacher_id`)
+    FOREIGN KEY (`lesson_id`)
+    REFERENCES `u793985497_onlineAcademy`.`lesson` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`answer_sheet`
+-- Table `u793985497_onlineAcademy`.`answer_sheet`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`answer_sheet` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`answer_sheet` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`answer_sheet` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`answer_sheet` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `file` VARCHAR(1000) NOT NULL,
   `marks` INT NULL,
   `is_released` TINYINT NOT NULL,
   `assignment_id` INT NOT NULL,
-  `assignment_lesson_id` INT NOT NULL,
-  `assignment_lesson_subject_id` INT NOT NULL,
-  `assignment_lesson_subject_grade_id` INT NOT NULL,
-  `assignment_lesson_subject_teacher_id` INT NOT NULL,
   `student_id` INT NOT NULL,
-  `student_officer_id` INT NOT NULL,
-  `student_grade_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `assignment_id`, `assignment_lesson_id`, `assignment_lesson_subject_id`, `assignment_lesson_subject_grade_id`, `assignment_lesson_subject_teacher_id`, `student_id`, `student_officer_id`, `student_grade_id`),
-  INDEX `fk_answer_sheet_assignment1_idx` (`assignment_id` ASC, `assignment_lesson_id` ASC, `assignment_lesson_subject_id` ASC, `assignment_lesson_subject_grade_id` ASC, `assignment_lesson_subject_teacher_id` ASC) VISIBLE,
-  INDEX `fk_answer_sheet_student1_idx` (`student_id` ASC, `student_officer_id` ASC, `student_grade_id` ASC) VISIBLE,
+  PRIMARY KEY (`id`, `assignment_id`, `student_id`),
+  INDEX `fk_answer_sheet_assignment1_idx` (`assignment_id` ASC) VISIBLE,
+  INDEX `fk_answer_sheet_student1_idx` (`student_id` ASC) VISIBLE,
   CONSTRAINT `fk_answer_sheet_assignment1`
-    FOREIGN KEY (`assignment_id` , `assignment_lesson_id` , `assignment_lesson_subject_id` , `assignment_lesson_subject_grade_id` , `assignment_lesson_subject_teacher_id`)
-    REFERENCES `student_management_database2`.`assignment` (`id` , `lesson_id` , `lesson_subject_id` , `lesson_subject_grade_id` , `lesson_subject_teacher_id`)
+    FOREIGN KEY (`assignment_id`)
+    REFERENCES `u793985497_onlineAcademy`.`assignment` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_answer_sheet_student1`
-    FOREIGN KEY (`student_id` , `student_officer_id` , `student_grade_id`)
-    REFERENCES `student_management_database2`.`student` (`id` , `officer_id` , `grade_id`)
+    FOREIGN KEY (`student_id`)
+    REFERENCES `u793985497_onlineAcademy`.`student` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`payment`
+-- Table `u793985497_onlineAcademy`.`payment`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`payment` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`payment` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`payment` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`payment` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `created_date` DATETIME NULL,
   `payment_fee` REAL NULL,
-  `is_verified` TINYINT NULL,
+  `status_code` INT NULL DEFAULT 0,
   `student_id` INT NOT NULL,
-  `student_officer_id` INT NOT NULL,
-  `student_grade_id` INT NOT NULL,
-  PRIMARY KEY (`id`, `student_id`, `student_officer_id`, `student_grade_id`),
-  INDEX `fk_payment_student1_idx` (`student_id` ASC, `student_officer_id` ASC, `student_grade_id` ASC) VISIBLE,
+  `order_id` VARCHAR(255) NOT NULL,
+  `payment_id` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`, `student_id`),
+  INDEX `fk_payment_student1_idx` (`student_id` ASC) VISIBLE,
+  UNIQUE INDEX `order_id_UNIQUE` (`order_id` ASC) VISIBLE,
   CONSTRAINT `fk_payment_student1`
-    FOREIGN KEY (`student_id` , `student_officer_id` , `student_grade_id`)
-    REFERENCES `student_management_database2`.`student` (`id` , `officer_id` , `grade_id`)
+    FOREIGN KEY (`student_id`)
+    REFERENCES `u793985497_onlineAcademy`.`student` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `student_management_database2`.`emails`
+-- Table `u793985497_onlineAcademy`.`emails`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `student_management_database2`.`emails` ;
+DROP TABLE IF EXISTS `u793985497_onlineAcademy`.`emails` ;
 
-CREATE TABLE IF NOT EXISTS `student_management_database2`.`emails` (
+CREATE TABLE IF NOT EXISTS `u793985497_onlineAcademy`.`emails` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `date` DATETIME NOT NULL,
   `from` VARCHAR(80) NOT NULL,
