@@ -69,7 +69,7 @@ if (($local_md5sig === $md5sig) AND ($status_code == 2) ){
 
     try {
         $email = new Email();
-        $email->setTo($studentService->getStudentById($student_id));
+        $email->setTo($studentService->getStudentById($student_id)->getEmail());
         $email->setSubject("Payment Status for orderId: $order_id");
         $email->setIsHTML(true);
         $email->setBody($body);
