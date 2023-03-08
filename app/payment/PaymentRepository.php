@@ -82,7 +82,7 @@ class PaymentRepository extends Db
 
     public function update(Payment $payment)
     {
-        $query = "UPDATE `payment` SET `status_code`=?, `payment_id` WHERE `id`=?";
+        $query = "UPDATE `payment` SET `status_code`=?, `payment_id`=? WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$payment->getStatusCode(), $payment->getPaymentId(), $payment->getId()]);
         return true;
