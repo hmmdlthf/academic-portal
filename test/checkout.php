@@ -12,9 +12,13 @@ $merchant_id = '1222661';
 $amount = 1000.00;
 $currency = 'LKR';
 $merchant_secret = 'MzA4NTY0Mzg5NjEwOTA4NTg0OTkyMjQ1NDg2MzU0MzEyOTE1ODAzMA==';
-$return_url = 'http://localhost:3000/test/checkoutSuccess.php';
-$cancel_url = 'http://localhost:3000/test/checkoutCancel.php';
-$notify_url = 'http://localhost:3000/test/checkoutNotify.php';
+// $return_url = 'http://localhost:3000/test/checkoutSuccess.php';
+// $cancel_url = 'http://localhost:3000/test/checkoutCancel.php';
+// $notify_url = 'http://localhost:3000/test/checkoutNotify.php';
+
+$return_url = 'https://academicportal.aftersite.lk/checkoutSuccess.php';
+$cancel_url = 'https://academicportal.aftersite.lk/checkoutCancel.php';
+$notify_url = 'https://academicportal.aftersite.lk/checkoutNotify.php';
 
 
 $paymentService = new PaymentService();
