@@ -29,10 +29,11 @@ class PaymentService
     public function save($paymentFee, $studentId)
     { 
         $payment = new Payment();
+        $payment->setCreatedDate(date("Y-m-d H:i:s"));
         $payment->setPaymentFee($paymentFee);
         $payment->setIsVerified(false);
         $student = new StudentService();
-        $payment->setStudent($student->getUserById($studentId));
+        $payment->setStudent($student->getStudentById($studentId));
         $this->paymentRepository->save($payment);
     }
 

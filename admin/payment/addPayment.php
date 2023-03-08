@@ -25,7 +25,7 @@ $students = $studentService->getStudents();
     <form action="addPaymentProcess.php" method="post">
         <select name="studentId" id="" placeholder="Select Student">
             <?php foreach($students as $student) { ?>
-                <option value="<?php echo $student->getId(); ?>"><?php echo $student->getName(); ?></option>
+                <option value="<?php echo $student->getId(); ?>"><?php echo $student->getEmail(); ?></option>
             <?php } ?>
         </select>
         <input type="number" name="payment_fee" placeholder="Payment Fee" id="payment_fee">

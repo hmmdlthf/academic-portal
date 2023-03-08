@@ -77,9 +77,9 @@ class AnswerSheetRepository extends Db
 
     public function save(AnswerSheet $answerSheet)
     {
-        $query = "INSERT INTO `answer_sheet` (`file`, `assignment_id`) VALUES ( ?, ?)";
+        $query = "INSERT INTO `answer_sheet` (`file`, `is_released`, `assignment_id`, `student_id`) VALUES ( ?, ?, ?, ?)";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$answerSheet->getFile() , $answerSheet->getAssignment()->getId()]);
+        $statement->execute([$answerSheet->getFile(), getTinyInt($answerSheet->getIsReleased()), $answerSheet->getAssignment()->getId(), $answerSheet->getStudent()->getId()]);
         return true;
     }
 

@@ -5,11 +5,16 @@ require_once $ROOT . '/app/assignment/Assignment.php';
 require_once $ROOT . '/app/assignment/AssignmentService.php';
 require_once $ROOT . '/app/answerSheet/AnswerSheet.php';
 require_once $ROOT . '/app/answerSheet/AnswerSheetService.php';
+require_once $ROOT . '/app/student/Student.php';
+require_once $ROOT . '/app/student/StudentService.php';
 
 session_start();
 
 $assignmentService = new AssignmentService();
 $assignments = $assignmentService->getAssignments();
+
+$studentService = new StudentService();
+$students = $studentService->getStudents();
 
 ?>
 
@@ -25,7 +30,12 @@ $assignments = $assignmentService->getAssignments();
     <form action="addAnswerSheetProcess.php" method="post" enctype="multipart/form-data">
         <select name="assignmentId" id="" placeholder="Select Assignment">
             <?php foreach($assignments as $assignment) { ?>
-                <option value="<?php echo $assignment->getId(); ?>"><?php echo $assignment->getName(); ?></option>
+                <option value="<?php echo $assignment->getId(); ?>"><?php echo $assignment->getId(); ?></option>
+            <?php } ?>
+        </select>
+        <select name="studentId" id="" placeholder="Select Student">
+            <?php foreach($students as $student) { ?>
+                <option value="<?php echo $student->getId(); ?>"><?php echo $student->getEmail(); ?></option>
             <?php } ?>
         </select>
         <input type="file" name="file" placeholder="AnswerSheet File" id="file">

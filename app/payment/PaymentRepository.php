@@ -3,6 +3,9 @@
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
+require_once $ROOT . "/app/payment/Payment.php";
+require_once $ROOT . "/app/student/StudentService.php";
+require_once $ROOT . "/app/utils/boolean.php";
 
 class PaymentRepository extends Db
 {
@@ -14,7 +17,7 @@ class PaymentRepository extends Db
         $payment->setPaymentFee($array['payment_fee']);
         $payment->setIsVerified($array['is_verified']);
         $student = new StudentService();
-        $payment->setStudent($student->getUserById($array['student_id']));
+        $payment->setStudent($student->getStudentById($array['student_id']));
         return $payment;
     }
 
@@ -55,7 +58,7 @@ class PaymentRepository extends Db
     {
         $query = "INSERT INTO `payment` (`created_date`, `payment_fee`, `is_verified`, `student_id`) VALUES (?, ?, ?, ?)";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$payment->getCreatedDate(), $payment->getPaymentFee(), $payment->getStudent()->getId()]);
+        $statement->execute([$payment->getCreatedDate(), $payment->getPaymentFee(), getTinyInt($payment->getIsVerified()), $payment->getStudent()->getId()]);
         return true;
     }
 

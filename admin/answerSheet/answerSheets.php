@@ -4,6 +4,7 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/app/answerSheet/AnswerSheet.php';
 require_once $ROOT . '/app/answerSheet/AnswerSheetService.php';
 require_once $ROOT . '/app/assignment/Assignment.php';
+require_once $ROOT . '/app/student/Student.php';
 require_once $ROOT . '/app/file/FileDirectory.php';
 require_once $ROOT . '/app/file/File.php';
 
@@ -25,7 +26,7 @@ $answerSheets = $answerSheetService->getAnswerSheets();
 </head>
 
 <body>
-<button onclick="document.location = '/admin/answerSheet/addAnswerSheet.php'">Add AnswerSheet</button>
+    <button onclick="document.location = '/admin/answerSheet/addAnswerSheet.php'">Add AnswerSheet</button>
     <div class="answerSheets">
 
         <?php foreach ($answerSheets as $answerSheet) { ?>
@@ -34,6 +35,7 @@ $answerSheets = $answerSheetService->getAnswerSheets();
                 <div class="file"><?php echo $answerSheet->getFile(); ?></div>
                 <img src="<?php echo $answerSheet->getFile(); ?>" alt="">
                 <div class="assignment"><?php echo $answerSheet->getAssignment()->getName(); ?></div>
+                <div class="student"><?php echo $answerSheet->getStudent()->getEmail(); ?></div>
                 <button onclick="document.location = '/admin/answerSheet/deleteAnswerSheet.php?id=<?php echo $answerSheet->getId(); ?>'">Delete</button>
                 <button onclick="document.location = '/admin/answerSheet/updateAnswerSheet.php?id=<?php echo $answerSheet->getId(); ?>'">update</button>
             </div>

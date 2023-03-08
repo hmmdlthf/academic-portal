@@ -25,7 +25,7 @@ $assignments = $assignmentService->getAssignments();
 </head>
 
 <body>
-<button onclick="document.location = '/admin/assignment/addAssignment.php'">Add Assignment</button>
+    <button onclick="document.location = '/admin/assignment/addAssignment.php'">Add Assignment</button>
     <div class="assignments">
 
         <?php foreach ($assignments as $assignment) { ?>

@@ -6,8 +6,9 @@ require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . "/app/file/File.php";
 require_once $ROOT . "/app/file/ImageDirectory.php";
 require_once $ROOT . "/app/file/FileDirectory.php";
-require_once $ROOT . '/app/answer_sheet/AnswerSheet.php';
-require_once $ROOT . '/app/answer_sheet/AnswerSheetRepository.php';
+require_once $ROOT . '/app/answerSheet/AnswerSheet.php';
+require_once $ROOT . '/app/answerSheet/AnswerSheetRepository.php';
+require_once $ROOT . '/app/utils/boolean.php';
 
 class AnswerSheetService
 {
@@ -44,12 +45,15 @@ class AnswerSheetService
         return $this->answerSheetRepository->findAnswerSheets();
     }
 
-    public function save($assignmentId)
+    public function save($assignmentId, $studentId)
     {
         $answerSheet = new AnswerSheet();
         $answerSheet->setFile($this->answerSheetFile->getShortFile());
+        $answerSheet->setIsReleased(false);
         $assignment = new AssignmentService();
         $answerSheet->setAssignment($assignment->getAssignmentById($assignmentId));
+        $student = new StudentService();
+        $answerSheet->setStudent($student->getStudentById($studentId));
         $this->answerSheetRepository->save($answerSheet);
     }
 

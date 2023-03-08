@@ -23,14 +23,14 @@ $payments = $paymentService->getPayments();
 </head>
 
 <body>
-<button onclick="document.location = '/admin/payment/addPayment.php'">Add Payment</button>
+    <button onclick="document.location = '/admin/payment/addPayment.php'">Add Payment</button>
     <div class="payments">
 
         <?php foreach ($payments as $payment) { ?>
             <div class="payment">
                 <div class="id"><?php echo $payment->getId(); ?></div>
-                <div class="name"><?php echo $payment->getName(); ?></div>
-                <div class="student"><?php echo $payment->getStudent()->getName(); ?></div>
+                <div class="fee"><?php echo $payment->getPaymentFee(); ?></div>
+                <div class="student"><?php echo $payment->getStudent()->getEmail(); ?></div>
                 <button onclick="document.location = '/admin/payment/deletePayment.php?id=<?php echo $payment->getId(); ?>'">Delete</button>
                 <button onclick="document.location = '/admin/payment/updatePayment.php?id=<?php echo $payment->getId(); ?>'">update</button>
             </div>

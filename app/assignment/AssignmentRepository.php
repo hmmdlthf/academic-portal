@@ -12,7 +12,6 @@ class AssignmentRepository extends Db
     {
         $assignment = new Assignment();
         $assignment->setId($array['id']);
-        $assignment->setName($array['name']);
         $assignment->setFile($array['file']);
         $lesson = new LessonService();
         $assignment->setLesson($lesson->getLessonById($array['lesson_id']));
@@ -73,17 +72,17 @@ class AssignmentRepository extends Db
 
     public function save(Assignment $assignment)
     {
-        $query = "INSERT INTO `assignment` (`name`, `file`, `lesson_id`) VALUES ( ?, ?, ?)";
+        $query = "INSERT INTO `assignment` (`file`, `lesson_id`) VALUES ( ?, ?)";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$assignment->getName(), $assignment->getFile() , $assignment->getLesson()->getId()]);
+        $statement->execute([$assignment->getFile() , $assignment->getLesson()->getId()]);
         return true;
     }
 
     public function update(Assignment $assignment)
     {
-        $query = "UPDATE `assignment` SET `name`=?, `file`=? WHERE `id`=?";
+        $query = "UPDATE `assignment` SET `file`=? WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$assignment->getName(), $assignment->getFile(), $assignment->getId()]);
+        $statement->execute([$assignment->getFile(), $assignment->getId()]);
         return true;
     }
 
