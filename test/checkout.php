@@ -11,7 +11,8 @@ $student_id = 1;
 $merchant_id = '1222661';
 $amount = 1000.00;
 $currency = 'LKR';
-$merchant_secret = 'MzA4NTY0Mzg5NjEwOTA4NTg0OTkyMjQ1NDg2MzU0MzEyOTE1ODAzMA==';
+// $merchant_secret = 'MzA4NTY0Mzg5NjEwOTA4NTg0OTkyMjQ1NDg2MzU0MzEyOTE1ODAzMA=='; // secret for localhost
+$merchant_secret = 'Njc4ODA0NDMzNjI1NjUwNDIyNTc1Njg2NDMzNDIzMTg1MzMy'; // scret for aftersite
 // $return_url = 'http://localhost:3000/test/checkoutSuccess.php';
 // $cancel_url = 'http://localhost:3000/test/checkoutCancel.php';
 // $notify_url = 'http://localhost:3000/test/checkoutNotify.php';
