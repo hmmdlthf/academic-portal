@@ -22,4 +22,6 @@ function jwt_start(array $roles)
         header('HTTP/1.1 401 Unauthorized');
         exit;
     }
+
+    return $jwtService;
 }

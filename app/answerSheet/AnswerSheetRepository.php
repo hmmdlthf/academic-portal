@@ -91,6 +91,14 @@ class AnswerSheetRepository extends Db
         return true;
     }
 
+    public function updateMarks(AnswerSheet $answerSheet)
+    {
+        $query = "UPDATE `answer_sheet` SET `marks`=? WHERE `id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$answerSheet->getMarks(), $answerSheet->getId()]);
+        return true;
+    }
+
     public function delete(AnswerSheet $answerSheet)
     {
         $query = "DELETE FROM `answer_sheet` WHERE `id`=?";

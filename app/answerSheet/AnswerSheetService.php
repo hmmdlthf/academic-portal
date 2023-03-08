@@ -68,6 +68,17 @@ class AnswerSheetService
         $this->answerSheetRepository->update($answerSheet);
     }
 
+    public function updateMarks($id, $marks)
+    {
+        $answerSheet = $this->getAnswerSheetById($id);
+        if ($answerSheet == false) {
+            echo ("answerSheet not found");
+            return false;
+        }
+        $answerSheet->setMarks($marks);
+        $this->answerSheetRepository->updateMarks($answerSheet);
+    }
+
     public function delete($id)
     {
         $answerSheet = $this->getAnswerSheetById($id);
