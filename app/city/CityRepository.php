@@ -67,9 +67,9 @@ class CityRepository extends Db
 
     public function save(City $city)
     {
-        $query = "INSERT INTO `city` (`name`, `state_id`, `state_country_id`) VALUES (?, ?, ?)";
+        $query = "INSERT INTO `city` (`name`, `state_id`) VALUES (?, ?)";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$city->getName(), $city->getState()->getId(), $city->getState()->getCountry()->getId()]);
+        $statement->execute([$city->getName(), $city->getState()->getId()]);
         return true;
     }
 
