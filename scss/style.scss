@@ -16,6 +16,10 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.hidden {
+    display: none !important;
+}
+
 .btn,
 button.btn {
     display: flex;
