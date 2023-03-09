@@ -1,6 +1,7 @@
 :root {
   --shadow: 0px 2px 4px #195ddd77;
   --inner-shadow: inset 2px 0px 4px #195ddd77;
+  --color-1: #195ddd;
 }
 
 .main {

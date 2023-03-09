@@ -79,6 +79,7 @@
   padding: 0.5rem;
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
+  cursor: pointer;
 }
 .floatingMenu .menu__header .menu__link .link__icon,
 .floatingMenu .menu__body .menu__link .link__icon,
@@ -97,6 +98,12 @@
 .floatingMenu .menu__body .menu__link .link__text,
 .floatingMenu .menu__footer .menu__link .link__text {
   margin-left: 0.5rem;
+}
+.floatingMenu .menu__header .menu__link:hover,
+.floatingMenu .menu__body .menu__link:hover,
+.floatingMenu .menu__footer .menu__link:hover {
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
 }
 
 .menu {
@@ -127,6 +134,7 @@
   padding: 1rem;
   border-radius: 1rem;
   box-shadow: var(--inner-shadow);
+  cursor: pointer;
 }
 .menu .menu__header .profile {
   display: flex;
@@ -134,6 +142,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  cursor: pointer;
 }
 .menu .menu__header .profile .profile__pic img {
   height: 60px;
@@ -172,6 +181,10 @@
   padding: 0.5rem;
   margin-top: 0.2rem;
   margin-bottom: 0.2rem;
+  transition: margin 0.4s ease-out;
+  cursor: pointer;
+  --link-color: #000;
+  color: var(--link-color);
 }
 .menu .menu__body .menu__link .link__icon,
 .menu .menu__footer .menu__link .link__icon {
@@ -183,15 +196,35 @@
 .menu .menu__footer .menu__link .link__icon svg {
   height: 1rem;
   width: 1rem;
+  fill: var(--link-color);
 }
 .menu .menu__body .menu__link .link__text,
 .menu .menu__footer .menu__link .link__text {
   text-transform: capitalize;
   margin-left: 0.5rem;
 }
+.menu .menu__body .menu__link.active,
+.menu .menu__footer .menu__link.active {
+  --link-color: var(--color-1);
+}
+.menu .menu__body .menu__link:hover,
+.menu .menu__footer .menu__link:hover {
+  margin-left: 1rem;
+}
 .menu .menu__body {
   height: 50%;
   justify-content: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.menu .menu__body::-webkit-scrollbar {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 1rem;
+}
+.menu .menu__body::-webkit-scrollbar-thumb {
+  background-color: var(--color-1);
+  border-radius: 1rem;
 }
 .menu .menu__body .menu__title {
   padding-left: 0.5rem;

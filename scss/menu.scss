@@ -85,6 +85,7 @@
             padding: .5rem;
             margin-top: .2rem;
             margin-bottom: .2rem;
+            cursor: pointer;
 
             .link__icon {
                 display: flex;
@@ -99,6 +100,11 @@
 
             .link__text {
                 margin-left: .5rem;
+            }
+
+            &:hover {
+                border-radius: 1rem;
+                box-shadow: var(--shadow);
             }
         }
     }
@@ -134,6 +140,7 @@
             padding: 1rem;
             border-radius: 1rem;
             box-shadow: var(--inner-shadow);
+            cursor: pointer;
         }
 
         .profile {
@@ -142,6 +149,7 @@
             align-items: center;
             justify-content: center;
             width: 100%;
+            cursor: pointer;
 
             .profile__pic {
                 img {
@@ -168,9 +176,7 @@
                 }
             }
         }
-    }
-
-    
+    }  
 
     .menu__body,
     .menu__footer {
@@ -188,6 +194,10 @@
             padding: .5rem;
             margin-top: .2rem;
             margin-bottom: .2rem;
+            transition: margin .4s ease-out;
+            cursor: pointer;
+            --link-color: #000;
+            color: var(--link-color);
 
             .link__icon {
                 display: flex;
@@ -197,6 +207,7 @@
                 svg {
                     height: 1rem;
                     width: 1rem;
+                    fill: var(--link-color);
                 }
             }
 
@@ -204,12 +215,36 @@
                 text-transform: capitalize;
                 margin-left: .5rem;
             }
+
+            &.active {
+                --link-color: var(--color-1);
+            }
+
+            &:hover {
+                // border-radius: 1rem;
+                // box-shadow: var(--shadow);
+                margin-left: 1rem;
+            }
         }
     }
     
     .menu__body {
         height: 50%;
         justify-content: flex-start;
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        &::-webkit-scrollbar {
+            width: .4rem;
+            height: .4rem;
+            border-radius: 1rem;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: var(--color-1);
+            border-radius: 1rem;
+        }
+
         .menu__title {
             padding-left: .5rem;
             font-weight: 700;

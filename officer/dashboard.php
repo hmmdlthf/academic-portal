@@ -117,7 +117,7 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
                     </div>
                     <div class="profile__text">
                         <div class="name">Jorn Doe</div>
-                        <div class="level">Teacher</div>
+                        <div class="level">Officer</div>
                     </div>
                 </div>
             </div>
@@ -136,28 +136,15 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
                         dashboard
                     </div>
                 </div>
-                <div class="menu__link" id="link__lesson">
-                    <div class="link__icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24">
-                            <g>
-                                <path d="M21,3H3C1.9,3,1,3.9,1,5v3h2V5h18v14h-7v2h7c1.1,0,2-0.9,2-2V5C23,3.9,22.1,3,21,3z M1,18v3h3C4,19.34,2.66,18,1,18z M1,14 v2c2.76,0,5,2.24,5,5h2C8,17.13,4.87,14,1,14z M1,10v2c4.97,0,9,4.03,9,9h2C12,14.92,7.07,10,1,10z M11,11.09v2L14.5,15l3.5-1.91 v-2L14.5,13L11,11.09z M14.5,6L9,9l5.5,3L20,9L14.5,6z" />
-                                <path d="M0,0h24v24H0V0z" fill="none" />
-                            </g>
-                        </svg>
-                    </div>
-                    <div class="link__text">
-                        lesson
-                    </div>
-                </div>
-                <div class="menu__link" id="link__note">
+                <div class="menu__link" id="link__student">
                     <div class="link__icon">
                         <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
-                            <path d="M0 0h24v24H0V0z" fill="none" />
-                            <path d="M3 18h12v-2H3v2zM3 6v2h18V6H3zm0 7h18v-2H3v2z" />
+                            <path d="M0 0h24v24H0z" fill="none" />
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" />
                         </svg>
                     </div>
                     <div class="link__text">
-                        note
+                        student
                     </div>
                 </div>
                 <div class="menu__link" id="link__assisgnment">
@@ -205,7 +192,7 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
             document.getElementById('menuWrapper').classList.toggle('hidden');
             document.getElementById('menuBtn').classList.toggle('active');
         }
-        
+
         document.querySelectorAll('.menu__link').forEach((x) => {
             x.addEventListener('click', () => {
                 link = x.id.slice(6);
@@ -216,7 +203,6 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
         let params = new URLSearchParams(document.location.search);
         let link = params.get("link");
         document.getElementById(`link__${link}`).classList.add('active');
-        
     </script>
 </body>
 
