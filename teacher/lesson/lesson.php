@@ -31,26 +31,42 @@ $lessons = (new LessonService())->getLessonsByTeacherUsername($jwtService->getUs
             <div class="body__content">
                 <?php if (count($lessons) > 0) { ?>
                     <div class="filters">
-                        
+                        <div class="form__group">
+                            <div class="form__control">
+                                <select name="subject" id="subject">
+                                    <option value="">SubjectA1</option>
+                                    <option value="">SubjectA2</option>
+                                    <option value="">SubjectA3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form__group">
+                            <div class="form__control">
+                                <input type="text" name="name" placeholder="Name" id="">
+                            </div>
+                        </div>
                     </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Name</th>
-                                <th>Subject</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($lessons as $lesson) { ?>
+                    <div class="items">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td><?php echo $lesson->getId(); ?></td>
-                                    <td><?php echo $lesson->getName(); ?></td>
-                                    <td><?php echo $lesson->getSubject()->getName(); ?></td>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Subject</th>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($lessons as $lesson) { ?>
+                                    <tr>
+                                        <td><?php echo $lesson->getId(); ?></td>
+                                        <td><?php echo $lesson->getName(); ?></td>
+                                        <td><?php echo $lesson->getSubject()->getName(); ?></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+
                 <?php } else { ?>
                     no lessons found in subjects
                 <?php } ?>

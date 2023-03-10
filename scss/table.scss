@@ -2,34 +2,56 @@
 
 .filters {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     border-radius: 1rem;
-    
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 1rem;
+    width: 100%;
+    height: 30%;
 }
 
-table {
+.items {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 1rem;
     padding: 2rem;
     box-shadow: var(--shadow);
-    thead {
-        tr {
-            th {
-                padding-left: 1rem;
-                padding-right: 1rem;
-                padding-top: .5rem;
-                padding-bottom: .5rem;
+    width: 100%;
+    height: 100%;
+
+    table {
+        border: none;
+        thead {
+            tr {
+                >*+* {
+                    border-left: 2px solid var(--color-1);
+                }
+
+                th {
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    padding-top: .5rem;
+                    padding-bottom: .5rem;
+                }
             }
         }
-    }
 
-    tbody {
-        tr {
-            td {
-                padding-left: 1rem;
-                padding-right: 1rem;
-                padding-top: .5rem;
-                padding-bottom: .5rem;
+        tbody {
+            tr {
+                >*+* {
+                    border-left: 2px solid var(--color-1);
+                }
+
+                td {
+                    padding-left: 1rem;
+                    padding-right: 1rem;
+                    padding-top: .5rem;
+                    padding-bottom: .5rem;
+                }
             }
         }
     }

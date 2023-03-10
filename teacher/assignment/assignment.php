@@ -32,25 +32,44 @@ $assignments = (new AssignmentService())->getAssignmentsByTeacherUsername($jwtSe
             <?php require $ROOT . '/teacher/header.php'; ?>
             <div class="body__content">
                 <?php if (count($assignments) > 0) { ?>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>File</th>
-                                <th>Lesson</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($assignments as $assignment) { ?>
+                    <div class="filters">
+                        <div class="form__group">
+                            <div class="form__control">
+                                <select name="lesson" id="lesson">
+                                    <option value="">Lesson1</option>
+                                    <option value="">Lesson2</option>
+                                    <option value="">Lesson3</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form__group">
+                            <div class="form__control">
+                                <input type="text" name="name" placeholder="Name" id="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="items">
+                        <table>
+                            <thead>
                                 <tr>
-                                    <td><?php echo $assignment->getId(); ?></td>
-                                    <td><a href="<?php echo $assignment->getFile(); ?>" download="">Download</a></td>
-                                    <td><?php echo $assignment->getLesson()->getName(); ?></td>
+                                    <th>Id</th>
+                                    <th>File</th>
+                                    <th>Lesson</th>
                                 </tr>
-                            <?php } ?>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($assignments as $assignment) { ?>
+                                    <tr>
+                                        <td><?php echo $assignment->getId(); ?></td>
+                                        <td><a href="<?php echo $assignment->getFile(); ?>" download="">Download</a></td>
+                                        <td><?php echo $assignment->getLesson()->getName(); ?></td>
+                                    </tr>
+                                <?php } ?>
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
+
                 <?php } else { ?>
                     no assignments founded
                 <?php } ?>
