@@ -4,6 +4,7 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . '/app/subject/SubjectRepository.php';
+require_once $ROOT . '/app/teacher/Teacher.php';
 require_once $ROOT . '/app/teacher/TeacherService.php';
 
 class SubjectService
@@ -28,6 +29,13 @@ class SubjectService
     public function getSubjects()
     {
         return $this->subjectRepository->findSubjects();
+    }
+
+    public function getSubjectsByTeacherUsername(string $teacherUsername)
+    {
+        $teacherService = new TeacherService();
+        $teacher = $teacherService->getTeacherByUsername($teacherUsername);
+        return $this->subjectRepository->findSubjectsByTeacher($teacher);
     }
 
     public function save($name, $gradeId, $teacherId)

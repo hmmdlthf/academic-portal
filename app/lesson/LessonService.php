@@ -31,6 +31,16 @@ class LessonService
         return $this->lessonRepository->findLessons();
     }
 
+    public function getLessonsBySubject(int $subjectId)
+    {
+        return $this->lessonRepository->findLessonsBySubject($subjectId);
+    }
+
+    public function getLessonsByTeacherUsername(string $teacherUsername)
+    {
+        return $this->lessonRepository->findLessonsByTeacher((new TeacherService)->getTeacherByUsername($teacherUsername));
+    }
+
     public function save($name, $subjectId)
     {
         if ($this->getLessonByName($name) !== false) {

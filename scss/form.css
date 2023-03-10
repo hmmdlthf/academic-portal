@@ -30,6 +30,7 @@ form {
 .form__group .form__control input[type=number],
 .form__group .form__control input[type=email],
 .form__group .form__control input[type=password],
+.form__group .form__control input[type=search],
 .form__group .form__control textarea {
   width: 100%;
   display: flex;

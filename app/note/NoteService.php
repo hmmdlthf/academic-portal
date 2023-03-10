@@ -6,6 +6,8 @@ require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . '/app/note/NoteRepository.php';
 require_once $ROOT . '/app/note/Note.php';
 require_once $ROOT . '/app/lesson/LessonService.php';
+require_once $ROOT . '/app/teacher/Teacher.php';
+require_once $ROOT . '/app/teacher/TeacherService.php';
 require_once $ROOT . '/app/file/File.php';
 require_once $ROOT . '/app/file/FileDirectory.php';
 
@@ -42,6 +44,11 @@ class NoteService
     public function getNotes()
     {
         return $this->noteRepository->findNotes();
+    }
+
+    public function getNotesByTeacherUsername(string $teacherUsername)
+    {
+        return $this->noteRepository->findNotesByTeacher((new TeacherService())->getTeacherByUsername($teacherUsername));
     }
 
     public function save($name, $lessonId)

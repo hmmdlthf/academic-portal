@@ -63,6 +63,25 @@ class LessonRepository extends Db
         }
     }
 
+    public function findLessonsByTeacher(Teacher $teacher)
+    {
+        $query = "SELECT `lesson`.`id`, `lesson`.`name`, `lesson`.`subject_id` FROM `lesson` INNER JOIN `subject` ON `lesson`.`subject_id`=`subject`.`id` WHERE `subject`.`teacher_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$teacher->getId()]);
+        $resultSet = $statement->fetchAll();
+        $lessons = [];
+
+        if ($resultSet > 0) {
+            foreach($resultSet as $lessonArray) {
+                $lesson = $this->addDetailsToModel($lessonArray);
+                $lessons[] = $lesson;
+            }
+            return $lessons;
+        } else {
+            return false;
+        }
+    }
+
     public function findLessonsBySubject(int $subjectId)
     {
         $query = "SELECT * FROM `lesson` WHERE `subjectId`=?";

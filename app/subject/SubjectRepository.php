@@ -5,6 +5,7 @@ require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . "/app/subject/Subject.php";
 require_once $ROOT . "/app/grade/GradeService.php";
+require_once $ROOT . "/app/teacher/Teacher.php";
 
 class SubjectRepository extends Db
 {
@@ -72,6 +73,25 @@ class SubjectRepository extends Db
         $query = "SELECT * FROM `subject` WHERE `gradeId`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$gradeId]);
+        $resultSet = $statement->fetchAll();
+        $subjects = [];
+
+        if ($resultSet > 0) {
+            foreach($resultSet as $subjectArray) {
+                $subject = $this->addDetailsToModel($subjectArray);
+                $subjects[] = $subject;
+            }
+            return $subjects;
+        } else {
+            return false;
+        }
+    }
+
+    public function findSubjectsByTeacher(Teacher $teacher)
+    {
+        $query = "SELECT * FROM `subject` WHERE `teacher_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$teacher->getId()]);
         $resultSet = $statement->fetchAll();
         $subjects = [];
 
