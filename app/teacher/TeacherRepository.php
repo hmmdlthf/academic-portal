@@ -104,6 +104,7 @@ class TeacherRepository extends Db
         if ($resultSet > 0) {
             return $this->addDetailsToModel($resultSet);
         } else {
+            die("no username found by the username: $username");
             return false;
         }
     }

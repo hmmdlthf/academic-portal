@@ -4,6 +4,7 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . '/app/assignment/AssignmentRepository.php';
+require_once $ROOT . '/app/teacher/TeacherService.php';
 require_once $ROOT . '/app/file/FileDirectory.php';
 require_once $ROOT . '/app/file/File.php';
 
@@ -42,24 +43,27 @@ class AssignmentService
         return $this->assignmentRepository->findAssignments();
     }
 
-    public function save($name, $lessonId)
+    public function getAssignmentsByTeacherUsername(string $teacherUsername)
+    {
+        return $this->assignmentRepository->findAssignmentsByTeacher((new TeacherService())->getTeacherByUsername($teacherUsername));
+    }
+
+    public function save($lessonId)
     {
         $assignment = new Assignment();
-        $assignment->setName($name);
         $assignment->setFile($this->assignmentFile->getShortFile());
         $lesson = new LessonService();
         $assignment->setLesson($lesson->getLessonById($lessonId));
         $this->assignmentRepository->save($assignment);
     }
 
-    public function update($id, $name, $file)
+    public function update($id, $file)
     {
         $assignment = $this->getAssignmentById($id);
         if ($assignment == false) {
             echo ("assignment not found");
             return false;
         }
-        $assignment->setName($name);
         $assignment->setFile($file);
         $this->assignmentRepository->update($assignment);
     }

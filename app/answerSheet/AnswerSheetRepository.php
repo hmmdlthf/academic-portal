@@ -6,6 +6,7 @@ require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . "/app/answerSheet/AnswerSheet.php";
 require_once $ROOT . "/app/assignment/AssignmentService.php";
 require_once $ROOT . "/app/student/StudentService.php";
+require_once $ROOT . "/app/utils/boolean.php";
 
 class AnswerSheetRepository extends Db
 {
@@ -15,7 +16,7 @@ class AnswerSheetRepository extends Db
         $answerSheet->setId($array['id']);
         $answerSheet->setFile($array['file']);
         $answerSheet->setMarks($array['marks']);
-        $answerSheet->setIsReleased($array['is_released']);
+        $answerSheet->setIsReleased(getBool($array['is_released']));
         $assignment = new AssignmentService();
         $answerSheet->setAssignment($assignment->getAssignmentById($array['assignment_id']));
         $student = new StudentService();
@@ -61,6 +62,25 @@ class AnswerSheetRepository extends Db
         $query = "SELECT * FROM `answer_sheet` WHERE `assignment_id`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$assignmentId]);
+        $resultSet = $statement->fetchAll();
+        $answerSheets = [];
+
+        if ($resultSet > 0) {
+            foreach($resultSet as $answerSheetsArray) {
+                $answerSheet = $this->addDetailsToModel($answerSheetsArray);
+                $answerSheets[] = $answerSheet;
+            }
+            return $answerSheets;
+        } else {
+            return false;
+        }
+    }
+
+    public function findAnswerSheetsByTeacher(Teacher $teacher)
+    {
+        $query = "SELECT `answer_sheet`.`id`, `answer_sheet`.`file`, `answer_sheet`.`marks`, `answer_sheet`.`is_released`, `answer_sheet`.`assignment_id`, `answer_sheet`.`student_id` FROM (`answer_sheet` INNER JOIN `assignment` ON `answer_sheet`.`assignment_id`=`assignment`.`id` INNER JOIN `lesson` ON `assignment`.`lesson_id`=`lesson`.`id` INNER JOIN `subject` ON `lesson`.`subject_id`=`subject`.`id`) WHERE `teacher_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$teacher->getId()]);
         $resultSet = $statement->fetchAll();
         $answerSheets = [];
 

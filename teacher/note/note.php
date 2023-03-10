@@ -32,26 +32,26 @@ $notes = (new NoteService())->getNotesByTeacherUsername($jwtService->getUsername
             <?php require $ROOT . '/teacher/header.php'; ?>
             <div class="body__content">
                 <?php if (count($notes) > 0) { ?>
-                    <div class="table">
-                        <div class="table__head">
-                            <div class="field__id">Id</div>
-                            <div class="field__name">Name</div>
-                            <div class="field__file">File</div>
-                            <div class="field__lesson">Lesson</div>
-                        </div>
-                        <div class="table__body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Name</th>
+                                <th>File</th>
+                                <th>Lesson</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             <?php foreach ($notes as $note) { ?>
-                                <div class="table__row">
-                                    <div class="data__id"><?php echo $note->getId(); ?></div>
-                                    <div class="data__name"><?php echo $note->getName(); ?></div>
-                                    <div class="data__file">
-                                        <a href="<?php echo $note->getFile(); ?>">Download</a>    
-                                    </div>
-                                    <div class="data__lesson"><?php echo $note->getLesson()->getName(); ?></div>
-                                </div>
+                                <tr>
+                                    <td><?php echo $note->getId(); ?></td>
+                                    <td><?php echo $note->getName(); ?></td>
+                                    <td><a href="<?php echo $note->getFile(); ?>" download="">Download</a></td>
+                                    <td><?php echo $note->getLesson()->getName(); ?></td>
+                                </tr>
                             <?php } ?>
-                        </div>
-                    </div>
+                        </tbody>
+                    </table>
                 <?php } else { ?>
                     no notes found in all lessons
                 <?php } ?>

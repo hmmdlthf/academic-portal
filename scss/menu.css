@@ -2,12 +2,14 @@
   --shadow: 0px 2px 4px #195ddd77;
   --inner-shadow: inset 2px 0px 4px #195ddd77;
   --color-1: #195ddd;
+  --menu-width: 200px;
+  --header-height: 133px;
 }
 
 .floatingMenu__btn {
   position: fixed;
   z-index: 10;
-  top: 1rem;
+  top: 2rem;
   left: 1rem;
   display: flex;
   align-items: center;
@@ -41,7 +43,7 @@
 .floatingMenu {
   position: fixed;
   z-index: 10;
-  top: 1rem;
+  top: 2rem;
   left: 3rem;
   display: flex;
   align-items: flex-start;
@@ -107,12 +109,16 @@
 }
 
 .menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
   display: none;
   align-items: flex-start;
   justify-content: space-between;
   flex-direction: column;
   padding: 1rem;
-  width: 200px;
+  width: var(--menu-width);
   height: 100vh;
   box-shadow: var(--shadow);
   background-color: #fff;

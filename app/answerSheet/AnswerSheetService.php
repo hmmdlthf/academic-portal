@@ -45,6 +45,11 @@ class AnswerSheetService
         return $this->answerSheetRepository->findAnswerSheets();
     }
 
+    public function getAnswerSheetsByTeacherUsername(string $teacherUsername)
+    {
+        return $this->answerSheetRepository->findAnswerSheetsByTeacher((new TeacherService())->getTeacherByUsername($teacherUsername));
+    }
+
     public function save($assignmentId, $studentId)
     {
         $answerSheet = new AnswerSheet();

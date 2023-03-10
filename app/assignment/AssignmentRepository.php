@@ -70,6 +70,25 @@ class AssignmentRepository extends Db
         }
     }
 
+    public function findAssignmentsByTeacher(Teacher $teacher)
+    {
+        $query = "SELECT `assignment`.`id`, `assignment`.`file`, `assignment`.`lesson_id` FROM (`assignment` INNER JOIN `lesson` ON `assignment`.`lesson_id`=`lesson`.`id` INNER JOIN `subject` ON `lesson`.`subject_id`=`subject`.`id`) WHERE `teacher_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$teacher->getId()]);
+        $resultSet = $statement->fetchAll();
+        $assignments = [];
+
+        if ($resultSet > 0) {
+            foreach($resultSet as $assignmentsArray) {
+                $assignment = $this->addDetailsToModel($assignmentsArray);
+                $assignments[] = $assignment;
+            }
+            return $assignments;
+        } else {
+            return false;
+        }
+    }
+
     public function save(Assignment $assignment)
     {
         $query = "INSERT INTO `assignment` (`file`, `lesson_id`) VALUES ( ?, ?)";

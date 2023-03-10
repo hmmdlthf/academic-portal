@@ -35,6 +35,15 @@ class AnswerSheet extends Db
         return $this->isReleased;
     }
 
+    public function getStatus()
+    {
+        if ($this->isReleased == true) {
+            return 'Released';
+        } else {
+            return 'Not Released';
+        }
+    }
+
     public function getAssignment()
     {
         return $this->assignment;

@@ -5,3 +5,4 @@
 
 <link rel="stylesheet" href="/scss/style.css">
 <link rel="stylesheet" href="/scss/form.css">
+<link rel="stylesheet" href="/scss/table.css">

@@ -1,0 +1,32 @@
+:root {
+  --shadow: 0px 2px 4px #195ddd77;
+  --inner-shadow: inset 2px 0px 4px #195ddd77;
+  --color-1: #195ddd;
+  --menu-width: 200px;
+  --header-height: calc(133px + 1rem);
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 1rem;
+}
+
+table {
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: var(--shadow);
+}
+table thead tr th {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+table tbody tr td {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}/*# sourceMappingURL=table.css.map */

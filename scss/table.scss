@@ -1,0 +1,36 @@
+@import 'variables';
+
+.filters {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 1rem;
+    
+}
+
+table {
+    border-radius: 1rem;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+    thead {
+        tr {
+            th {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+            }
+        }
+    }
+
+    tbody {
+        tr {
+            td {
+                padding-left: 1rem;
+                padding-right: 1rem;
+                padding-top: .5rem;
+                padding-bottom: .5rem;
+            }
+        }
+    }
+}

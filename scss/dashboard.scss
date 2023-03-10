@@ -16,50 +16,6 @@
         width: 100%;
         height: 100%;
 
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 2rem;
-            width: 100%;
-
-            .header__left {
-                .title {
-                    font-size: 2rem;
-                    font-weight: 700;
-                    margin-left: 4rem;
-                    text-transform: capitalize;
-                }
-            }
-
-            .header__right {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                >*+* {
-                    margin-left: 1rem;
-                }
-
-                .notification__btn {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    .icon {
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-
-                        svg {
-                            height: 1.5rem;
-                            width: 1.5rem;
-                        }
-                    }
-                }
-            }
-        }
-
         .body__content {
             display: flex;
             flex-direction: column;
@@ -67,7 +23,9 @@
             justify-content: flex-start;
             width: 100%;
             height: 100%;
+            min-height: 100vh;
             padding: 1rem;
+            padding-top: var(--header-height);
 
             .card {
                 padding: 1rem;
@@ -100,6 +58,17 @@
                 .right__card {
                     height: 600px;
                 }
+            }
+        }
+    }
+}
+
+@media (min-width: $break-sm) {
+    .main {
+        .body {
+            margin-left: var(--menu-width);
+            .body__content {
+                
             }
         }
     }
