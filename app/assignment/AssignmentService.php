@@ -48,6 +48,11 @@ class AssignmentService
         return $this->assignmentRepository->findAssignmentsByTeacher((new TeacherService())->getTeacherByUsername($teacherUsername));
     }
 
+    public function getAssignmentsByStudentUsername(string $studentUsername)
+    {
+        return $this->assignmentRepository->findAssignmentsByStudent((new StudentService())->getStudentByUsername($studentUsername));
+    }
+
     public function save($lessonId)
     {
         $assignment = new Assignment();

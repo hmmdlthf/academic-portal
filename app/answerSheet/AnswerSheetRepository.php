@@ -76,6 +76,25 @@ class AnswerSheetRepository extends Db
         }
     }
 
+    public function findAnswerSheetsByStudent(Student $student)
+    {
+        $query = "SELECT * FROM `answer_sheet` WHERE `student_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$student->getId()]);
+        $resultSet = $statement->fetchAll();
+        $answerSheets = [];
+
+        if ($resultSet > 0) {
+            foreach($resultSet as $answerSheetsArray) {
+                $answerSheet = $this->addDetailsToModel($answerSheetsArray);
+                $answerSheets[] = $answerSheet;
+            }
+            return $answerSheets;
+        } else {
+            return false;
+        }
+    }
+
     public function findAnswerSheetsByTeacher(Teacher $teacher)
     {
         $query = "SELECT `answer_sheet`.`id`, `answer_sheet`.`file`, `answer_sheet`.`marks`, `answer_sheet`.`is_released`, `answer_sheet`.`assignment_id`, `answer_sheet`.`student_id` FROM (`answer_sheet` INNER JOIN `assignment` ON `answer_sheet`.`assignment_id`=`assignment`.`id` INNER JOIN `lesson` ON `assignment`.`lesson_id`=`lesson`.`id` INNER JOIN `subject` ON `lesson`.`subject_id`=`subject`.`id`) WHERE `teacher_id`=?";

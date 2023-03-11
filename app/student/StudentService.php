@@ -7,6 +7,9 @@ require_once $ROOT . '/app/city/CityService.php';
 require_once $ROOT . '/app/grade/GradeService.php';
 require_once $ROOT . '/app/officer/OfficerService.php';
 require_once $ROOT . '/app/email/Email.php';
+require_once $ROOT . '/app/utils/boolean.php';
+require_once $ROOT . '/app/utils/date.php';
+require_once $ROOT . '/app/appUser/Gender.php';
 
 class StudentService
 {
@@ -103,9 +106,9 @@ class StudentService
         $student->setPhone($phone);
         $student->setNic($nic);
         $student->setTitle($title);
-        $student->setDob($dob);
-        $student->setGender($gender);
-        $student->setMaritalStatus($maritalStatus);
+        $student->setDob(getMySqlDate($dob));
+        $student->setGender(getGenderFromSelect($gender));
+        $student->setMaritalStatus(getTinyIntFromCheck($maritalStatus));
         $city = new CityService();
         $student->setCity($city->getCityById($cityId));
         $this->studentRepository->update($student);

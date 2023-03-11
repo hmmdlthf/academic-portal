@@ -138,9 +138,9 @@ class OfficerRepository extends Db
 
     public function update(Officer $officer)
     {
-        $query = "UPDATE `officer` SET `fname`=? WHERE `id`=?";
+        $query = "UPDATE `officer` SET `fname`=?, `lname`=?, `address`=?, `phone`=?, `nic`=?, `title`=?, `dob`=?, `gender`=?, `marital_status`=?, `city_id`=? WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$officer->getFname(), $officer->getId()]);
+        $statement->execute([$officer->getFname(), $officer->getLname(), $officer->getAddress(), $officer->getPhone(), $officer->getNic(), $officer->getTitle(), $officer->getDob(), $officer->getGender(), $officer->getMaritalStatus(), $officer->getCity()->getId(), $officer->getId()]);
         return true;
     }
 

@@ -6,7 +6,7 @@ require_once $ROOT . "/app/appUser/AppUser.php";
 
 class Student extends AppUser
 {
-    private Grade $grade;
+    private Grade|null $grade;
     private Officer $officer;
 
     public function getGrade()
@@ -19,7 +19,7 @@ class Student extends AppUser
         return $this->officer;
     }
 
-    public function setGrade(Grade $grade)
+    public function setGrade(Grade|null $grade)
     {
         $this->grade = $grade;
     }

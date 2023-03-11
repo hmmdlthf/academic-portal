@@ -106,6 +106,25 @@ class SubjectRepository extends Db
         }
     }
 
+    public function findSubjectsByStudent(Student $student)
+    {
+        $query = "SELECT * FROM `subject` WHERE `grade_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$student->getGrade()->getId()]);
+        $resultSet = $statement->fetchAll();
+        $subjects = [];
+
+        if ($resultSet > 0) {
+            foreach($resultSet as $subjectArray) {
+                $subject = $this->addDetailsToModel($subjectArray);
+                $subjects[] = $subject;
+            }
+            return $subjects;
+        } else {
+            return false;
+        }
+    }
+
     public function save(Subject $subject)
     {
         $query = "INSERT INTO `subject` (`name`, `grade_id`, `teacher_id`) VALUES ( ?, ?, ?)";

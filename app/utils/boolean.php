@@ -19,3 +19,14 @@ function getTinyInt(bool $bool)
         return 0;
     }
 }
+
+function getTinyIntFromCheck(string|null $check)
+{
+    if ($check == 'on') {
+        return 1;
+    } else if ($check == null) {
+        return null;
+    } else {
+        return 0;
+    }
+}

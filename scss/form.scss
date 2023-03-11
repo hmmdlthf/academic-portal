@@ -1,3 +1,5 @@
+@import 'variables';
+
 form {
     width: 100%;
     display: flex;
@@ -19,12 +21,18 @@ form {
     margin-top: .5rem;
     margin-bottom: .5rem;
 
+    >*+* {
+        margin-top: 1rem;
+    }
+
     .form__control {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         justify-content: center;
         width: 100%;
+
+
 
         label {
             margin-bottom: .5rem;
@@ -35,8 +43,7 @@ form {
         input[type='email'],
         input[type='password'],
         input[type='search'],
-        textarea
-         {
+        textarea {
             width: 100%;
             display: flex;
             align-items: center;
@@ -54,10 +61,15 @@ form {
             font-size: medium;
         }
 
-        select {
+        select,
+        input[type='date'] {
             width: 100%;
             padding: 1rem;
             border-radius: .5rem;
+        }
+
+        textarea {
+            justify-content: flex-start;
         }
 
         .message {
@@ -88,7 +100,7 @@ form {
             margin-bottom: unset;
         }
 
-        >* + * {
+        >*+* {
             margin-left: .5rem;
         }
     }
@@ -105,4 +117,16 @@ form {
         }
     }
 
+}
+
+@media (min-width: $break-md) {
+    .form__group {
+        flex-direction: row;
+        max-width: 500px;
+
+        >*+* {
+            margin-top: 0;
+            margin-left: .5rem;
+        }
+    }
 }

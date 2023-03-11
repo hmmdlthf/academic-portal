@@ -6,6 +6,8 @@ require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . '/app/subject/SubjectRepository.php';
 require_once $ROOT . '/app/teacher/Teacher.php';
 require_once $ROOT . '/app/teacher/TeacherService.php';
+require_once $ROOT . '/app/student/Student.php';
+require_once $ROOT . '/app/student/StudentService.php';
 
 class SubjectService
 {
@@ -36,6 +38,13 @@ class SubjectService
         $teacherService = new TeacherService();
         $teacher = $teacherService->getTeacherByUsername($teacherUsername);
         return $this->subjectRepository->findSubjectsByTeacher($teacher);
+    }
+
+    public function getSubjectsByStudentUsername(string $studentUsername)
+    {
+        $studentService = new StudentService();
+        $student = $studentService->getStudentByUsername($studentUsername);
+        return $this->subjectRepository->findSubjectsByStudent($student);
     }
 
     public function save($name, $gradeId, $teacherId)

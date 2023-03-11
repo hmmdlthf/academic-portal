@@ -91,6 +91,25 @@ class NoteRepository extends Db
         }
     }
 
+    public function findNotesByStudent(Student $student)
+    {
+        $query = "SELECT `note`.`id`, `note`.`name`, `note`.`file`, `note`.`lesson_id` FROM (`note` INNER JOIN `lesson` ON `note`.`lesson_id`=`lesson`.`id` INNER JOIN `subject` ON `lesson`.`subject_id`=`subject`.`id`) WHERE `grade_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$student->getGrade()->getId()]);
+        $resultSet = $statement->fetchAll();
+        $notes = [];
+
+        if ($resultSet > 0) {
+            foreach($resultSet as $notesArray) {
+                $note = $this->addDetailsToModel($notesArray);
+                $notes[] = $note;
+            }
+            return $notes;
+        } else {
+            return false;
+        }
+    }
+
     public function save(Note $note)
     {
         $query = "INSERT INTO `note` (`name`, `file`, `lesson_id`) VALUES ( ?, ?, ?)";

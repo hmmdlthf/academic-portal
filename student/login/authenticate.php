@@ -39,5 +39,5 @@ if ($hasValidCredentials) {
     }
     $jwtSevice->createJwt('/student');
     echo ("jwt created successfully");
-    header('Location: '. '/student/dashboard.php');
+    header('Location: '. '/student/dashboard/dashboard.php?link=dashboard');
 }

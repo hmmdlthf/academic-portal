@@ -5,6 +5,8 @@ require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . '/app/teacher/TeacherRepository.php';
 require_once $ROOT . '/app/city/CityService.php';
 require_once $ROOT . '/app/email/Email.php';
+require_once $ROOT . '/app/utils/boolean.php';
+require_once $ROOT . '/app/utils/date.php';
 
 class TeacherService
 {
@@ -96,9 +98,9 @@ class TeacherService
         $teacher->setPhone($phone);
         $teacher->setNic($nic);
         $teacher->setTitle($title);
-        $teacher->setDob($dob);
-        $teacher->setGender($gender);
-        $teacher->setMaritalStatus($maritalStatus);
+        $teacher->setDob(getMySqlDate($dob));
+        $teacher->setGender(getGenderFromSelect($gender));
+        $teacher->setMaritalStatus(getTinyIntFromCheck($maritalStatus));
         $city = new CityService();
         $teacher->setCity($city->getCityById($cityId));
         $this->teacherRepository->update($teacher);

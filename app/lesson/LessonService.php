@@ -6,6 +6,7 @@ require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . '/app/lesson/Lesson.php';
 require_once $ROOT . '/app/lesson/LessonRepository.php';
 require_once $ROOT . '/app/subject/SubjectService.php';
+require_once $ROOT . '/app/student/StudentService.php';
 
 class LessonService
 {
@@ -39,6 +40,11 @@ class LessonService
     public function getLessonsByTeacherUsername(string $teacherUsername)
     {
         return $this->lessonRepository->findLessonsByTeacher((new TeacherService)->getTeacherByUsername($teacherUsername));
+    }
+
+    public function getLessonsByStudentUsername(string $studentUsername)
+    {
+        return $this->lessonRepository->findLessonsByStudent((new StudentService)->getStudentByUsername($studentUsername));
     }
 
     public function save($name, $subjectId)

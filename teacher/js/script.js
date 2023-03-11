@@ -12,8 +12,16 @@ document.querySelectorAll('.menu__link').forEach((x) => {
     })
 })
 
+document.querySelectorAll('.mobile__menu__link').forEach((x) => {
+    x.addEventListener('click', () => {
+        link = x.id.slice(14);
+        path = `/teacher/${link}/${link}.php`
+        document.location = `${path}?link=${link}`;
+    })
+})
+
 let params = new URLSearchParams(document.location.search);
 let link = params.get("link");
-document.getElementById(`link__${link}`).classList.add('active');
 document.querySelector('.header .header__left .title').innerHTML = link;
 document.querySelector('title').innerHTML = `Online Acedemy | ${link}`;
+document.getElementById(`link__${link}`).classList.add('active');

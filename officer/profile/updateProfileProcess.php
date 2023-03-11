@@ -13,5 +13,6 @@ $officerService = new OfficerService();
 $officerId = $officerService->getOfficerByUsername($jwtService->getUsername())->getId();
 $officerService->update( $officerId , $_POST['fname'], $_POST['lname'], $_POST['address'], $_POST['phone'], $_POST['nic'], $_POST['title'], $_POST['dob'], $_POST['gender'], $_POST['marital_status'], $_POST['cityId']);
 echo ("update Successfull");
+header('Location: /officer/profile/profile.php?link=profile')
 
 ?>

@@ -139,9 +139,9 @@ class TeacherRepository extends Db
 
     public function update(Teacher $teacher)
     {
-        $query = "UPDATE `teacher` SET `fname`=? WHERE `id`=?";
+        $query = "UPDATE `teacher` SET `fname`=?, `lname`=?, `address`=?, `phone`=?, `nic`=?, `title`=?, `dob`=?, `gender`=?, `marital_status`=?, `city_id`=? WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$teacher->getFname(), $teacher->getId()]);
+        $statement->execute([$teacher->getFname(), $teacher->getLname(), $teacher->getAddress(), $teacher->getPhone(), $teacher->getNic(), $teacher->getTitle(), $teacher->getDob(), $teacher->getGender(), $teacher->getMaritalStatus(), $teacher->getCity()->getId(), $teacher->getId()]);
         return true;
     }
 

@@ -5,6 +5,9 @@ require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . '/app/officer/OfficerRepository.php';
 require_once $ROOT . '/app/city/CityService.php';
 require_once $ROOT . '/app/email/Email.php';
+require_once $ROOT . '/app/utils/boolean.php';
+require_once $ROOT . '/app/utils/date.php';
+require_once $ROOT . '/app/appUser/Gender.php';
 
 class OfficerService
 {
@@ -96,9 +99,9 @@ class OfficerService
         $officer->setPhone($phone);
         $officer->setNic($nic);
         $officer->setTitle($title);
-        $officer->setDob($dob);
-        $officer->setGender($gender);
-        $officer->setMaritalStatus($maritalStatus);
+        $officer->setDob(getMySqlDate($dob));
+        $officer->setGender(getGenderFromSelect($gender));
+        $officer->setMaritalStatus(getTinyIntFromCheck($maritalStatus));
         $city = new CityService();
         $officer->setCity($city->getCityById($cityId));
         $this->officerRepository->update($officer);

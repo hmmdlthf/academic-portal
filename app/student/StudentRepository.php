@@ -66,6 +66,19 @@ class StudentRepository extends Db
                 }
             }
         }
+        if (array_key_exists('grade_id', $array)) {
+            if ($array['grade_id'] == null) {
+                $student->setGrade(null);
+            } else {
+                $gradeService = new GradeService();
+                $grade = $gradeService->getGradeById($array['grade_id']);
+                if ($grade == false) {
+                    $student->setGrade(null);
+                } else {
+                    $student->setGrade($grade);
+                }
+            }
+        }
         return $student;
     }
 
@@ -151,9 +164,9 @@ class StudentRepository extends Db
 
     public function update(Student $student)
     {
-        $query = "UPDATE `student` SET `fname`=? WHERE `id`=?";
+        $query = "UPDATE `student` SET `fname`=?, `lname`=?, `address`=?, `phone`=?, `nic`=?, `title`=?, `dob`=?, `gender`=?, `marital_status`=?, `city_id`=? WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$student->getFname(), $student->getId()]);
+        $statement->execute([$student->getFname(), $student->getLname(), $student->getAddress(), $student->getPhone(), $student->getNic(), $student->getTitle(), $student->getDob(), $student->getGender(), $student->getMaritalStatus(), $student->getCity()->getId(), $student->getId()]);
         return true;
     }
 

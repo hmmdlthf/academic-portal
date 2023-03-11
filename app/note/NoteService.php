@@ -51,6 +51,11 @@ class NoteService
         return $this->noteRepository->findNotesByTeacher((new TeacherService())->getTeacherByUsername($teacherUsername));
     }
 
+    public function getNotesByStudentUsername(string $studentUsername)
+    {
+        return $this->noteRepository->findNotesByStudent((new StudentService())->getStudentByUsername($studentUsername));
+    }
+
     public function save($name, $lessonId)
     {
         $note = new Note();
