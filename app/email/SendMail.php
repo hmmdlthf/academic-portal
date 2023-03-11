@@ -52,21 +52,11 @@ trait SendMail
         //    $this->hostname = 'smtp.titan.email';
         //    $this->port = 587;
         //    $this->SMTPDebug = 0;
-        //    $this->username = 'contact@me.aftersite.lk';
-        //    $this->password = 'ContactMeAftersiteUserAlthaf123@';
-        //    $this->sendersEmail = 'contact@me.aftersite.lk';
-        //    $this->sendersName = 'Althaf';
+        //    $this->username = 'no-reply@academicportal.aftersite.lk';
+        //    $this->password = 'AcademicMailNoreplyUserAftersite123@';
+        //    $this->sendersEmail = 'no-reply@academicportal.aftersite.lk';
+        //    $this->sendersName = 'Online Academy';
         //    $this->isHTML = false;
-
-        
-        // $this->hostname = 'sandbox.smtp.mailtrap.io';
-        // $this->port = 2525;
-        // $this->SMTPDebug = 0;
-        // $this->username = '81f05584ea4958';
-        // $this->password = 'e6d30e06ff8e7c';
-        // $this->sendersEmail = 'aftersite.emp@gmail.com';
-        // $this->sendersName = 'Althaf';
-        // $this->isHTML = false;
     }
 
     public function getSendersEmail(): string

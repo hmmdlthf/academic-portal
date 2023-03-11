@@ -88,7 +88,7 @@ $students = (new StudentService())->getStudents();
                                         <td><?php echo $student->getUsername(); ?></td>
                                         <td><?php echo $student->getGrade()->getName(); ?></td>
                                         <td><?php echo $student->getOfficer()->getEmail(); ?></td>
-                                        <?php if (is_string($student->getCity())) { ?>
+                                        <?php if (!is_string($student->getCity())) { ?>
                                             <td><?php echo $student->getCity()->getName(); ?></td>
                                         <?php } else { ?>
                                             <th>no city</th>
@@ -112,7 +112,6 @@ $students = (new StudentService())->getStudents();
                             </tbody>
                         </table>
                     </div>
-
                 <?php } else { ?>
                     no students registered
                 <?php } ?>

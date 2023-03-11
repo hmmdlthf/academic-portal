@@ -1,11 +1,10 @@
 <?php
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
-require_once $ROOT . '/app/student/NoteService.php';
 require_once $ROOT . '/app/jwt/JwtProtected.php';
 require_once $ROOT . '/app/student/StudentService.php';
 
-$jwtService = jwt_start(['teacher_role']);
+$jwtService = jwt_start(['officer_role']);
 
 
 $email = $_POST['email'];
