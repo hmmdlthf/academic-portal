@@ -130,4 +130,13 @@ class AssignmentRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$assignment->getId()]);
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `assignment`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

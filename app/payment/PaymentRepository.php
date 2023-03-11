@@ -94,4 +94,13 @@ class PaymentRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$payment->getId()]);
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `payment`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

@@ -82,4 +82,9 @@ class SubjectService
         }
         $this->subjectRepository->delete($subject);
     }
+
+    public function count()
+    {
+        return $this->subjectRepository->count();
+    }
 }

@@ -79,5 +79,8 @@ class PaymentService
         $this->paymentRepository->delete($payment);
     }
 
-    
+    public function count()
+    {
+        return $this->paymentRepository->count();
+    }
 }

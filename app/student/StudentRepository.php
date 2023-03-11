@@ -192,4 +192,13 @@ class StudentRepository extends Db
         $statement->execute([$student->getLastLogin(), $student->getId()]);
         return true;
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `student`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

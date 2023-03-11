@@ -167,5 +167,8 @@ class TeacherService
         }
     }
 
-    
+    public function count()
+    {
+        return $this->teacherRepository->count();
+    }
 }

@@ -87,4 +87,13 @@ class GradeRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$grade->getId()]);
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `grade`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

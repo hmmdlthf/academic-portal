@@ -167,4 +167,13 @@ class TeacherRepository extends Db
         $statement->execute([$teacher->getLastLogin(), $teacher->getId()]);
         return true;
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `teacher`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

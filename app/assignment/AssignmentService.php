@@ -82,4 +82,9 @@ class AssignmentService
         }
         $this->assignmentRepository->delete($assignment);
     }
+
+    public function count()
+    {
+        return $this->assignmentRepository->count();
+    }
 }

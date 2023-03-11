@@ -87,4 +87,13 @@ class StateRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$state->getId()]);
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `state`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

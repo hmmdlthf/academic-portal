@@ -147,4 +147,13 @@ class SubjectRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$subject->getId()]);
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `subject`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

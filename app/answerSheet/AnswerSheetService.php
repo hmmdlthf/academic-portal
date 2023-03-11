@@ -98,4 +98,9 @@ class AnswerSheetService
         }
         $this->answerSheetRepository->delete($answerSheet);
     }
+
+    public function count()
+    {
+        return $this->answerSheetRepository->count();
+    }
 }

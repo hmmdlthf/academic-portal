@@ -168,5 +168,8 @@ class OfficerService
         }
     }
 
-    
+    public function count()
+    {
+        return $this->officerRepository->count();
+    }
 }

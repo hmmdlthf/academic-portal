@@ -85,4 +85,13 @@ class CountryRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$country->getId()]);
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `country`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

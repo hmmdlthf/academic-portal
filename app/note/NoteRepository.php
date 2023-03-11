@@ -132,4 +132,13 @@ class NoteRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$note->getId()]);
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `note`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

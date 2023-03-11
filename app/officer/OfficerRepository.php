@@ -166,4 +166,13 @@ class OfficerRepository extends Db
         $statement->execute([$officer->getLastLogin(), $officer->getId()]);
         return true;
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `officer`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

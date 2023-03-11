@@ -88,5 +88,10 @@ class NoteService
         $this->noteRepository->delete($note);
     }
 
+    public function count()
+    {
+        return $this->noteRepository->count();
+    }
+
     
 }

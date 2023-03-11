@@ -62,4 +62,9 @@ class StateService
         }
         $this->stateRepository->delete($state);
     }
+
+    public function count()
+    {
+        return $this->stateRepository->count();
+    }
 }

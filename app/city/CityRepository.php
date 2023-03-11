@@ -87,4 +87,13 @@ class CityRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$city->getId()]);
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `city`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

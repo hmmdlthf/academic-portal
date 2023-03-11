@@ -144,4 +144,13 @@ class AnswerSheetRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$answerSheet->getId()]);
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `answer_sheet`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

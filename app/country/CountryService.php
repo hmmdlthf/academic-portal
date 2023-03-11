@@ -61,4 +61,9 @@ class CountryService
         }
         $this->countryRepository->delete($country);
     }
+
+    public function count()
+    {
+        return $this->countryRepository->count();
+    }
 }

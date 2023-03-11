@@ -63,4 +63,9 @@ class CityService
         }
         $this->cityRepository->delete($city);
     }
+
+    public function count()
+    {
+        return $this->cityRepository->count();
+    }
 }

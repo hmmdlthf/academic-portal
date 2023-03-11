@@ -47,6 +47,18 @@
 }
 .main .body .body__content .small__cards .small__card {
   height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main .body .body__content .small__cards .small__card .title {
+  font-size: 1rem;
+  font-weight: 700;
+}
+.main .body .body__content .small__cards .small__card .count {
+  margin-left: 1rem;
+  font-size: 2rem;
+  font-weight: 700;
 }
 .main .body .body__content .big__cards {
   display: grid;

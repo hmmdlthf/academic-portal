@@ -142,4 +142,13 @@ class LessonRepository extends Db
         $statement = $this->connect()->prepare($query);
         $statement->execute([$lesson->getId()]);
     }
+
+    public function count()
+    {
+        $query = "SELECT COUNT(*) FROM `lesson`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet['COUNT(*)'];
+    }
 }

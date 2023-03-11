@@ -80,4 +80,9 @@ class LessonService
         }
         $this->lessonRepository->delete($lesson);
     }
+
+    public function count()
+    {
+        return $this->lessonRepository->count();
+    }
 }

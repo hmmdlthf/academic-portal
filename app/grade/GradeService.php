@@ -61,4 +61,9 @@ class GradeService
         }
         $this->gradeRepository->delete($grade);
     }
+
+    public function count()
+    {
+        return $this->gradeRepository->count();
+    }
 }

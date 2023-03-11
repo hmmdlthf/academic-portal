@@ -175,5 +175,8 @@ class StudentService
         }
     }
 
-    
+    public function count()
+    {
+        return $this->studentRepository->count();
+    }
 }
