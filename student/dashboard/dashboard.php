@@ -3,8 +3,21 @@
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . '/app/jwt/JwtProtected.php';
+require_once $ROOT . '/app/subject/SubjectService.php';
+require_once $ROOT . '/app/lesson/LessonService.php';
+require_once $ROOT . '/app/note/NoteService.php';
+require_once $ROOT . '/app/answerSheet/AnswerSheetService.php';
+require_once $ROOT . '/app/assignment/AssignmentService.php';
 
-jwt_start(['student_role']);
+$jwtService = jwt_start(['student_role']);
+
+$username = $jwtService->getUsername();
+$subjectCount = count((new SubjectService())->getSubjectsByStudentUsername($username));
+$lessonCount = count((new LessonService())->getLessonsByStudentUsername($username));
+$noteCount = count((new NoteService())->getNotesByStudentUsername($username));
+$answerSheetCount = count((new AnswerSheetService())->getAnswerSheetsByStudentUsername($username));
+$assignmentCount = count((new AssignmentService())->getAssignmentsByStudentUsername($username));
+
 
 ?>
 
@@ -28,15 +41,26 @@ jwt_start(['student_role']);
         <?php require $ROOT . '/student/header.php'; ?>
             <div class="body__content">
                 <div class="small__cards">
-                    <div class="card small__card"></div>
-                    <div class="card small__card"></div>
-                    <div class="card small__card"></div>
-                    <div class="card small__card"></div>
-                </div>
-                <div class="big__cards">
-                        <div class="card left__card"></div>
-                        <div class="card right__card"></div>
-                        <div class="card left__card"></div>
+                <div class="card small__card">
+                        <div class="title">Answer Sheets</div>
+                        <div class="count"><?php echo $answerSheetCount; ?></div>
+                    </div>
+                    <div class="card small__card">
+                        <div class="title">Assignments</div>
+                        <div class="count"><?php echo $assignmentCount; ?></div>
+                    </div>
+                    <div class="card small__card">
+                        <div class="title">Lessons</div>
+                        <div class="count"><?php echo $lessonCount; ?></div>
+                    </div>
+                    <div class="card small__card">
+                        <div class="title">Notes</div>
+                        <div class="count"><?php echo $Count; ?></div>
+                    </div>
+                    <div class="card small__card">
+                        <div class="title">Subjects</div>
+                        <div class="count"><?php echo $subjectCount; ?></div>
+                    </div>
                 </div>
             </div>
         </div>

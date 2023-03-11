@@ -1,5 +1,11 @@
 @import 'variables';
 
+.body__content {
+    >*+* {
+        margin-top: 1rem;
+    }
+}
+
 .filters {
     display: flex;
     flex-direction: column;
@@ -40,6 +46,7 @@
 
     table {
         border: none;
+
         thead {
             tr {
                 >*+* {
@@ -66,6 +73,35 @@
                     padding-right: 1rem;
                     padding-top: .5rem;
                     padding-bottom: .5rem;
+
+                    .actions {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        >* + * {
+                            margin-left: .5rem;
+                        }
+                        
+                        .deleteBtn,
+                        .editBtn {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            
+                            svg {
+                                height: 1rem;
+                                width: 1rem;
+                                fill: #000;
+                            }
+
+                            &:hover {
+                                svg {
+                                    fill: var(--color-1);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

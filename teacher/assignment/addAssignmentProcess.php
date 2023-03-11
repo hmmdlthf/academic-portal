@@ -2,8 +2,9 @@
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/app/assignment/AssignmentService.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
 
-session_start();
+$jwtService = jwt_start(['teacher_role']);
 
 $assignmentName = $_POST['name'];
 if (empty($assignmentName)) {
@@ -26,3 +27,4 @@ $assignmentService->setFile($assignmentFile);
 $assignmentService->upload();
 $assignmentService->save($assignmentName, $lessonId);
 echo ("successfull added");
+header('Location: /teacher/assignment/assignment.php?link=assignment');

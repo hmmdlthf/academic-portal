@@ -2,38 +2,48 @@
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
 require_once $ROOT . '/app/jwt/JwtService.php';
+require_once $ROOT . '/app/student/StudentService.php';
+require_once $ROOT . '/app/student/Student.php';
 
-$jwt = $_COOKIE['jwt'];
-
-if (!$jwt) {
-    header('HTTP/1.0 400 Bad Request');
-    exit;
-}
-
-$jwtService = new JwtService(['officer_role']);
-$jwtService->decodeJwtToArray($jwt);
-
-if (!$jwtService->verifyJwt()) // check if the 'exp'(expire) is < than current time - opposite true
-{
-    header('HTTP/1.1 401 Unauthorized');
-    exit;
-}
+$jwtService = jwt_start(['officer_role']);
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Student</title>
+    <title>Online Acedemy | Student</title>
+
+    <?php require $ROOT . '/officer/head/head.php' ?>
+
 </head>
+
 <body>
-    <form action="addStudentProcess.php" method="post">
-        <input type="email" name="email" placeholder="Email" id="email">
-        <button type="submit">Add Student</button>
-    </form>
+    <div class="main">
+        <?php require $ROOT . '/officer/menu.php'; ?>
+
+        <div class="body">
+            <?php require $ROOT . '/officer/header.php'; ?>
+            <div class="body__content">
+                <form action="addStudentProcess.php" method="post">
+                    <div class="form__group">
+                        <div class="form__control">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" placeholder="Student Email" id="email">
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form__control">
+                            <button class="btn btn__primary" type="submit">Register Student</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <?php require $ROOT . '/officer/js/scripts.php' ?>
 </body>
-</html>

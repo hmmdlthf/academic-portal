@@ -73,8 +73,11 @@ class NoteService
             echo ("note not found");
             return false;
         }
+        
         $note->setName($name);
-        $note->setFile($file);
+        if (!empty($file)) {
+            $note->setFile($file);
+        }
         $this->noteRepository->update($note);
     }
 

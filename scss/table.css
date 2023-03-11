@@ -6,6 +6,10 @@
   --header-height: 150px;
 }
 
+.body__content > * + * {
+  margin-top: 1rem;
+}
+
 .filters {
   display: flex;
   flex-direction: column;
@@ -61,6 +65,30 @@
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
+}
+.items table tbody tr td .actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.items table tbody tr td .actions > * + * {
+  margin-left: 0.5rem;
+}
+.items table tbody tr td .actions .deleteBtn,
+.items table tbody tr td .actions .editBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.items table tbody tr td .actions .deleteBtn svg,
+.items table tbody tr td .actions .editBtn svg {
+  height: 1rem;
+  width: 1rem;
+  fill: #000;
+}
+.items table tbody tr td .actions .deleteBtn:hover svg,
+.items table tbody tr td .actions .editBtn:hover svg {
+  fill: var(--color-1);
 }
 
 @media (min-width: 768px) {

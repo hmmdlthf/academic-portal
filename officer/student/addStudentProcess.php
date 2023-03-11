@@ -1,27 +1,12 @@
 <?php
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
+require_once $ROOT . '/app/student/NoteService.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
 require_once $ROOT . '/app/student/StudentService.php';
-require_once $ROOT . '/vendor/autoload.php';
-require_once $ROOT . '/app/jwt/JwtService.php';
 
-$jwt = $_COOKIE['jwt'];
+$jwtService = jwt_start(['teacher_role']);
 
-if (!$jwt) {
-    header('HTTP/1.0 400 Bad Request');
-    exit;
-}
-
-$jwtService = new JwtService(['officer_role']);
-$jwtService->decodeJwtToArray($jwt);
-
-if (!$jwtService->verifyJwt()) // check if the 'exp'(expire) is < than current time - opposite true
-{
-    header('HTTP/1.1 401 Unauthorized');
-    exit;
-}
-
-session_start();
 
 $email = $_POST['email'];
 if (empty($email)) {
@@ -31,3 +16,4 @@ if (empty($email)) {
 $studentService = new StudentService();
 $studentService->save($email, $jwtService->getUsername());
 echo ("successfull added");
+header('Location: /officer/student/student.php?link=student');
