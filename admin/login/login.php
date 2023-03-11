@@ -10,14 +10,11 @@ session_start();
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online Academy | Admin Login</title>
+    <?php require $ROOT . '/head/head.php' ?>
 
-    <link rel="stylesheet" href="/scss/style.css">
-    <link rel="stylesheet" href="/scss/form.css">
     <link rel="stylesheet" href="/scss/login.css">
+
 </head>
 
 <body>

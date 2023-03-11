@@ -12,14 +12,12 @@ session_start();
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Online Academy | Student Login</title>
 
-    <link rel="stylesheet" href="/scss/style.css">
-    <link rel="stylesheet" href="/scss/form.css">
+    <?php require $ROOT . '/head/head.php' ?>
+
     <link rel="stylesheet" href="/scss/login.css">
+
 </head>
 
 <body>
@@ -45,7 +43,7 @@ session_start();
                 <div class="form__control">
                     <label for="username">Username</label>
                     <input type="text" name="username" placeholder="username" id="username">
-                    <div class="message invalid">Invalid Username</div>
+                    <!-- <div class="message invalid">Invalid Username</div> -->
                 </div>
 
             </div>
