@@ -146,6 +146,11 @@ class StudentService
     {
         $student = $this->getStudentByEmail($email);
 
+        if ($student->getIsVerified() == 1) {
+            die('link already used');
+            return true;
+        } 
+
         if ($student->getToken() == $token) {
             $student->setIsVerified(true);
             $this->studentRepository->verify($student);

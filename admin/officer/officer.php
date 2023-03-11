@@ -53,6 +53,7 @@ $officers = (new OfficerService())->getOfficers();
                                     <th>Last Name</th>
                                     <th>Email</th>
                                     <th>Username</th>
+                                    <th>Status</th>
                                     <th>City</th>
                                 </tr>
                             </thead>
@@ -64,6 +65,7 @@ $officers = (new OfficerService())->getOfficers();
                                         <td><?php echo $officer->getLname(); ?></td>
                                         <td><?php echo $officer->getEmail(); ?></td>
                                         <td><?php echo $officer->getUsername(); ?></td>
+                                        <td><?php echo $officer->getStatus(); ?></td>
                                         <?php if (is_string($officer->getCity())) { ?>
                                             <td><?php echo $officer->getCity()->getName(); ?></td>
                                         <?php } else { ?>

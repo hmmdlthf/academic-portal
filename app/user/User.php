@@ -86,6 +86,17 @@ class User
         return $this->isVerified;
     }
 
+    public function getStatus()
+    {
+        if ($this->isVerified == 1) {
+            return 'verified';
+        } else if ($this->isVerified == 0) {
+            return 'not verified';
+        } else {
+            return 'no';
+        }
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;

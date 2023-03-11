@@ -139,6 +139,11 @@ class OfficerService
     {
         $officer = $this->getOfficerByEmail($email);
 
+        if ($officer->getIsVerified() == 1) {
+            die('link already used');
+            return true;
+        }
+
         if ($officer->getToken() == $token) {
             $officer->setIsVerified(true);
             $this->officerRepository->verify($officer);

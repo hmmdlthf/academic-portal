@@ -127,6 +127,11 @@ class AdminService
     {
         $admin = $this->getAdminByEmail($email);
 
+        if ($admin->getIsVerified() == 1) {
+            die('link already used');
+            return true;
+        } 
+
         if ($admin->getToken() == $token) {
             $admin->setIsVerified(true);
             $this->adminRepository->verify($admin);

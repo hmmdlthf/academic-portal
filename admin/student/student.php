@@ -69,6 +69,7 @@ $students = (new StudentService())->getStudents();
                                     <th>Last Name</th>
                                     <th>Email</th>
                                     <th>Username</th>
+                                    <th>Status</th>
                                     <th>City</th>
                                     <th>Grade</th>
                                     <th>Officer</th>
@@ -82,6 +83,7 @@ $students = (new StudentService())->getStudents();
                                         <td><?php echo $student->getLname(); ?></td>
                                         <td><?php echo $student->getEmail(); ?></td>
                                         <td><?php echo $student->getUsername(); ?></td>
+                                        <td><?php echo $student->getStatus(); ?></td>
                                         <td><?php echo $student->getGrade()->getName(); ?></td>
                                         <td><?php echo $student->getOfficer()->getEmail(); ?></td>
                                         <?php if (is_string($student->getCity())) { ?>

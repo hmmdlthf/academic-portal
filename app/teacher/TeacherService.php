@@ -138,6 +138,11 @@ class TeacherService
     {
         $teacher = $this->getTeacherByEmail($email);
 
+        if ($teacher->getIsVerified() == 1) {
+            die('link already used');
+            return true;
+        } 
+
         if ($teacher->getToken() == $token) {
             $teacher->setIsVerified(true);
             $this->teacherRepository->verify($teacher);

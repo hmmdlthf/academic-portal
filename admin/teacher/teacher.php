@@ -53,6 +53,7 @@ $teachers = (new TeacherService())->getTeachers();
                                     <th>Last Name</th>
                                     <th>Email</th>
                                     <th>Username</th>
+                                    <th>Status</th>
                                     <th>City</th>
                                 </tr>
                             </thead>
@@ -64,6 +65,7 @@ $teachers = (new TeacherService())->getTeachers();
                                         <td><?php echo $teacher->getLname(); ?></td>
                                         <td><?php echo $teacher->getEmail(); ?></td>
                                         <td><?php echo $teacher->getUsername(); ?></td>
+                                        <td><?php echo $teacher->getStatus(); ?></td>
                                         <?php if (is_string($teacher->getCity())) { ?>
                                             <td><?php echo $teacher->getCity()->getName(); ?></td>
                                         <?php } else { ?>
