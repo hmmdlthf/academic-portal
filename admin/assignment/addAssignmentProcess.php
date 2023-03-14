@@ -2,15 +2,17 @@
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/app/assignment/AssignmentService.php';
-
-session_start();
+require_once $ROOT . '/vendor/autoload.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
+require_once $ROOT . '/app/jwt/JwtService.php';
+$jwtService = jwt_start(['admin_role']);
 
 $assignmentName = $_POST['name'];
 if (empty($assignmentName)) {
     die('Please enter assignment name');
 }
 
-$lessonId = $_POST['lessonId'];
+$lessonId = $_POST['lesson'];
 if (empty($lessonId)) {
     die('Please select parent lesson');
 }
@@ -26,3 +28,4 @@ $assignmentService->setFile($assignmentFile);
 $assignmentService->upload();
 $assignmentService->save($assignmentName, $lessonId);
 echo ("successfull added");
+header('Location: /admin/assignment/assignment.php?link=assignment');

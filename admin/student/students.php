@@ -7,7 +7,11 @@ require_once $ROOT . '/app/city/City.php';
 require_once $ROOT . '/app/officer/Officer.php';
 require_once $ROOT . '/app/officer/OfficerService.php';
 
-session_start();
+$ROOT = $_SERVER["DOCUMENT_ROOT"];
+require_once $ROOT . '/vendor/autoload.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
+require_once $ROOT . '/app/jwt/JwtService.php';
+$jwtService = jwt_start(['admin_role']);
 
 $studentService = new StudentService();
 $students = $studentService->getStudents();

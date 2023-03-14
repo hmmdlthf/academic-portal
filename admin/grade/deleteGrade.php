@@ -12,5 +12,6 @@ $jwtService = jwt_start(['admin_role']);
 $gradeService = new GradeService();
 $gradeService->delete($_GET['id']);
 echo ("delete Successfull");
+header('Location: /admin/grade/grade.php?link=grade');
 
 ?>

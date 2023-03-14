@@ -7,7 +7,11 @@ require_once $ROOT . '/app/lesson/Lesson.php';
 require_once $ROOT . '/app/file/FileDirectory.php';
 require_once $ROOT . '/app/file/File.php';
 
-session_start();
+$ROOT = $_SERVER["DOCUMENT_ROOT"];
+require_once $ROOT . '/vendor/autoload.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
+require_once $ROOT . '/app/jwt/JwtService.php';
+$jwtService = jwt_start(['admin_role']);
 
 $noteService = new NoteService();
 $notes = $noteService->getNotes();

@@ -5,7 +5,11 @@ require_once $ROOT . '/app/lesson/Lesson.php';
 require_once $ROOT . '/app/lesson/LessonService.php';
 require_once $ROOT . '/app/subject/Subject.php';
 
-session_start();
+$ROOT = $_SERVER["DOCUMENT_ROOT"];
+require_once $ROOT . '/vendor/autoload.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
+require_once $ROOT . '/app/jwt/JwtService.php';
+$jwtService = jwt_start(['admin_role']);
 
 $lessonService = new LessonService();
 $lessons = $lessonService->getLessons();

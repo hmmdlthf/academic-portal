@@ -4,9 +4,9 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . '/app/jwt/JwtProtected.php';
 require_once $ROOT . '/app/jwt/JwtService.php';
+$jwtService = jwt_start(['admin_role']);
 require_once $ROOT . '/app/subject/SubjectService.php';
 
-$jwtService = jwt_start(['admin_role']);
 
 $subjects = (new SubjectService())->getSubjects();
 

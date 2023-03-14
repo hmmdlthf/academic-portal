@@ -5,7 +5,11 @@ require_once $ROOT . '/app/city/City.php';
 require_once $ROOT . '/app/city/CityService.php';
 require_once $ROOT . '/app/state/State.php';
 
-session_start();
+$ROOT = $_SERVER["DOCUMENT_ROOT"];
+require_once $ROOT . '/vendor/autoload.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
+require_once $ROOT . '/app/jwt/JwtService.php';
+$jwtService = jwt_start(['admin_role']);
 
 $cityService = new CityService();
 $cities = $cityService->getCities();

@@ -4,7 +4,11 @@ $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/app/grade/Grade.php';
 require_once $ROOT . '/app/grade/GradeService.php';
 
-session_start();
+$ROOT = $_SERVER["DOCUMENT_ROOT"];
+require_once $ROOT . '/vendor/autoload.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
+require_once $ROOT . '/app/jwt/JwtService.php';
+$jwtService = jwt_start(['admin_role']);
 $gradeService = new GradeService();
 $grade = $gradeService->getGradeById($_GET['id']);
 

@@ -2,22 +2,48 @@
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 
-session_start();
+$ROOT = $_SERVER["DOCUMENT_ROOT"];
+require_once $ROOT . '/vendor/autoload.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
+require_once $ROOT . '/app/jwt/JwtService.php';
+$jwtService = jwt_start(['admin_role']);
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add Officer</title>
+    <title>Online Acedemy | </title>
+
+    <?php require $ROOT . '/admin/head/head.php' ?>
+
 </head>
+
 <body>
-    <form action="addOfficerProcess.php" method="post">
-        <input type="email" name="email" placeholder="Email" id="email">
-        <button type="submit">Add Officer</button>
-    </form>
+    <div class="main">
+        <?php require $ROOT . '/admin/menu.php'; ?>
+
+        <div class="body">
+            <?php require $ROOT . '/admin/header.php'; ?>
+            <div class="body__content">
+                <form action="addOfficerProcess.php?link=add%20officer" method="post" enctype="multipart/form-data">
+                    <div class="form__group">
+                        <div class="form__control">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" placeholder="Email" id="email">
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form__control">
+                            <button class="btn btn__primary" type="submit">register officer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <?php require $ROOT . '/admin/js/scripts.php' ?>
 </body>
-</html>

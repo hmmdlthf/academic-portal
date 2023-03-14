@@ -3,25 +3,50 @@
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/app/answerSheet/AnswerSheet.php';
 require_once $ROOT . '/app/answerSheet/AnswerSheetService.php';
+require_once $ROOT . '/vendor/autoload.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
+require_once $ROOT . '/app/jwt/JwtService.php';
+$jwtService = jwt_start(['admin_role']);
 
-session_start();
 $answerSheetService = new AnswerSheetService();
 $answerSheet = $answerSheetService->getAnswerSheetById($_GET['id']);
 
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
-    <title>Update AnswerSheet</title>
+    <title>Online Acedemy | AnswerSheet</title>
+
+    <?php require $ROOT . '/admin/head/head.php' ?>
+
 </head>
+
 <body>
-    <form action="updateAnswerSheetProcess.php?id=<?php echo $answerSheet->getId() ?>" method="post">
-        <input type="file" name="file" placeholder="File" id="file" value="<?php echo $answerSheet->getFile() ?>">
-        <button type="submit">update AnswerSheet</button>
-    </form>
+    <div class="main">
+        <?php require $ROOT . '/admin/menu.php'; ?>
+
+        <div class="body">
+            <?php require $ROOT . '/admin/header.php'; ?>
+            <div class="body__content">
+                <form action="addAnswerSheetProcess.php?link=answerSheet&id=<?php echo $answerSheet->getFile(); ?>" method="post" enctype="multipart/form-data">
+                    <div class="form__group">
+                        <div class="form__control">
+                            <label for="name"></label>
+                            <input type="file" name="file" placeholder="AnswerSheet File" id="file" value="<?php echo $answerSheet->getFile(); ?>">
+                        </div>
+                    </div>
+                    <div class="form__group">
+                        <div class="form__control">
+                            <button class="btn btn__primary" type="submit">Update AnswerSheet</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <?php require $ROOT . '/admin/js/scripts.php' ?>
 </body>
-</html>
