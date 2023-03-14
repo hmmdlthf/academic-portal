@@ -69,9 +69,9 @@ $officers = (new OfficerService())->getOfficers();
                                         <td><?php echo $officer->getUsername(); ?></td>
                                         <td><?php echo $officer->getStatus(); ?></td>
                                         <?php if (is_string($officer->getCity())) { ?>
-                                            <td><?php echo $officer->getCity()->getName(); ?></td>
-                                        <?php } else { ?>
                                             <th>no city</th>
+                                        <?php } else { ?>
+                                            <td><?php echo $officer->getCity()->getName(); ?></td>
                                         <?php } ?>
                                         <td>
                                             <div class="actions">

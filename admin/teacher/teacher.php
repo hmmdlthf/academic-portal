@@ -69,9 +69,9 @@ $teachers = (new TeacherService())->getTeachers();
                                         <td><?php echo $teacher->getUsername(); ?></td>
                                         <td><?php echo $teacher->getStatus(); ?></td>
                                         <?php if (is_string($teacher->getCity())) { ?>
-                                            <td><?php echo $teacher->getCity()->getName(); ?></td>
-                                        <?php } else { ?>
                                             <th>no city</th>
+                                        <?php } else { ?>
+                                            <td><?php echo $teacher->getCity()->getName(); ?></td>
                                         <?php } ?>
                                         <td>
                                             <div class="actions">

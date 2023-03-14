@@ -29,7 +29,7 @@ $students = (new StudentService())->getStudents();
         <div class="body">
             <?php require $ROOT . '/admin/header.php'; ?>
             <div class="body__content">
-            <?php if (count($students) > 0) { ?>
+                <?php if (count($students) > 0) { ?>
                     <div class="filters">
                         <div class="form__group">
                             <div class="form__control">
@@ -89,9 +89,9 @@ $students = (new StudentService())->getStudents();
                                         <td><?php echo $student->getGrade()->getName(); ?></td>
                                         <td><?php echo $student->getOfficer()->getEmail(); ?></td>
                                         <?php if (is_string($student->getCity())) { ?>
-                                            <td><?php echo $student->getCity()->getName(); ?></td>
-                                        <?php } else { ?>
                                             <th>no city</th>
+                                        <?php } else { ?>
+                                            <td><?php echo $student->getCity()->getName(); ?></td>
                                         <?php } ?>
                                         <td>
                                             <div class="actions">
