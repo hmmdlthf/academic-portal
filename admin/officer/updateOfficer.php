@@ -3,26 +3,38 @@
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/app/officer/Officer.php';
 require_once $ROOT . '/app/officer/OfficerService.php';
+require_once $ROOT . '/app/city/CityService.php';
 
 session_start();
 $officerService = new OfficerService();
 $officer = $officerService->getOfficerById($_GET['id']);
 
+$cities = (new CityService())->getCities();
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=\, initial-scale=1.0">
     <title>Update Officer</title>
 </head>
+
 <body>
     <form action="updateOfficerProcess.php?id=<?php echo $officer->getId() ?>" method="post">
         <select name="cityId" id="" placeholder="Select City">
-        <?php foreach($cities as $city) { ?>
-                <option value="<?php echo $city->getId(); ?>"><?php echo $city->getName(); ?></option>
+            <?php foreach ($cities as $city) { ?>
+                <?php if (is_string($officer->getCity())) { ?>
+                    <option value="<?php echo $city->getId(); ?>"><?php echo $city->getName(); ?></option>
+                <?php } else if ($city->getId() == $officer->getCity()->getId()) { ?>
+                    <option value="<?php echo $city->getId(); ?>" selected><?php echo $city->getName(); ?></option>
+                <?php } else { ?>
+                    <option value="<?php echo $city->getId(); ?>"><?php echo $city->getName(); ?></option>
+                <?php } ?>
+
             <?php } ?>
         </select>
         <input type="text" name="fname" placeholder="First Name" id="fname">
@@ -41,4 +53,5 @@ $officer = $officerService->getOfficerById($_GET['id']);
         <button type="submit">update Officer</button>
     </form>
 </body>
+
 </html>

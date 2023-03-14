@@ -109,7 +109,7 @@ class GradeRepository extends Db
 
     public function findAllGradesBellow(Grade $currentGrade)
     {
-        $query = "SELECT * FROM `grade` WHERE `order` BETWEEN ? AND ?";
+        $query = "SELECT * FROM `grade` WHERE `order` BETWEEN ? AND ? ORDER BY `order` DESC";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$currentGrade->getOrder(), 0]);
         $resultSet = $statement->fetch();

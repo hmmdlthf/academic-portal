@@ -12,17 +12,26 @@ $teacher = $teacherService->getTeacherById($_GET['id']);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=\, initial-scale=1.0">
     <title>Update Teacher</title>
 </head>
+
 <body>
     <form action="updateTeacherProcess.php?id=<?php echo $teacher->getId() ?>" method="post">
         <select name="cityId" id="" placeholder="Select City">
-        <?php foreach($cities as $city) { ?>
-                <option value="<?php echo $city->getId(); ?>"><?php echo $city->getName(); ?></option>
+            <?php foreach ($cities as $city) { ?>
+                <?php if (is_string($teacher->getCity())) { ?>
+                    <option value="<?php echo $city->getId(); ?>"><?php echo $city->getName(); ?></option>
+                <?php } else if ($city->getId() == $teacher->getCity()->getId()) { ?>
+                    <option value="<?php echo $city->getId(); ?>" selected><?php echo $city->getName(); ?></option>
+                <?php } else { ?>
+                    <option value="<?php echo $city->getId(); ?>"><?php echo $city->getName(); ?></option>
+                <?php } ?>
+
             <?php } ?>
         </select>
         <input type="text" name="fname" placeholder="First Name" id="fname">
@@ -41,4 +50,5 @@ $teacher = $teacherService->getTeacherById($_GET['id']);
         <button type="submit">update Teacher</button>
     </form>
 </body>
+
 </html>
