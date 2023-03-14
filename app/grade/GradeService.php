@@ -38,6 +38,7 @@ class GradeService
         }   
         $grade = new Grade();
         $grade->setName($name);
+        $grade->setOrder($this->getLastGradeOrder() + 1);
         $this->gradeRepository->save($grade);
     }
 
@@ -65,5 +66,15 @@ class GradeService
     public function count()
     {
         return $this->gradeRepository->count();
+    }
+
+    public function getLastGradeOrder()
+    {
+        return $this->gradeRepository->findLastGradeOrder()['MAX(`order`)'];
+    }
+
+    public function getGradesBelow(int $currentGradeId)
+    {
+        return $this->gradeRepository->findAllGradesBellow($this->getGradeById($currentGradeId));
     }
 }

@@ -8,6 +8,7 @@ class Grade extends Db
 {
     private $id;
     private $name;
+    private $order;
 
     public function getId()
     {
@@ -19,6 +20,11 @@ class Grade extends Db
         return  $this->name;
     }
 
+    public function getOrder()
+    {
+        return $this->order;
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;
@@ -27,6 +33,11 @@ class Grade extends Db
     public function setName(string $name)
     {
         $this->name = $name;
+    }
+
+    public function setOrder(int $order)
+    {
+        $this->order = $order;
     }
 
 }

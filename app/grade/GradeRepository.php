@@ -14,6 +14,7 @@ class GradeRepository extends Db
         $grade = new Grade();
         $grade->setId($array['id']);
         $grade->setName($array['name']);
+        $grade->setOrder($array['order']);
         return $grade;
     }
 
@@ -67,17 +68,17 @@ class GradeRepository extends Db
 
     public function save(Grade $grade)
     {
-        $query = "INSERT INTO `grade` (`name`) VALUES (?)";
+        $query = "INSERT INTO `grade` (`name`, `order`) VALUES (?, ?)";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$grade->getName()]);
+        $statement->execute([$grade->getName(), $grade->getOrder()]);
         return true;
     }
 
     public function update(Grade $grade)
     {
-        $query = "UPDATE `grade` SET `name`=? WHERE `id`=?";
+        $query = "UPDATE `grade` SET `name`=?, `order`=? WHERE `id`=?";
         $statement = $this->connect()->prepare($query);
-        $statement->execute([$grade->getName(), $grade->getId()]);
+        $statement->execute([$grade->getName(), $grade->getOrder(), $grade->getId()]);
         return true;
     }
 
@@ -95,5 +96,34 @@ class GradeRepository extends Db
         $statement->execute([]);
         $resultSet = $statement->fetch();
         return $resultSet['COUNT(*)'];
+    }
+
+    public function findLastGradeOrder()
+    {
+        $query = "SELECT MAX(`order`) FROM `grade`";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([]);
+        $resultSet = $statement->fetch();
+        return $resultSet;
+    }
+
+    public function findAllGradesBellow(Grade $currentGrade)
+    {
+        $query = "SELECT * FROM `grade` WHERE `order` BETWEEN ? AND ?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$currentGrade->getOrder(), 0]);
+        $resultSet = $statement->fetch();
+        $grades = [];
+
+        if ($resultSet > 0) {
+            foreach($resultSet as $gradeArray) {
+                $grade = $this->addDetailsToModel($gradeArray);
+                $grades[] = $grade;
+            }
+            return $grades;
+        } else {
+            false;
+        }
+        return $resultSet;
     }
 }

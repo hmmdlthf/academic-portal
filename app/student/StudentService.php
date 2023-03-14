@@ -184,4 +184,11 @@ class StudentService
     {
         return $this->studentRepository->count();
     }
+
+    public function getGradesByStudentUsername(string $username)
+    {
+        $currentGradeId = (new StudentService())->getStudentByUsername($username)->getGrade()->getId();
+        $grades = (new GradeService())->getGradesBelow($currentGradeId);
+        return $grades;
+    }
 }

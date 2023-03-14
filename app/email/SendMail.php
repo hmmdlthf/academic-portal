@@ -31,32 +31,32 @@ trait SendMail
 
     public function __construct()
     {
-        //        $this->hostname = $_ENV['MAIL_HOST'];
-        //        $this->port = $_ENV['MAIL_PORT'];
-        //        $this->SMTPDebug = $_ENV['MAIL_SMTPDebug'];
-        //        $this->username = $_ENV['MAIL_USERNAME'];
-        //        $this->password = $_ENV['MAIL_PASSWORD'];
-        //        $this->sendersEmail = $_ENV['MAIL_FROM_ADDRESS'];
-        //        $this->sendersName = $_ENV['MAIL_FROM_NAME'];
-        //        $this->isHTML = false;
+        // $this->hostname = $_ENV['MAIL_HOST'];
+        // $this->port = $_ENV['MAIL_PORT'];
+        // $this->SMTPDebug = $_ENV['MAIL_SMTPDebug'];
+        // $this->username = $_ENV['MAIL_USERNAME'];
+        // $this->password = $_ENV['MAIL_PASSWORD'];
+        // $this->sendersEmail = $_ENV['MAIL_FROM_ADDRESS'];
+        // $this->sendersName = $_ENV['MAIL_FROM_NAME'];
+        // $this->isHTML = false;
 
-        $this->hostname = 'smtp.gmail.com';
+        // $this->hostname = 'smtp.gmail.com';
+        // $this->port = 587;
+        // $this->SMTPDebug = 0;
+        // $this->username = 'aftersite.emp@gmail.com';
+        // $this->password = 'jhoippktdhluzavu';
+        // $this->sendersEmail = 'aftersite.emp@gmail.com';
+        // $this->sendersName = 'Althaf';
+        // $this->isHTML = false;
+
+        $this->hostname = 'smtp.titan.email';
         $this->port = 587;
         $this->SMTPDebug = 0;
-        $this->username = 'aftersite.emp@gmail.com';
-        $this->password = 'jhoippktdhluzavu';
-        $this->sendersEmail = 'aftersite.emp@gmail.com';
-        $this->sendersName = 'Althaf';
+        $this->username = 'no-reply@academicportal.aftersite.lk';
+        $this->password = 'AcademicMailNoreplyUserAftersite123@';
+        $this->sendersEmail = 'no-reply@academicportal.aftersite.lk';
+        $this->sendersName = 'Online Academy';
         $this->isHTML = false;
-
-        //    $this->hostname = 'smtp.titan.email';
-        //    $this->port = 587;
-        //    $this->SMTPDebug = 0;
-        //    $this->username = 'no-reply@academicportal.aftersite.lk';
-        //    $this->password = 'AcademicMailNoreplyUserAftersite123@';
-        //    $this->sendersEmail = 'no-reply@academicportal.aftersite.lk';
-        //    $this->sendersName = 'Online Academy';
-        //    $this->isHTML = false;
     }
 
     public function getSendersEmail(): string

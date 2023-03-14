@@ -1,13 +1,17 @@
 <?php
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
-require_once $ROOT . '/app/lesson/Lesson.php';
-require_once $ROOT . '/app/lesson/LessonService.php';
+require_once $ROOT . '/vendor/autoload.php';
+require_once $ROOT . '/app/grade/Grade.php';
+require_once $ROOT . '/app/grade/GradeService.php';
+require_once $ROOT . '/app/jwt/JwtProtected.php';
+require_once $ROOT . '/app/jwt/JwtService.php';
 
-session_start();
+$jwtService = jwt_start(['admin_role']);
 
-$lessonService = new LessonService();
-$lessonService->delete($_GET['id']);
+$gradeService = new GradeService();
+$gradeService->delete($_GET['id']);
 echo ("delete Successfull");
+header('Location: /admin/lesson/lesson.php?link=lesson');
 
 ?>
