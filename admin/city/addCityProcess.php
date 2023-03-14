@@ -14,7 +14,7 @@ if (empty($cityName)) {
     die('Please enter city name');
 }
 
-$stateId = $_POST['stateId'];
+$stateId = $_POST['state'];
 if (empty($cityName)) {
     die('Please select parent state');
 }

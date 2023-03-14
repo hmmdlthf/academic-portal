@@ -13,5 +13,6 @@ $jwtService = jwt_start(['admin_role']);
 $countryService = new CountryService();
 $countryService->delete($_GET['id']);
 echo ("delete Successfull");
+header('Location: /admin/country/country.php?link=country');
 
 ?>

@@ -9,12 +9,12 @@ require_once $ROOT . '/app/jwt/JwtProtected.php';
 require_once $ROOT . '/app/jwt/JwtService.php';
 $jwtService = jwt_start(['admin_role']);
 
-$assignmentId = $_POST['assignmentId'];
+$assignmentId = $_POST['assignment'];
 if (empty($assignmentId)) {
     die('Please select parent assignment');
 }
 
-$studentId = $_POST['studentId'];
+$studentId = $_POST['student'];
 if (empty($studentId)) {
     die('Please select student');
 }

@@ -51,7 +51,7 @@ $countries = $countryService->getCountries();
                     </div>
                     <div class="form__group">
                         <div class="form__control">
-                            <button class="btn btn__primary" type="submit">Update State</button>
+                            <button class="btn btn__primary" type="submit">Add State</button>
                         </div>
                     </div>
                 </form>

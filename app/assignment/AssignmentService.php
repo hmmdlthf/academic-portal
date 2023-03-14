@@ -80,6 +80,7 @@ class AssignmentService
             echo ("assignment not found");
             return false;
         }
+        unlink($assignment->getTargetFile());
         $this->assignmentRepository->delete($assignment);
     }
 

@@ -2,8 +2,6 @@
 
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/app/state/StateService.php';
-
-$ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . '/app/jwt/JwtProtected.php';
 require_once $ROOT . '/app/jwt/JwtService.php';
@@ -14,7 +12,7 @@ if (empty($stateName)) {
     die('Please enter state name');
 }
 
-$countryId = $_POST['countryId'];
+$countryId = $_POST['country'];
 if (empty($stateName)) {
     die('Please select parent country');
 }

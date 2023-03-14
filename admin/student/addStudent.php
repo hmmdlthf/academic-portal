@@ -51,7 +51,7 @@ $officers = $officerService->getOfficers();
 
                     <div class="form__group">
                         <div class="form__control">
-                            <button class="btn btn__primary" type="submit"></button>
+                            <button class="btn btn__primary" type="submit">Add Student</button>
                         </div>
                     </div>
                 </form>

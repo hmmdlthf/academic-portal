@@ -96,6 +96,7 @@ class AnswerSheetService
             echo ("answerSheet not found");
             return false;
         }
+        unlink($answerSheet->getTargetFile());
         $this->answerSheetRepository->delete($answerSheet);
     }
 

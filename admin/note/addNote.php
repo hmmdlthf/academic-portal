@@ -59,7 +59,7 @@ $lessons = $lessonService->getLessons();
                     </div>
                     <div class="form__group">
                         <div class="form__control">
-                            <button class="btn btn__primary" type="submit"></button>
+                            <button class="btn btn__primary" type="submit">Add Note</button>
                         </div>
                     </div>
                 </form>

@@ -26,6 +26,6 @@ if (empty($assignmentFile)) {
 $assignmentService = new AssignmentService();
 $assignmentService->setFile($assignmentFile);
 $assignmentService->upload();
-$assignmentService->save($assignmentName, $lessonId);
+$assignmentService->save($lessonId);
 echo ("successfull added");
 header('Location: /admin/assignment/assignment.php?link=assignment');

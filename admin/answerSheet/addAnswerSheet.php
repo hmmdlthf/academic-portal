@@ -40,7 +40,7 @@ $students = $studentService->getStudents();
                 <form action="addAnswerSheetProcess.php?link=answerSheet" method="post" enctype="multipart/form-data">
                     <div class="form__group">
                         <div class="form__control">
-                            <label for="assignment"></label>
+                            <label for="assignment">Assignment</label>
                             <select name="assignment" id="assignment" placeholder="Select Assignment">
                                 <?php foreach ($assignments as $assignment) { ?>
                                     <option value="<?php echo $assignment->getId(); ?>"><?php echo $assignment->getId(); ?></option>
@@ -50,7 +50,7 @@ $students = $studentService->getStudents();
                     </div>
                     <div class="form__group">
                         <div class="form__control">
-                            <label for="student"></label>
+                            <label for="student">Student</label>
                             <select name="student" id="student" placeholder="Select Student">
                                 <?php foreach ($students as $student) { ?>
                                     <option value="<?php echo $student->getId(); ?>"><?php echo $student->getEmail(); ?></option>
@@ -60,7 +60,7 @@ $students = $studentService->getStudents();
                     </div>
                     <div class="form__group">
                         <div class="form__control">
-                            <label for="name"></label>
+                            <label for="name">File</label>
                             <input type="file" name="file" placeholder="AnswerSheet File" id="file">
                         </div>
                     </div>

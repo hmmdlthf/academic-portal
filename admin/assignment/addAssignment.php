@@ -36,7 +36,8 @@ $lessons = $lessonService->getLessons();
                 <form action="addAssignmentProcess.php?link=assignment" method="post" enctype="multipart/form-data">
                     <div class="form__group">
                         <div class="form__control">
-                            <label for="lesson"></label><select name="lesson" id="lesson" placeholder="Select Lesson">
+                            <label for="lesson">Lesson</label>
+                            <select name="lesson" id="lesson" placeholder="Select Lesson">
                                 <?php foreach ($lessons as $lesson) { ?>
                                     <option value="<?php echo $lesson->getId(); ?>"><?php echo $lesson->getName(); ?></option>
                                 <?php } ?>
@@ -45,13 +46,7 @@ $lessons = $lessonService->getLessons();
                     </div>
                     <div class="form__group">
                         <div class="form__control">
-                            <label for="name"></label>
-                            <input type="text" name="name" placeholder="Assignment Name" id="name">
-                        </div>
-                    </div>
-                    <div class="form__group">
-                        <div class="form__control">
-                            <label for="file"></label>
+                            <label for="file">File</label>
                             <input type="file" name="file" placeholder="Assignment File" id="file">
                         </div>
                     </div>

@@ -88,6 +88,7 @@ class NoteService
             echo ("note not found");
             return false;
         }
+        unlink($note->getTargetFile());
         $this->noteRepository->delete($note);
     }
 

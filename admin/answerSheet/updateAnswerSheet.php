@@ -34,7 +34,7 @@ $answerSheet = $answerSheetService->getAnswerSheetById($_GET['id']);
                 <form action="addAnswerSheetProcess.php?link=answerSheet&id=<?php echo $answerSheet->getFile(); ?>" method="post" enctype="multipart/form-data">
                     <div class="form__group">
                         <div class="form__control">
-                            <label for="name"></label>
+                            <label for="file">File</label>
                             <input type="file" name="file" placeholder="AnswerSheet File" id="file" value="<?php echo $answerSheet->getFile(); ?>">
                         </div>
                     </div>

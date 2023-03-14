@@ -27,6 +27,11 @@ class Assignment extends Db
         return $this->file;
     }
 
+    public function getTargetFile(): string
+    {
+        return $_SERVER['DOCUMENT_ROOT'] . $this->file;
+    }
+
     public function getLesson()
     {
         return $this->lesson;

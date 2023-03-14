@@ -25,6 +25,11 @@ class AnswerSheet extends Db
         return  $this->file;
     }
 
+    public function getTargetFile(): string
+    {
+        return $_SERVER['DOCUMENT_ROOT'] . $this->file;
+    }
+
     public function getMarks()
     {
         return $this->marks;

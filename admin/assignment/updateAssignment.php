@@ -35,7 +35,7 @@ $assignment = $assignmentService->getAssignmentById($_GET['id']);
                 <form action="updateAssignmentProcess.php?id=<?php echo $assignment->getId() ?>&link=update%20assignment" method="post" enctype="multipart/form-data">
                     <div class="form__group">
                         <div class="form__control">
-                            <label for="file"></label>
+                            <label for="file">File</label>
                             <input type="file" name="file" placeholder="File" id="file" value="<?php echo $assignment->getFile() ?>">
                         </div>
                     </div>
