@@ -31,17 +31,18 @@ $assignmentCount = count((new AssignmentService())->getAssignmentsByStudentUsern
     <title>Online Acedemy | Dashboard</title>
 
     <?php require $ROOT . '/student/head/head.php'; ?>
+    <link rel="stylesheet" href="/scss/grades.css">
 </head>
 
 <body>
     <div class="main">
-    <?php require $ROOT . '/student/menu.php'; ?>
-        
+        <?php require $ROOT . '/student/menu.php'; ?>
+
         <div class="body">
-        <?php require $ROOT . '/student/header.php'; ?>
+            <?php require $ROOT . '/student/header.php'; ?>
             <div class="body__content">
                 <div class="small__cards">
-                <div class="card small__card">
+                    <div class="card small__card">
                         <div class="title">Answer Sheets</div>
                         <div class="count"><?php echo $answerSheetCount; ?></div>
                     </div>
@@ -62,10 +63,66 @@ $assignmentCount = count((new AssignmentService())->getAssignmentsByStudentUsern
                         <div class="count"><?php echo $subjectCount; ?></div>
                     </div>
                 </div>
+                <div class="big__cards">
+                    <div class="card grades__card">
+                        <div class="card__title">Select Grade</div>
+                        <div class="grades">
+                            <div class="grade">
+                                <div class="subtitle">Grade</div>
+                                <div class="status">Current</div>
+                                <div class="grade__name">GradeA</div>
+                                <div class="footer">
+                                    <div class="footer__text">Subjects: 10</div>
+                                </div>
+                            </div>
+                            <div class="grade">
+                                <div class="subtitle">Grade</div>
+                                <div class="status">Old</div>
+                                <div class="grade__name">GradeA</div>
+                                <div class="footer">
+                                    <div class="footer__text">Subjects: 10</div>
+                                </div>
+                            </div>
+                            <div class="grade">
+                                <div class="subtitle">Grade</div>
+                                <div class="status">Old</div>
+                                <div class="grade__name">GradeA</div>
+                                <div class="footer">
+                                    <div class="footer__text">Subjects: 10</div>
+                                </div>
+                            </div>
+                            <div class="grade">
+                                <div class="subtitle">Grade</div>
+                                <div class="status">Old</div>
+                                <div class="grade__name">GradeA</div>
+                                <div class="footer">
+                                    <div class="footer__text">Subjects: 10</div>
+                                </div>
+                            </div>
+                            <div class="grade">
+                                <div class="subtitle">Grade</div>
+                                <div class="status">Old</div>
+                                <div class="grade__name">GradeA</div>
+                                <div class="footer">
+                                    <div class="footer__text">Subjects: 10</div>
+                                </div>
+                            </div>
+                            <div class="grade">
+                                <div class="subtitle">Grade</div>
+                                <div class="status">Old</div>
+                                <div class="grade__name">GradeA</div>
+                                <div class="footer">
+                                    <div class="footer__text">Subjects: 10</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card grades__card"></div>
+                </div>
             </div>
         </div>
     </div>
-    
+
     <?php require $ROOT . '/student/js/scripts.php'; ?>
 </body>
 

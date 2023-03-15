@@ -5,6 +5,7 @@ require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
 require_once $ROOT . "/app/subject/Subject.php";
 require_once $ROOT . "/app/grade/GradeService.php";
+require_once $ROOT . "/app/lesson/LessonService.php";
 require_once $ROOT . "/app/teacher/Teacher.php";
 
 class SubjectRepository extends Db
@@ -18,6 +19,7 @@ class SubjectRepository extends Db
         $subject->setGrade($grade->getGradeById($array['grade_id']));
         $teacher = new TeacherService();
         $subject->setTeacher($teacher->getTeacherById($array['teacher_id']));
+        $subject->setLessonCount((new LessonService)->getLessonsCountBySubject($array['id']));
         return $subject;
     }
     

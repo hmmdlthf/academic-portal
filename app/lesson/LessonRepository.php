@@ -103,7 +103,7 @@ class LessonRepository extends Db
 
     public function findLessonsBySubject(int $subjectId)
     {
-        $query = "SELECT * FROM `lesson` WHERE `subjectId`=?";
+        $query = "SELECT * FROM `lesson` WHERE `subject_id`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$subjectId]);
         $resultSet = $statement->fetchAll();
@@ -118,6 +118,16 @@ class LessonRepository extends Db
         } else {
             return false;
         }
+    }
+
+    public function findLessonsCountBySubject(int $subjectId)
+    {
+        $query = "SELECT COUNT(*) FROM `lesson` WHERE `subject_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$subjectId]);
+        $resultSet = $statement->fetch();
+        $count = $resultSet['COUNT(*)'];
+        return $count;
     }
 
     public function save(Lesson $lesson)

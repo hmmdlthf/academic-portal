@@ -21,6 +21,7 @@ $subjects = (new SubjectService())->getSubjectsByStudentUsername($jwtService->ge
     <title>Online Acedemy | Subject</title>
 
     <?php require $ROOT . '/student/head/head.php' ?>
+    <link rel="stylesheet" href="/scss/subject.css">
 
 </head>
 
@@ -39,30 +40,22 @@ $subjects = (new SubjectService())->getSubjectsByStudentUsername($jwtService->ge
                             </div>
                         </div>
                     </div>
-                    <div class="items">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>Grade</th>
-                                    <th>Teacher</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($subjects as $subject) { ?>
-                                    <tr>
-                                        <td><?php echo $subject->getId(); ?></td>
-                                        <td><?php echo $subject->getName(); ?></td>
-                                        <td><?php echo $subject->getGrade()->getName(); ?></td>
-                                        <td><?php echo $subject->getTeacher()->getEmail(); ?></td>
-                                    </tr>
-                                <?php } ?>
-
-                            </tbody>
-                        </table>
+                    <div class="subjects__card">
+                        <div class="card__title">Select Subject</div>
+                        <div class="subjects">
+                            <?php foreach ($subjects as $subject) { ?>
+                                <div class="subject">
+                                    <div class="subtitle">Subject</div>
+                                    <div class="subject__name"><?php echo $subject->getName(); ?></div>
+                                    <div class="grade__name"><?php echo $subject->getGrade()->getName(); ?></div>
+                                    <div class="teacher__name"><?php echo $subject->getTeacher()->getEmail(); ?></div>
+                                    <div class="footer">
+                                        <div class="footer__text">lessons: <?php echo $subject->getLessonCount(); ?></div>
+                                    </div>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
-
                 <?php } else { ?>
                     no Subjects Assigned
                 <?php } ?>

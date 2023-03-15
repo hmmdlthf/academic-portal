@@ -12,6 +12,7 @@ class Subject
     private $name;
     private Grade $grade;
     private Teacher $teacher;
+    private int $lessonCount;
 
     public function getId()
     {
@@ -33,6 +34,11 @@ class Subject
         return $this->teacher;
     }
 
+    public function getLessonCount()
+    {
+        return $this->lessonCount;
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;
@@ -51,5 +57,10 @@ class Subject
     public function setTeacher(Teacher $teacher)
     {
         $this->teacher = $teacher;
+    }
+
+    public function setLessonCount(int $lessonCount)
+    {
+        $this->lessonCount = $lessonCount;
     }
 }

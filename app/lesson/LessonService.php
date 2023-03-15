@@ -37,6 +37,11 @@ class LessonService
         return $this->lessonRepository->findLessonsBySubject($subjectId);
     }
 
+    public function getLessonsCountBySubject(int $subjectId)
+    {
+        return (int)$this->lessonRepository->findLessonsCountBySubject($subjectId);
+    }
+
     public function getLessonsByTeacherUsername(string $teacherUsername)
     {
         return $this->lessonRepository->findLessonsByTeacher((new TeacherService)->getTeacherByUsername($teacherUsername));
