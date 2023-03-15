@@ -56,6 +56,11 @@ class NoteService
         return $this->noteRepository->findNotesByStudent((new StudentService())->getStudentByUsername($studentUsername));
     }
 
+    public function getNotesCountByLesson(int $lessonId)
+    {
+        return $this->noteRepository->findNotesCountByLesson(($lessonId));
+    }
+
     public function save($name, $lessonId)
     {
         $note = new Note();

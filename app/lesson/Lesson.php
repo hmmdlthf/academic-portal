@@ -9,6 +9,8 @@ class Lesson extends Db
     private $id;
     private $name;
     private Subject $subject;
+    private int $notesCount;
+    private int $assignmentCount;
 
     public function getId()
     {
@@ -25,6 +27,16 @@ class Lesson extends Db
         return $this->subject;
     }
 
+    public function getNotesCount()
+    {
+        return $this->notesCount;
+    }
+
+    public function getAssignmentCount()
+    {
+        return $this->assignmentCount;
+    }
+
     public function setId(int $id)
     {
         $this->id = $id;
@@ -38,5 +50,15 @@ class Lesson extends Db
     public function setSubject(Subject $subject)
     {
         $this->subject = $subject;
+    }
+
+    public function setNotesCount(int $notesCount)
+    {
+        $this->notesCount = $notesCount;
+    }
+
+    public function setAssignmentCount(int $assignmentCount)
+    {
+        $this->assignmentCount = $assignmentCount;
     }
 }

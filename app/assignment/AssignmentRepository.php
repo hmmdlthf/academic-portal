@@ -53,7 +53,7 @@ class AssignmentRepository extends Db
 
     public function findAssignmentsByLesson(int $lessonId)
     {
-        $query = "SELECT * FROM `assignment` WHERE `lessonId`=?";
+        $query = "SELECT * FROM `assignment` WHERE `lesson_id`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$lessonId]);
         $resultSet = $statement->fetchAll();
@@ -68,6 +68,16 @@ class AssignmentRepository extends Db
         } else {
             return false;
         }
+    }
+
+    public function findAssignmentsCountByLesson(int $lessonId)
+    {
+        $query = "SELECT COUNT(*) FROM `assignment` WHERE `lesson_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$lessonId]);
+        $resultSet = $statement->fetch();
+        $assignmentsCount = $resultSet['COUNT(*)'];
+        return (int)$assignmentsCount;
     }
 
     public function findAssignmentsByTeacher(Teacher $teacher)

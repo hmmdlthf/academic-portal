@@ -43,6 +43,11 @@ class AssignmentService
         return $this->assignmentRepository->findAssignments();
     }
 
+    public function getAssignmentsCountByLesson(int $lessonId)
+    {
+        return $this->assignmentRepository->findAssignmentsCountByLesson($lessonId);
+    }
+
     public function getAssignmentsByTeacherUsername(string $teacherUsername)
     {
         return $this->assignmentRepository->findAssignmentsByTeacher((new TeacherService())->getTeacherByUsername($teacherUsername));

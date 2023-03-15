@@ -3,6 +3,10 @@
 $ROOT = $_SERVER["DOCUMENT_ROOT"];
 require_once $ROOT . '/vendor/autoload.php';
 require_once $ROOT . "/app/database/Db.php";
+require_once $ROOT . "/app/lesson/Lesson.php";
+require_once $ROOT . "/app/subject/SubjectService.php";
+require_once $ROOT . "/app/note/NoteService.php";
+require_once $ROOT . "/app/assignment/AssignmentService.php";
 
 class LessonRepository extends Db
 {
@@ -13,6 +17,8 @@ class LessonRepository extends Db
         $lesson->setName($array['name']);
         $subject = new SubjectService();
         $lesson->setSubject($subject->getSubjectById($array['subject_id']));
+        $lesson->setNotesCount((new NoteService())->getNotesCountByLesson($array['id']));
+        $lesson->setAssignmentCount((new AssignmentService())->getAssignmentsCountByLesson($array['id']));
         return $lesson;
     }
     

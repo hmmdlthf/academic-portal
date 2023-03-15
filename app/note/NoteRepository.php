@@ -55,7 +55,7 @@ class NoteRepository extends Db
 
     public function findNotesByLesson(int $lessonId)
     {
-        $query = "SELECT * FROM `note` WHERE `lessonId`=?";
+        $query = "SELECT * FROM `note` WHERE `lesson_id`=?";
         $statement = $this->connect()->prepare($query);
         $statement->execute([$lessonId]);
         $resultSet = $statement->fetchAll();
@@ -71,6 +71,17 @@ class NoteRepository extends Db
             return false;
         }
     }
+
+    public function findNotesCountByLesson(int $lessonId)
+    {
+        $query = "SELECT COUNT(*) FROM `note` WHERE `lesson_id`=?";
+        $statement = $this->connect()->prepare($query);
+        $statement->execute([$lessonId]);
+        $resultSet = $statement->fetch();
+        $notesCount = $resultSet['COUNT(*)'];
+        return (int)$notesCount;
+    }
+    
 
     public function findNotesByTeacher(Teacher $teacher)
     {
