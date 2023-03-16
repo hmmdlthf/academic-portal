@@ -6,7 +6,7 @@
   --header-height: 150px;
 }
 
-.grades__card {
+.notes__card {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,12 +14,12 @@
   padding: 1rem;
   width: 100%;
 }
-.grades__card .card__title {
+.notes__card .card__title {
   font-size: 2rem;
   font-weight: 700;
   text-transform: uppercase;
 }
-.grades__card .grades {
+.notes__card .notes {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 0.5rem;
@@ -29,24 +29,24 @@
   flex-wrap: wrap;
   width: -moz-fit-content;
   width: fit-content;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 @media (min-width: 992px) {
-  .grades__card .grades {
+  .notes__card .notes {
     grid-template: 1fr 1fr;
   }
 }
 @media (min-width: 1200px) {
-  .grades__card .grades {
+  .notes__card .notes {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
 @media (min-width: 1400px) {
-  .grades__card .grades {
+  .notes__card .notes {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
-.grades__card .grades .grade {
+.notes__card .notes .note {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,36 +59,42 @@
   color: #fff;
   width: 100%;
   height: 100%;
-  max-width: 10em;
   cursor: pointer;
 }
-.grades__card .grades .grade .subtitle {
+.notes__card .notes .note .subtitle {
   font-weight: 400;
   font-size: 0.6em;
   color: rgba(255, 255, 255, 0.6117647059);
 }
-.grades__card .grades .grade .grade__name {
+.notes__card .notes .note .note__name {
   font-size: 2em;
   font-size: 900;
 }
-.grades__card .grades .grade .footer {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+.notes__card .notes .note .grade__name {
+  font-size: 0.8em;
 }
-.grades__card .grades .grade .footer .footer__text {
-  font-size: 1em;
+.notes__card .notes .note .teacher__name {
+  font-size: 0.8em;
+}
+.notes__card .notes .note .footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.notes__card .notes .note .footer .footer__text {
+  font-size: 0.7em;
   opacity: 0.7;
 }
-.grades__card .grades .grade:hover {
+.notes__card .notes .note:hover {
   background-color: #fff;
   color: var(--color-1);
 }
-.grades__card .grades .grade:active {
+.notes__card .notes .note:active {
   scale: 0.8;
 }
-.grades__card .grades :first-child {
+.notes__card .notes :first-child {
   font-size: 2.15rem;
   grid-column: 1/span 2;
   grid-row: 1/span 2;
-}/*# sourceMappingURL=grades.css.map */
+}/*# sourceMappingURL=note.css.map */

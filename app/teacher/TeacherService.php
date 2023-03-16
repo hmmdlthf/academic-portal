@@ -39,27 +39,34 @@ class TeacherService
 
     public function sendCreationEmail(Teacher $teacher, $password)
     {
-        $body = "Your login credentials. <br><br>".
-                "Credentials requested email: ". $teacher->getEmail() . "<br>".
-                "username: " . $teacher->getUsername() . "<br>".
-                "password: " . $password . "<br>".
-                "created at: " . $teacher->getCreatedDate() . "<br>".
-                "click the link to verify <br>".
-                "http://" . $_SERVER['HTTP_HOST'] . "/teacher/verify.php?email=". $teacher->getEmail() . "&token=" . $teacher->getToken() . "<br>"
-        ;
+        // $body = "Your login credentials. <br><br>".
+        //         "Credentials requested email: ". $teacher->getEmail() . "<br>".
+        //         "username: " . $teacher->getUsername() . "<br>".
+        //         "password: " . $password . "<br>".
+        //         "created at: " . $teacher->getCreatedDate() . "<br>".
+        //         "click the link to verify <br>".
+        //         "http://" . $_SERVER['HTTP_HOST'] . "/teacher/verify.php?email=". $teacher->getEmail() . "&token=" . $teacher->getToken() . "<br>"
+        // ;
 
-        try {
-            $email = new Email();
-            $email->setTo($teacher->getEmail());
-            $email->setSubject('Welcome to Online Academy');
-            $email->setIsHTML(true);
-            $email->setBody($body);
-            $email->setAltBody("we sent the email in html, it seems your mail server doesn't support html");
-            $email->setSendersName("Online Academy");
-            $email->sendEmail();
-        } catch (Exception $e) {
-            die("error $e");
-        }
+        // try {
+        //     $email = new Email();
+        //     $email->setTo($teacher->getEmail());
+        //     $email->setSubject('Welcome to Online Academy');
+        //     $email->setIsHTML(true);
+        //     $email->setBody($body);
+        //     $email->setAltBody("we sent the email in html, it seems your mail server doesn't support html");
+        //     $email->setSendersName("Online Academy");
+        //     $email->sendEmail();
+        // } catch (Exception $e) {
+        //     die("error $e");
+        // }
+
+        $email = $teacher->getEmail();
+        $username = $teacher->getUsername();
+        $date = $teacher->getCreatedDate();
+        $token = $teacher->getToken();
+
+        pclose(popen("start /B php app/email/emails/accountCreationEmail.php $email $username $password $date $token > /dev/null ", "r"));
 
         
     }

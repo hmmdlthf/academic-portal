@@ -21,6 +21,7 @@ $notes = (new NoteService())->getNotesByStudentUsername($jwtService->getUsername
     <title>Online Acedemy | Note</title>
 
     <?php require $ROOT . '/student/head/head.php' ?>
+    <link rel="stylesheet" href="/scss/note.css">
 
 </head>
 
@@ -48,27 +49,18 @@ $notes = (new NoteService())->getNotesByStudentUsername($jwtService->getUsername
                             </div>
                         </div>
                     </div>
-                    <div class="items">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Name</th>
-                                    <th>File</th>
-                                    <th>Lesson</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($notes as $note) { ?>
-                                    <tr>
-                                        <td><?php echo $note->getId(); ?></td>
-                                        <td><?php echo $note->getName(); ?></td>
-                                        <td><a href="<?php echo $note->getFile(); ?>" download="">Download</a></td>
-                                        <td><?php echo $note->getLesson()->getName(); ?></td>
-                                    </tr>
-                                <?php } ?>
-                            </tbody>
-                        </table>
+                    <div class="notes__card">
+                        <div class="card__title">Select note</div>
+                        <div class="notes">
+                            <?php foreach ($notes as $note) { ?>
+                                <div class="note">
+                                    <div class="subtitle">note</div>
+                                    <div class="note__name"><?php echo $note->getName(); ?></div>
+                                    <div class="lesson__name"><?php echo $note->getLesson()->getName(); ?></div>
+                                    <a href="<?php echo $note->getFile(); ?>" download="">Download</a>
+                                </div>
+                            <?php } ?>
+                        </div>
                     </div>
 
                 <?php } else { ?>

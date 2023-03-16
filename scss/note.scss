@@ -1,6 +1,6 @@
 @import 'variables';
 
-.grades__card {
+.notes__card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -14,7 +14,7 @@
         text-transform: uppercase;
     }
 
-    .grades {
+    .notes {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-gap: .5rem;
@@ -36,9 +36,9 @@
         justify-content: center;
         flex-wrap: wrap;
         width: fit-content;
-        margin-top: 1rem;
+        margin-top: 2rem;
 
-        .grade {
+        .note {
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -46,13 +46,12 @@
             font-size: 1rem;
             border-radius: .5rem;
             padding: 1em;
-            //margin: .5rem;
             box-shadow: var(--shadow);
             background-color: var(--color-1);
             color: #fff;
             width: 100%;
             height: 100%;
-            max-width: 10em;
+            //max-width: 350px;
             cursor: pointer;
 
             .subtitle {
@@ -63,18 +62,27 @@
 
             .status {}
 
-            .grade__name {
+            .note__name {
                 font-size: 2em;
                 font-size: 900;
             }
 
+            .grade__name {
+                font-size: .8em;
+            }
+
+            .teacher__name {
+                font-size: .8em;
+            }
+
             .footer {
                 display: flex;
-                align-items: center;
-                justify-content: flex-start;
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: center;
 
                 .footer__text {
-                    font-size: 1em;
+                    font-size: .7em;
                     opacity: .7;
                 }
             }
